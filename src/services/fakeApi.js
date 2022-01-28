@@ -1,4 +1,4 @@
-import {decryptText,encryptText} from '../utils/crypto'
+import { decryptText, encryptText } from '../utils/crypto'
 
 /**
  * return array of registered users
@@ -8,7 +8,7 @@ import {decryptText,encryptText} from '../utils/crypto'
 const getUsers = () => {
     let encryptedUsers = localStorage.getItem('users')
 
-    
+
     let users = [];
 
     if (encryptedUsers) {
@@ -19,7 +19,7 @@ const getUsers = () => {
 }
 
 const findUserByEmail = (email) => {
-   return getUsers().find(u => u.email===email)
+    return getUsers().find(u => u.email === email)
 }
 
 /**
@@ -43,7 +43,7 @@ const signUp = ({ name, surname, date, gender, phone, email, password, maritalSt
         date: date,
         gender: gender,
         email: email,
-        phone: phone ,
+        phone: phone,
         password: password,
         maritalStatus: maritalStatus
     }
@@ -55,15 +55,15 @@ const signUp = ({ name, surname, date, gender, phone, email, password, maritalSt
 
     const users = getUsers();
     let dbUser = users.find(u => u.email === email)
-    
-    if ( dbUser ) {
+
+    if (dbUser) {
         result = {
             ...result,
             errorMessage: "UsedEmail",
             emailUsed: true
         }
     } else {
-        
+
         // add user to db
         addUser(user);
         // add to local storage
@@ -76,10 +76,10 @@ const signUp = ({ name, surname, date, gender, phone, email, password, maritalSt
 }
 
 const ADMIN_DATA = {
-    name: 'Adam', 
-    surname: 'Admin', 
-    date: '01/01/0001', 
-    gender: 'Other', 
+    name: 'Adam',
+    surname: 'Admin',
+    date: '01/01/0001',
+    gender: 'Other',
     phone: '1234567890',
     email: 'admin@beije.it',
     password: 'admin',
@@ -94,9 +94,9 @@ const applyFixture = () => {
     let users = getUsers();
     const newUsers = users.filter(user => {
         for (let i = 0; i < usersFixture.length; i++) {
-           if (user.email === usersFixture[i].email ) {
-               return false
-           }
+            if (user.email === usersFixture[i].email) {
+                return false
+            }
         }
         return true;
     })
@@ -108,11 +108,11 @@ const applyFixture = () => {
     return dbUsers
 }
 
-const signIn = ( email, password, remember ) => {
+const signIn = (email, password, remember) => {
 
     let res = {
-        errorMsg:'',
-        sessionUser: null
+        errorMsg: '',
+        sessionUser: undefined
     }
 
     if (isAdmin(email, password)) {
@@ -121,7 +121,7 @@ const signIn = ( email, password, remember ) => {
         res.sessionUser = findUserByEmail(email);
     }
 
-    if ( res.sessionUser !== null && res.sessionUser.password === password) {
+    if (res.sessionUser !== undefined && res.sessionUser.password === password) {
         // don't save password in localstorage
         res.sessionUser.password = undefined;
 
@@ -130,10 +130,10 @@ const signIn = ( email, password, remember ) => {
         } else {
             localStorage.removeItem('lastSession')
         }
-        
-        
+
+
         localStorage.setItem('session', encryptText(JSON.stringify(res.sessionUser)))
-        
+
     } else {
         res.errorMsg = "Wrong credential"
     }
@@ -166,7 +166,7 @@ const tryLastSession = () => {
     }
 }
 
-const getUserPassword = ( email ) => {
+const getUserPassword = (email) => {
     let user = findUserByEmail(email)
 
     if (user) {

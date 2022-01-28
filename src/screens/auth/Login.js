@@ -30,6 +30,7 @@ class Login extends Component {
             rememberSession: true,
             path: 'none',
         }
+
     }
 
     componentDidMount() {
@@ -39,12 +40,12 @@ class Login extends Component {
         let session = tryLocalSession()
         let lastSession = tryLastSession()
 
-        if ( session ) {
-            this.setState({ path:"/"})
+        if (session) {
+            this.setState({ path: "/" })
         }
 
-        if ( lastSession) {
-            this.setState({email: lastSession.email})
+        if (lastSession) {
+            this.setState({ email: lastSession.email })
         }
     }
 
@@ -55,7 +56,7 @@ class Login extends Component {
         let emailError = false
         if (!checkEmail(emailInput)) {
             emailError = true
-        } 
+        }
 
         if (passwordInput.trim() === '') {
             passwordError = true
@@ -67,10 +68,10 @@ class Login extends Component {
             passwordError
         })
 
-        if ( !emailError && !passwordError){
+        if (!emailError && !passwordError) {
             let session = signIn(this.state.email, this.state.password, this.state.rememberSession)
-            
-            if ( session.errorMsg === '' ) {
+
+            if (session.errorMsg === '') {
                 this.setState({ path: '/' })
             } else {
                 alert(session.errorMsg)
@@ -130,7 +131,7 @@ class Login extends Component {
                         label={t('Login.RememberMe')}
                         checkboxStyleContainer='checkbox'
                         checkboxStyleInput='input-checkbox'
-                        checkboxStyleLabel='label' 
+                        checkboxStyleLabel='label'
                         callback={this.onClickCheckbox}
                         value={this.state.rememberSession}
                     />
@@ -139,15 +140,15 @@ class Login extends Component {
                         {t('Login.ForgotPassword')}
                     </a>
                 </div>
-                <SubmitButton 
+                <SubmitButton
                     label={t('Login.SubmitButton')}
                     onClick={this.checkLogin}
                 />
                 <div className='goto-sign goto-sign--up'  >
-                    <span style={{cursor:'pointer'}} onClick={this.onSignUpClick} >{t('Login.SignUp')}</span>
+                    <span style={{ cursor: 'pointer' }} onClick={this.onSignUpClick} >{t('Login.SignUp')}</span>
                 </div>
                 <div className='sign-up'>
-                    <span style={{cursor:'pointer'}}>{t('Login.OrSignUpWith')}</span>
+                    <span style={{ cursor: 'pointer' }}>{t('Login.OrSignUpWith')}</span>
                 </div>
                 <div>
                     <CircleButton
