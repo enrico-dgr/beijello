@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
+import userMeDuck from "../ducks/userMeDuck";
+import workspacesDuck from "../ducks/workspacesDuck";
 
 //API
 
@@ -7,6 +9,8 @@ import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
 	// exampleDuck,
+	userMeDuck,
+	workspacesDuck,
 });
 
 export default rootReducer;
