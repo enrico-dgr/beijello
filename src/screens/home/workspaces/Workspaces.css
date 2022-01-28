@@ -1,0 +1,21 @@
+.container-workspaces{
+    text-align: left;
+    display: flex;
+    background-color: rgba(141, 30, 30,0);
+    width: 1000px;
+    min-height: 480px;
+    margin: 15px auto;
+}
+.aside-left{
+   flex-basis: 250px;
+}
+.aside-right{
+    flex: 1;
+}
+.branch-aside-workspace{
+    display: flex;
+    padding: 0 5px;
+    justify-content: space-between;
+    background-color: turquoise;
+}
+
