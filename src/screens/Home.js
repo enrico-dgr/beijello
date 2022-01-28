@@ -1,10 +1,18 @@
 import "./Home.css";
+import React from "react";
 
 import { Outlet, useNavigate } from "react-router-dom";
 
-import React from "react";
+/* i18next */
 import SwitchLanguage from "../components/funcComponents/SwitchLanguage";
+/* Home screens */
+import Workspaces from "./home/workspaces/Workspaces";
+
+
 import { signOut } from "../services/fakeApi";
+
+
+
 
 // COMPONENT
 
@@ -47,7 +55,7 @@ const Home = () => {
 					/>
 				</div>
 			</div>
-
+			<Workspaces />
 			<Outlet />
 		</div>
 	);

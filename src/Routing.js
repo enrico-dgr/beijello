@@ -17,9 +17,9 @@ function Routing() {
 		<div className="App">
 			<Routes>
 				<Route path="" element={<Home />}>
-					<Route path="" element={<Welcome />} />
+					{/* <Route path="" element={<Welcome />} /> */}
 					{/* <Route path="workspaces" element={<Workspaces />}/>
-            <Route path="board" element={<Board />}/> */}
+            		<Route path="board" element={<Board />}/> */}
 					<Route
 						path="profile/changepsw"
 						element={<ChangePsw />}
