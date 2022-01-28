@@ -11,6 +11,7 @@ import NotFound from "./screens/NotFound";
 import Registration from "./screens/auth/Registration";
 // SCREENS
 import Welcome from "./screens/home/Welcome";
+import Board from "./screens/home/Board";
 
 function Routing() {
 	return (
@@ -18,8 +19,8 @@ function Routing() {
 			<Routes>
 				<Route path="" element={<Home />}>
 					<Route path="" element={<Welcome />} />
-					{/* <Route path="workspaces" element={<Workspaces />}/>
-            <Route path="board" element={<Board />}/> */}
+					{/* <Route path="workspaces" element={<Workspaces />} /> */}
+					<Route path="board" element={<Board />} />
 					<Route
 						path="profile/changepsw"
 						element={<ChangePsw />}
