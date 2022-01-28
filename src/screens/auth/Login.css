@@ -1,0 +1,59 @@
+.title {
+    width: 100%;
+    display: block;
+    font-size: 30px;
+    color: #333333;
+    line-height: 1.2;
+    text-align: center;
+    padding-bottom: 43px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.user-actions-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3px;
+    padding-bottom: 32px;
+    width: 100%;
+}
+
+.link {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #555555;
+}
+
+.goto-sign {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #999999;
+}
+
+.goto-sign--up {
+    padding: 40px 0 6px 0;
+}
+
+.sign-up {
+    padding: 0 0 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #999999;
+}
+
+.img-facebook, .img-twitter {
+    height: 20px;
+    width: 20px;
+}
+
+.facebook {
+    background-color: #3B5998 !important;
+}
+.twitter {
+    background-color: #1DA1F2 !important;
+}
+.facebook:hover, .twitter:hover {
+    background: #333333 !important;
+    cursor: pointer;
+}

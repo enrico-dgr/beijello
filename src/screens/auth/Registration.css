@@ -1,0 +1,86 @@
+.auth-default-form.auth-signup-form {
+    padding: 100px 55px 55px 55px;
+}
+
+.goto-sign--in {
+    margin: -15px 0 15px 0;
+}
+
+
+.reg-gender{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: .7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+.reg-gender input{
+    margin-left: 1.3em;
+    margin-right: 1px;
+}
+
+.birth-date{
+    color: transparent;
+}
+.birth-date:focus{
+    color: #999999;
+}
+.birth-date.birth-date--filled{
+    color:rgb(37, 37, 37);
+}
+
+.birth-date label{
+    position: absolute;
+    pointer-events: none;
+    transform: translate(0, 30px) scale(1);
+    transform-origin: top left;
+    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    color: #999999;
+    line-height: 1.2;
+    left: 16px;
+}
+.birth-date:focus-within label {
+    transform: translate(0, 12px) scale(0.8);
+}
+.birth-date.birth-date--filled label{
+    transform: translate(0, 12px) scale(0.8);
+}
+
+
+.form-marital-status{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: .7em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #999999;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    padding: .5em 0 .5em .7em;
+}
+.form-marital-status label{
+    margin-right: 2em;
+    color: #999999;
+}
+.form-marital-status select {
+    font-family: 'Montserrat', sans-serif;
+    background-color: transparent;
+    border:  1px solid #e6e6e6;
+    padding: .5em 1em;
+    border-radius: 10px;
+    margin: 0;
+    margin-left: 1em;
+}
+.form-marital-status input {
+    font-family: 'Montserrat', sans-serif;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+}

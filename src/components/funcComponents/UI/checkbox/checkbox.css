@@ -1,0 +1,22 @@
+.checkbox {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #999999;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.input-checkbox {
+    cursor: pointer;
+    display: block;
+    border: 0.3px solid blue;
+    height: 18px;
+    width: 18px;
+}
+
+.label {
+    display: block;
+    padding-left: 7px;
+    line-height: 1.4;
+}

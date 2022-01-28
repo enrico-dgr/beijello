@@ -1,0 +1,80 @@
+.switch-language {
+    background-color: inherit;
+    max-height: 26px ;
+    min-height: 26px ;
+    padding: 0;
+    position: relative;
+}
+
+.switch-language:hover {
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-name: shadow-switch;
+}
+
+@keyframes shadow-switch {
+    0% {
+        /* box-shadow: 0 2px 4px inherit, 0 4px 4px inherit; */
+    }
+    100% {
+        /* box-shadow: 0 2px 4px inherit,  0 4px 4px inherit, 0 0 4px rgb(0, 0, 0); */
+    }
+}
+
+
+.switch-language__button {
+    background-color: transparent;
+    margin: 0 2px;
+    height: 26px;
+    margin: 0;
+    max-height: 26px ;
+    min-height: 26px ;
+    padding: 0;
+    transition: background-color 0.4s ease;
+    width: 53px;
+}
+
+.switch-language__button:hover {
+    background-color: rgba(0, 0, 0, 0.192);
+}
+
+.switch-language__list {
+    align-items: center;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-name: show-list;
+    background-color: inherit;
+    border: 1px black;
+    border-style: ridge;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+}
+
+.switch-language:hover .switch-language__list {
+    display: flex;
+}
+
+@keyframes show-list {
+    0% {
+        /* box-shadow: 0 -2px 4px inherit, 0 -4px 4px inherit; */
+        opacity: 0;
+    }
+    100% {
+        /* box-shadow: 0 -2px 4px inherit, 0 -4px 4px inherit, 0 0 4px rgb(0, 0, 0); */
+        opacity: 1;
+    }
+}
+
+.switch-language__button img {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+}

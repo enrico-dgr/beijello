@@ -1,0 +1,75 @@
+{
+    "NotFound": {
+        "Title":"Error 404",
+        "Subtitle": "Something went wrong :(",
+        "GoHomepage":"Go to Home"
+    },
+    "Login": {
+        "SubmitButton":"Login",
+        "EmailError": "Valid email is required: ex@abc.xyz",
+        "ForgotPassword": "Forgot Password?",
+        "PasswordError": "Password is required",
+        "OrSignUpWith": "or sign up using",
+        "RememberMe": "Remember me",
+        "SignUp": "Sign up",
+        "Title": "Login to continue"
+    },
+    "ForgotPassword": {
+        "Title": "Forgot Password",
+        "SendEmail": "Send email",
+        "EmailSent": "Email sent"
+    },
+    "Home":{
+        "Welcome":"Welcome",
+        "ChangePswBtn":"CHANGE PASSWORD"
+    },
+    "ChangePassword":{
+        "Title":"Change Password",
+        "CurrentPsw": "Your Current Password",
+        "NewPsw":"New Password",
+        "ConfirmNewPsw":"Confirm New Password",
+        "BtnConfirm":"Confirm",
+        "Errors":{
+            "CurrentPasswordWrong":"Your current password is wrong",
+            "PasswordSameAsOld":"New password can't be the same as the old one",
+            "PasswordsTooShort":"New Password should be at least 8",
+            "NewPasswordsDontMatch":"New passwords don't match",
+            "PassChangeSuccess":"Password change in "
+        }
+    },
+    "Registration": {
+        "EmailErrors":{
+            "EmptyEmail":"Email is required",
+            "InvalidEmail": "Valid email is required: ex@abc.xyz",
+            "UsedEmail": "Email already in use"
+        },
+        "Gender":{
+            "Male":"Male",
+            "Female":"Female",
+            "Other":"Other"
+        },
+        "MaritalStatus": {
+            "Single":"Single",
+            "Married":"Married",
+            "Name":"Marital Status",
+            "Divorced":"Divorced",
+            "SelfMarried":"Self married"
+        },
+        "Name":"Name",
+        "PhoneNumber":"Phone number",
+        "SignIn":"Sign in",
+        "Surname":"Surname",
+        "Title":"Registration",
+        "NameError": "Name is required",
+        "PhoneNumberError": "Phone number is required",
+        "DateError": "Date is required",
+        "SubmitButton":"Sign up",
+        "SurnameError": "Surname is required",
+        "GenderError":"Gender is required",
+        "MaritalStatusError": "Marital status is required",
+        "PasswordErrors": {
+            "EmptyPassword": "Password is required",
+            "InvalidPassword": "Required at least 8 characters, 1 uppercase, 1 number, 1 special character"
+        }
+    }
+}
