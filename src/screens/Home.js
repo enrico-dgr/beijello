@@ -1,15 +1,18 @@
 import "./Home.css";
 import React from "react";
-
+import { applyFixture } from "../services/fakeApi";
+import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
+/* redux */
+import { connect } from "react-redux";
+import { setUser } from "../redux/ducks/userMeDuck";
 /* i18next */
 import SwitchLanguage from "../components/funcComponents/SwitchLanguage";
 /* Home screens */
 import Workspaces from "./home/workspaces/Workspaces";
-
-
-import { signOut } from "../services/fakeApi";
+/* services : fakeApi */
+import { signOut, tryLocalSession } from "../services/fakeApi";
 
 
 
@@ -18,17 +21,32 @@ import { signOut } from "../services/fakeApi";
 
 // SERVICES
 
-const Home = () => {
+const Home = (props) => {
 	let navigate = useNavigate();
-
+	const handleNavigate = (dest) => () => {
+		navigate(dest);
+	};
 	const handleSignOut = () => {
 		signOut();
 		navigate("/auth/login");
 	};
 
-	const handleNavigate = (dest) => () => {
-		navigate(dest);
-	};
+	let [session, setSession] = useState()
+
+	useEffect(() => {
+
+
+		let localSession = tryLocalSession();
+
+		if (!localSession) {
+			navigate('/auth/login')
+		} else if (localSession && !session) {
+			props.dispatch(setUser(localSession))
+		}
+	}, [session]);
+	/* Component did mount */
+
+
 
 	return (
 		<div className="home-container">
@@ -55,10 +73,9 @@ const Home = () => {
 					/>
 				</div>
 			</div>
-			<Workspaces />
 			<Outlet />
 		</div>
 	);
 };
 
-export default Home;
+export default connect()(Home);
