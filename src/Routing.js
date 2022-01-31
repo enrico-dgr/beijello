@@ -25,7 +25,7 @@ function Routing() {
 					<Route path="" element={<Home />}>
 						<Route path="" element={<Workspaces />} />
 
-						<Route path="board" element={<Board />} />
+						<Route path="board/:name" element={<Board />} />
 						<Route
 							path="profile/changepsw"
 							element={<ChangePsw />}
