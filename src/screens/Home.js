@@ -1,52 +1,39 @@
 import "./Home.css";
-import React from "react";
-import { applyFixture } from "../services/fakeApi";
-import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
 
-/* redux */
-import { connect } from "react-redux";
-import { setUser } from "../redux/ducks/userMeDuck";
-/* i18next */
-import SwitchLanguage from "../components/funcComponents/SwitchLanguage";
-/* Home screens */
-import Workspaces from "./home/workspaces/Workspaces";
-/* services : fakeApi */
+import { Outlet, useNavigate } from "react-router-dom";
 import { signOut, tryLocalSession } from "../services/fakeApi";
 
+import React from "react";
+import SwitchLanguage from "../components/funcComponents/SwitchLanguage";
+import { connect } from "react-redux";
+import { setUser } from "../redux/ducks/userMeDuck";
+import { useEffect } from "react";
 
-
-
-// COMPONENT
-
-// SERVICES
+const mapStateToProps = (state) => ({
+	user: state.userMeDuck.user,
+});
 
 const Home = (props) => {
 	let navigate = useNavigate();
+
 	const handleNavigate = (dest) => () => {
 		navigate(dest);
 	};
+
 	const handleSignOut = () => {
 		signOut();
 		navigate("/auth/login");
 	};
 
-	let [session, setSession] = useState()
-
 	useEffect(() => {
-
-
 		let localSession = tryLocalSession();
 
 		if (!localSession) {
-			navigate('/auth/login')
-		} else if (localSession && !session) {
-			props.dispatch(setUser(localSession))
+			navigate("/auth/login");
+		} else if (localSession && !props.user.email) {
+			props.dispatch(setUser(localSession));
 		}
-	}, [session]);
-	/* Component did mount */
-
-
+	});
 
 	return (
 		<div className="home-container">
@@ -78,4 +65,4 @@ const Home = (props) => {
 	);
 };
 
-export default connect()(Home);
+export default connect(mapStateToProps)(Home);
