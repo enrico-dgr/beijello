@@ -1,18 +1,14 @@
 .board-wrapper {
-    /* height: 100vh; */
-    width: 100vw;
+    height: 100vh;
+    /* width: 100vw; */
     overflow-x: scroll;
     border: 2px solid green;
 }
 
 .board-container {
-   height: 100vh;
+    display: flex;
 }
 
 .board-title {
     padding: 10px 10px;
-}
-
-.ticketList-wrapper {
-    display: flex;
 }
