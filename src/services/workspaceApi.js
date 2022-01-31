@@ -6,16 +6,16 @@ const getWorkSpaces = () => {
 	let workSpaces = [];
 
 	if (encryptedWorkSpaces) {
-		workSpaces = [...JSON.parse(decryptText(encryptedWorkSpaces))];
+		workSpaces = JSON.parse(decryptText(encryptedWorkSpaces));
 	}
 
 	return workSpaces;
 };
 
 const getWorkSpacesByEmail = (email) => {
-	let workSpacesByEmail = getWorkSpaces().filter((item) => {
+	let workSpacesByEmail = getWorkSpaces().filter((workspace) => {
 		let flag = false;
-		if (item.users.find((user) => user.email === email)) {
+		if (workspace.users.find((user) => user.email === email)) {
 			flag = true;
 		}
 		return flag;
@@ -28,6 +28,7 @@ const getWorkSpacesByEmail = (email) => {
 const setWorkSpaces = (workSpaces) => {
 	let encryptedWorkSpaces = encryptText(JSON.stringify(workSpaces));
 
+	localStorage.setItem("workSpacesDecrypted", JSON.stringify(workSpaces));
 	localStorage.setItem("workSpaces", encryptedWorkSpaces);
 };
 
@@ -38,6 +39,4 @@ const addWorkSpace = (workSpace) => {
 	setWorkSpaces(decryptedWorkSpaces);
 };
 
-
 export { getWorkSpaces, getWorkSpacesByEmail, setWorkSpaces, addWorkSpace };
-

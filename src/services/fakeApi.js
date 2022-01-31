@@ -1,4 +1,4 @@
-import { decryptText, encryptText } from '../utils/crypto'
+import { decryptText, encryptText } from "../utils/crypto";
 
 /**
  * return array of registered users
@@ -6,183 +6,195 @@ import { decryptText, encryptText } from '../utils/crypto'
  * @return { User[] }
  */
 const getUsers = () => {
-    let encryptedUsers = localStorage.getItem('users')
+	let encryptedUsers = localStorage.getItem("users");
 
+	let users = [];
 
-    let users = [];
+	if (encryptedUsers) {
+		users = [...JSON.parse(decryptText(encryptedUsers))];
+	}
 
-    if (encryptedUsers) {
-        users = [...JSON.parse(decryptText(encryptedUsers))];
-    }
-
-    return users;
-}
+	return users;
+};
 
 const findUserByEmail = (email) => {
-    return getUsers().find(u => u.email === email)
-}
+	return getUsers().find((u) => u.email === email);
+};
 
 /**
- * set array of registered users 
+ * set array of registered users
  */
 const setUsers = (users) => {
-    localStorage.setItem('users', encryptText(JSON.stringify(users)))
-}
+	localStorage.setItem("users", encryptText(JSON.stringify(users)));
+};
 
 const addUser = (user) => {
-    const users = getUsers();
+	const users = getUsers();
 
-    setUsers([...users, user])
-}
+	setUsers([...users, user]);
+};
 
-const signUp = ({ name, surname, date, gender, phone, email, password, maritalStatus }) => {
+const signUp = ({
+	name,
+	surname,
+	date,
+	gender,
+	phone,
+	email,
+	password,
+	maritalStatus,
+}) => {
+	let user = {
+		name: name,
+		surname: surname,
+		date: date,
+		gender: gender,
+		email: email,
+		phone: phone,
+		password: password,
+		maritalStatus: maritalStatus,
+	};
 
-    let user = {
-        name: name,
-        surname: surname,
-        date: date,
-        gender: gender,
-        email: email,
-        phone: phone,
-        password: password,
-        maritalStatus: maritalStatus
-    }
+	let result = {
+		errorMessage: "",
+		emailUsed: false,
+	};
 
-    let result = {
-        errorMessage: '',
-        emailUsed: false
-    }
+	const users = getUsers();
+	let dbUser = users.find((u) => u.email === email);
 
-    const users = getUsers();
-    let dbUser = users.find(u => u.email === email)
+	if (dbUser) {
+		result = {
+			...result,
+			errorMessage: "UsedEmail",
+			emailUsed: true,
+		};
+	} else {
+		// add user to db
+		addUser(user);
+		// add to local storage
+		localStorage.setItem("session", encryptText(JSON.stringify(user)));
 
-    if (dbUser) {
-        result = {
-            ...result,
-            errorMessage: "UsedEmail",
-            emailUsed: true
-        }
-    } else {
+		return user;
+	}
 
-        // add user to db
-        addUser(user);
-        // add to local storage
-        localStorage.setItem('session', encryptText(JSON.stringify(user)))
-
-        return user
-    }
-
-    return result;
-}
+	return result;
+};
 
 const ADMIN_DATA = {
-    name: 'Adam',
-    surname: 'Admin',
-    date: '01/01/0001',
-    gender: 'Other',
-    phone: '1234567890',
-    email: 'admin@beije.it',
-    password: 'admin',
-    maritalStatus: 'SelfMarried'
-}
+	name: "Adam",
+	surname: "Admin",
+	date: "01/01/0001",
+	gender: "Other",
+	phone: "1234567890",
+	email: "admin@beije.it",
+	password: "admin",
+	maritalStatus: "SelfMarried",
+};
 
-const isAdmin = (email, password) => email === ADMIN_DATA.email && password === ADMIN_DATA.password;
+const isAdmin = (email, password) =>
+	email === ADMIN_DATA.email && password === ADMIN_DATA.password;
 
 const usersFixture = [ADMIN_DATA];
 
 const applyFixture = () => {
-    let users = getUsers();
-    const newUsers = users.filter(user => {
-        for (let i = 0; i < usersFixture.length; i++) {
-            if (user.email === usersFixture[i].email) {
-                return false
-            }
-        }
-        return true;
-    })
+	let users = getUsers();
+	const newUsers = users.filter((user) => {
+		for (let i = 0; i < usersFixture.length; i++) {
+			if (user.email === usersFixture[i].email) {
+				return false;
+			}
+		}
+		return true;
+	});
 
-    const dbUsers = [...newUsers, ...usersFixture];
+	const dbUsers = [...newUsers, ...usersFixture];
 
-    setUsers(dbUsers)
+	setUsers(dbUsers);
 
-    return dbUsers
-}
+	return dbUsers;
+};
 
 const signIn = (email, password, remember) => {
+	let res = {
+		errorMsg: "",
+		sessionUser: undefined,
+	};
 
-    let res = {
-        errorMsg: '',
-        sessionUser: undefined
-    }
+	if (isAdmin(email, password)) {
+		res.sessionUser = ADMIN_DATA;
+	} else {
+		res.sessionUser = findUserByEmail(email);
+	}
 
-    if (isAdmin(email, password)) {
-        res.sessionUser = ADMIN_DATA;
-    } else {
-        res.sessionUser = findUserByEmail(email);
-    }
+	if (
+		res.sessionUser !== undefined &&
+		res.sessionUser.password === password
+	) {
+		// don't save password in localstorage
+		res.sessionUser.password = undefined;
 
-    if (res.sessionUser !== undefined && res.sessionUser.password === password) {
-        // don't save password in localstorage
-        res.sessionUser.password = undefined;
+		if (remember) {
+			localStorage.setItem(
+				"lastSession",
+				encryptText(JSON.stringify({ email: email }))
+			);
+		} else {
+			localStorage.removeItem("lastSession");
+		}
 
-        if (remember) {
-            localStorage.setItem('lastSession', encryptText(JSON.stringify({ email: email })))
-        } else {
-            localStorage.removeItem('lastSession')
-        }
+		localStorage.setItem(
+			"session",
+			encryptText(JSON.stringify(res.sessionUser))
+		);
+	} else {
+		res.sessionUser = undefined;
+		res.errorMsg = "Wrong credential";
+	}
 
-
-        localStorage.setItem('session', encryptText(JSON.stringify(res.sessionUser)))
-
-    } else {
-        res.errorMsg = "Wrong credential"
-    }
-
-    return res;
-}
+	return res;
+};
 
 const signOut = () => {
-    localStorage.removeItem('session')
-}
+	localStorage.removeItem("session");
+};
 
 const tryLocalSession = () => {
-    let session = localStorage.getItem('session')
+	let session = localStorage.getItem("session");
 
-    if (session) {
-        return JSON.parse(decryptText(session))
-    } else {
-        return false
-    }
-}
-
+	if (session) {
+		return JSON.parse(decryptText(session));
+	} else {
+		return false;
+	}
+};
 
 const tryLastSession = () => {
-    let session = localStorage.getItem('lastSession')
+	let session = localStorage.getItem("lastSession");
 
-    if (session) {
-        return JSON.parse(decryptText(session))
-    } else {
-        return false
-    }
-}
+	if (session) {
+		return JSON.parse(decryptText(session));
+	} else {
+		return false;
+	}
+};
 
 const getUserPassword = (email) => {
-    let user = findUserByEmail(email)
+	let user = findUserByEmail(email);
 
-    if (user) {
-        return user.password
-
-    } else {
-        return false
-    }
-}
+	if (user) {
+		return user.password;
+	} else {
+		return false;
+	}
+};
 
 export {
-    signIn,
-    signUp,
-    signOut,
-    tryLocalSession,
-    tryLastSession,
-    getUserPassword,
-    applyFixture
-}
+	signIn,
+	signUp,
+	signOut,
+	tryLocalSession,
+	tryLastSession,
+	getUserPassword,
+	applyFixture,
+};
