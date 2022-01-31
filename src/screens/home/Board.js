@@ -10,69 +10,35 @@ import './Board.css'
 
 
 const Board = (props) => {
-    // const [board, setBoard] = useState(null)
+
+    const [board, setBoard] = useState(undefined)
     const [modalFlag, setModalFlag] = useState(false)
-    const [board, setBoard] = useState({
-        name: 'board title',
-        layout: 'board layout',
-        ticketLists: [
-            {                           //obj -> single ticket list
-                name: 'ticket list title 0',
-                tickets: [
-                    {                   //obj -> single ticket
-                        name: 'ticket title',
-                        description: 'ticket description',
-                    }
-                ]
-            },
-            {                           //obj -> single ticket list
-                name: 'ticket list title 1',
-                tickets: [
-                    {                   //obj -> single ticket
-                        name: 'ticket title',
-                        description: 'ticket description',
-                    }
-                ]
-            },
-            {                           //obj -> single ticket list
-                name: 'ticket list title 2',
-                tickets: [
-                    {                   //obj -> single ticket
-                        name: 'ticket title',
-                        description: 'ticket description',
-                    }
-                ]
-            },
-            {                           //obj -> single ticket list
-                name: 'ticket list title 3',
-                tickets: [
-                    {                   //obj -> single ticket
-                        name: 'ticket title',
-                        description: 'ticket description',
-                    }
-                ]
-            },
-            {                           //obj -> single ticket list
-                name: 'ticket list title 4',
-                tickets: [
-                    {                   //obj -> single ticket
-                        name: 'ticket title',
-                        description: 'ticket description',
-                    }
-                ]
-            },
-        ]
-    })
+    // const [board, setBoard] = useState({
+    //     name: 'board title',
+    //     layout: 'board layout',
+    //     ticketLists: [
+    //         {                           //obj -> single ticket list
+    //             name: 'ticket list title 0',
+    //             tickets: [
+    //                 {                   //obj -> single ticket
+    //                     name: 'ticket title',
+    //                     description: 'ticket description',
+    //                 }
+    //             ]
+    //         },
+
+    //     ]
+    // })
 
     const params = useParams()
+   
+    useEffect(() => {
+        if (props.boards !== undefined && params.name !== undefined) {
+            const newBoard = props.boards.find(b => b.name === params.name)
+                setBoard(newBoard)
+        }
 
-    // useEffect(() => {
-    //     if (props.boards !== undefined && params.name !== undefined) {
-    //         const newBoard = props.boards.find(b => b.name === params.name)
-    //             setBoard(newBoard)
-    //     }
-
-    // }, [])
+    }, [])
 
     const openModal = () => {
         // const newTicketList = [{

@@ -45,6 +45,7 @@ const updateWorkspace = (workspace, workspaceName, email) => {
 
 	if (index > -1) {
 		workspaces[index] = workspace;
+		setWorkSpaces(workspaces)
 	}
 };
 

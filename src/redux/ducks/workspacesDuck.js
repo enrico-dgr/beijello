@@ -1,3 +1,4 @@
+import _ from "lodash";
 // Actions
 const SET_WORKSPACES = "web/workspaces/SET_WORKSPACES";
 const SET_WORKSPACE = "web/workspaces/SET_WORKSPACE";
@@ -86,12 +87,12 @@ export default function workspaceDuck(state = INIT_STATE, action) {
 
 	switch (action.type) {
 		case SET_WORKSPACES:
-			newState = Object.assign({}, state);
+			newState = _.cloneDeep(state);
 			newState.workspaces = action.payload.workspaces;
 			return newState;
 
 		case SET_WORKSPACE:
-			newState = Object.assign({}, state);
+			newState = _.cloneDeep(state);
 			workspaceIndex = newState.workspaces.findIndex(
 				(w) => w.name === action.payload.workspaceName
 			);
@@ -105,7 +106,7 @@ export default function workspaceDuck(state = INIT_STATE, action) {
 			return newState;
 
 		case SET_BOARD:
-			newState = Object.assign({}, state);
+			newState = _.cloneDeep(state);
 			workspaceIndex = newState.workspaces.findIndex(
 				(w) => w.name === action.payload.workspaceName
 			);
@@ -129,7 +130,7 @@ export default function workspaceDuck(state = INIT_STATE, action) {
 			return newState;
 
 		case SET_TICKELIST:
-			newState = Object.assign({}, state);
+			newState = _.cloneDeep(state);
 			workspaceIndex = newState.workspaces.findIndex(
 				(w) => w.name === action.payload.workspaceName
 			);
@@ -164,7 +165,7 @@ export default function workspaceDuck(state = INIT_STATE, action) {
 			return newState;
 
 		case SET_TICKET:
-			newState = Object.assign({}, state);
+			newState = _.cloneDeep(state);
 			workspaceIndex = newState.workspaces.findIndex(
 				(w) => w.name === action.payload.workspaceName
 			);
