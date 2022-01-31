@@ -1,19 +1,25 @@
+
 import React, { Component } from "react";
 import "./Workspaces.css"
 /* redux */
 import { connect } from "react-redux";
 
+
+import React, { Component } from "react";
 /* Services WorkspaceApi */
+
 import { addWorkSpace, getWorkSpacesByEmail, setWorkSpaces } from "../../../services/workspaceApi";
+
 
 /* funcComponents */
 import Button from "../../../components/funcComponents/UI/button/Button";
 import Modal from "../../../components/funcComponents/Modal";
 
 const mapStateToProps = (state) => {
-    return { email: state.userMeDuck.user.email }
-}
+	return { email: state.userMeDuck.user.email };
+};
 class Workspaces extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -70,7 +76,7 @@ class Workspaces extends Component {
             </div>
         )
     }
+
 }
 
-
-export default connect(mapStateToProps)(Workspaces)
+export default connect(mapStateToProps)(Workspaces);

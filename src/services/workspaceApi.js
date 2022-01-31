@@ -38,4 +38,6 @@ const addWorkSpace = (workSpace) => {
 	setWorkSpaces(decryptedWorkSpaces);
 };
 
+
 export { getWorkSpaces, getWorkSpacesByEmail, setWorkSpaces, addWorkSpace };
+
