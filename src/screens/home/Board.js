@@ -1,82 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import Proptypes from 'prop-types';
+import "./Board.css";
+
+import React, { useEffect, useState } from "react";
+
+import Button from "../../components/funcComponents/UI/button/Button";
+import NewTicketListModal from "../../components/funcComponents/board/NewTicketListModal";
+import PropTypes from "prop-types";
+import TicketList from "../../components/funcComponents/TicketList";
 import { connect } from "react-redux";
-import { useParams } from 'react-router-dom';
-
-import BoardModal from '../home/board/BoardModal';
-import TicketList from '../../components/funcComponents/TicketList';
-import Button from '../../components/funcComponents/UI/button/Button';
-import './Board.css'
-
+import { useParams } from "react-router-dom";
 
 const Board = (props) => {
+	const [board, setBoard] = useState(undefined);
+	const [modalFlag, setModalFlag] = useState(false);
+	const params = useParams();
 
-    const [board, setBoard] = useState(undefined)
-    const [modalFlag, setModalFlag] = useState(false)
-    // const [board, setBoard] = useState({
-    //     name: 'board title',
-    //     layout: 'board layout',
-    //     ticketLists: [
-    //         {                           //obj -> single ticket list
-    //             name: 'ticket list title 0',
-    //             tickets: [
-    //                 {                   //obj -> single ticket
-    //                     name: 'ticket title',
-    //                     description: 'ticket description',
-    //                 }
-    //             ]
-    //         },
+	useEffect(() => {
+		if (props.boards !== undefined && params.name !== undefined) {
+			const newBoard = props.boards.find(
+				(b) => b.name === params.name
+			);
+			setBoard(newBoard);
+		}
+	}, [params.name, props.boards]);
 
-    //     ]
-    // })
+	const openModal = () => {
+		setModalFlag(true);
+	};
 
-    const params = useParams()
-   
-    useEffect(() => {
-        if (props.boards !== undefined && params.name !== undefined) {
-            const newBoard = props.boards.find(b => b.name === params.name)
-                setBoard(newBoard)
-        }
-
-    }, [])
-
-    const openModal = () => {
-        // const newTicketList = [{
-        //     name: ''
-        // }]
-        setModalFlag(true)
-    }
-
-    const renderTicketList = (ticketList, i) => {
-        return <TicketList key={ticketList.name} ticketList={ticketList} />
-    }
-    return (
-
-        <>
-            <div className='board-wrapper'>
-                <div className='board-title'>
-                    <h3 >{!!board && board.name}</h3>
-                </div>
-                <div className="board-container">
-                    {!!board && board.ticketLists.map(renderTicketList)}
-                    <Button label="+ Aggiungi lista" onClick={openModal} className={'board-btn-add-list'} />
-                </div>
-                {modalFlag && <BoardModal ticketList={board.ticketLists}/>}
-            </div>
-
-        </>
-    )
-
-}
+	const renderTicketList = (ticketList, i) => {
+		return <TicketList key={ticketList.name} ticketList={ticketList} />;
+	};
+	return (
+		<>
+			<div className="board-wrapper">
+				<div className="board-title">
+					<h3>{!!board && board.name}</h3>
+				</div>
+				<div className="board-container">
+					{!!board &&
+						board.ticketLists.map(renderTicketList)}
+					<Button
+						label="+ Aggiungi lista"
+						onClick={openModal}
+						className={"board-btn-add-list"}
+					/>
+				</div>
+				{modalFlag && (
+					<NewTicketListModal boardName={board.name} />
+				)}
+			</div>
+		</>
+	);
+};
 
 const mapStateToProps = (state) => {
-    console.log(state);
-    return { boards: state.workspacesDuck.workspaces?.boards };
+	console.log(state);
+	return { boards: state.workspacesDuck.workspaces?.boards };
 };
 
 Board.propTypes = {
-    name: Proptypes.string,
-    ticketList: Proptypes.array,
-}
+	name: PropTypes.string,
+	ticketList: PropTypes.array,
+};
 
-export default connect(mapStateToProps)(Board)
+export default connect(mapStateToProps)(Board);
