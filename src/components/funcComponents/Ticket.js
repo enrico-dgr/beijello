@@ -5,8 +5,8 @@ const Ticket = (props) => {
     return (
         <>
             <div className="ticketContainer" key={ticket.name} >
-                <p style={{ textAlign: 'left' }}>{ticket.name}</p>
-                <p style={{ textAlign: 'left' }}>{ticket.description}</p>
+                <p >{ticket.name}</p>
+                <p >{ticket.description}</p>
                 {/* BUTTON COMPONENT TO DO */}
             </div>
         </>

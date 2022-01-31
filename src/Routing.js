@@ -25,11 +25,12 @@ function Routing() {
 
 			<Provider store={applicationStore}>
 				<Routes>
+					<Route path="board" element={<Board />} />
 					<Route path="" element={<Home />}>
 						<Route path="" element={<Workspaces />} />
 						{/* <Route path="" element={<Welcome />} /> */}
 
-						<Route path="board" element={<Board />} />
+						{/* <Route path="board" element={<Board />} /> */}
 						<Route
 							path="profile/changepsw"
 							element={<ChangePsw />}
@@ -46,10 +47,10 @@ function Routing() {
 							path="forgotpassword"
 							element={<ForgotPassword />}
 						/>
-
-            </Routes>
+					</Route>
 					<Route path="*" element={<NotFound />} />
-		
+				</Routes>
+
 			</Provider>
 		</div>
 	);
