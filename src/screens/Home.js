@@ -33,7 +33,7 @@ const Home = (props) => {
 		} else if (localSession && !props.user.email) {
 			props.dispatch(setUser(localSession));
 		}
-	});
+	}, [props.user]);
 
 	return (
 		<div className="home-container">
