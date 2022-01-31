@@ -1,6 +1,7 @@
 import React from "react";
 import './TicketList.css';
 import Ticket from './Ticket.js';
+
 const TicketList = (props) => {
     const { ticketList } = props
 
@@ -13,7 +14,7 @@ const TicketList = (props) => {
         <>
             <div className="ticketList-container" >
                 <div className="ticketList-title">
-                    <p style={{ textAlign: 'left' }}>{ticketList.name}</p>
+                    <p >{ticketList.name}</p>
                 </div>
                 <div>
                     {ticketList.tickets.map(renderTicket)}

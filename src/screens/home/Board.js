@@ -63,12 +63,10 @@ const Board = () => {
         <>
             <div className='board-wrapper'>
                 <div className='board-title'>
-                    <h3 style={{ textAlign: 'left' }}>{board.name}</h3>
+                    <h3 >{board.name}</h3>
                 </div>
                 <div className="board-container">
-                    <div className="ticketList-wrapper">
-                        {board.ticketLists.map(renderTicketList)}
-                    </div>
+                    {board.ticketLists.map(renderTicketList)}
                 </div>
             </div>
 
