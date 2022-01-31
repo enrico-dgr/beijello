@@ -6,7 +6,7 @@ const getWorkSpaces = () => {
 	let workSpaces = [];
 
 	if (encryptedWorkSpaces) {
-		workSpaces = [JSON.parse(decryptText(encryptedWorkSpaces))];
+		workSpaces = [...JSON.parse(decryptText(encryptedWorkSpaces))];
 	}
 
 	return workSpaces;
@@ -32,10 +32,12 @@ const setWorkSpaces = (workSpaces) => {
 };
 
 /* adding workSpaces */
-const addWorkSpaces = (workSpace) => {
+const addWorkSpace = (workSpace) => {
 	let decryptedWorkSpaces = getWorkSpaces();
 	decryptedWorkSpaces.push(workSpace);
 	setWorkSpaces(decryptedWorkSpaces);
 };
 
-export { getWorkSpaces, getWorkSpacesByEmail, addWorkSpaces };
+
+export { getWorkSpaces, getWorkSpacesByEmail, setWorkSpaces, addWorkSpace };
+
