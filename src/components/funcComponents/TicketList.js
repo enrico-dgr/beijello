@@ -2,6 +2,7 @@ import React from "react";
 import './TicketList.css';
 import Ticket from './Ticket.js';
 
+
 const TicketList = (props) => {
     const { ticketList } = props
 

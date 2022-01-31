@@ -4,8 +4,6 @@ import "./Workspaces.css"
 /* redux */
 import { connect } from "react-redux";
 
-
-import React, { Component } from "react";
 /* Services WorkspaceApi */
 
 import { addWorkSpace, getWorkSpacesByEmail, setWorkSpaces } from "../../../services/workspaceApi";
