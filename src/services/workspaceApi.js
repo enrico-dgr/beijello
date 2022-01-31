@@ -39,4 +39,19 @@ const addWorkSpace = (workSpace) => {
 	setWorkSpaces(decryptedWorkSpaces);
 };
 
-export { getWorkSpaces, getWorkSpacesByEmail, setWorkSpaces, addWorkSpace };
+const updateWorkspace = (workspace, workspaceName, email) => {
+	let workspaces = getWorkSpacesByEmail(email);
+	const index = workspaces.findIndex((w) => w.name === workspaceName);
+
+	if (index > -1) {
+		workspaces[index] = workspace;
+	}
+};
+
+export {
+	getWorkSpaces,
+	getWorkSpacesByEmail,
+	setWorkSpaces,
+	addWorkSpace,
+	updateWorkspace,
+};

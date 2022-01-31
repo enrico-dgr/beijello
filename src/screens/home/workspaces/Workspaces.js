@@ -2,21 +2,15 @@ import "./Workspaces.css";
 
 import React, { Component } from "react";
 
-/* Services WorkspaceApi */
-import {
-	addWorkSpace,
-	getWorkSpacesByEmail,
-} from "../../../services/workspaceApi";
-
 /* funcComponents */
 import Button from "../../../components/funcComponents/UI/button/Button";
-import WorkSpaceModal from "../../../components/funcComponents/workspaces/WorkSpaceModal";
-
+import WorkSpaceModal from "../../../components/funcComponents/workspaces/NewWorkspaceModal";
+import Workspace from "../../../components/funcComponents/workspaces/Workspace";
 /* redux */
 import { connect } from "react-redux";
+/* Services WorkspaceApi */
+import { getWorkSpacesByEmail } from "../../../services/workspaceApi";
 import { setWorkspaces } from "../../../redux/ducks/workspacesDuck";
-
-
 
 const mapStateToProps = (state) => {
 	return {
@@ -32,14 +26,17 @@ class Workspaces extends Component {
 		};
 	}
 	componentDidMount() {
-		console.log(this.props.email)
+		console.log(this.props.email);
 		this.props.dispatch(
 			setWorkspaces(getWorkSpacesByEmail(this.props.email))
 		);
 	}
 	componentDidUpdate(prevProps) {
-		if (this.props.email !== undefined && prevProps.email !== this.props.email) {
-			console.log(this.props.email)
+		if (
+			this.props.email !== undefined &&
+			prevProps.email !== this.props.email
+		) {
+			console.log(this.props.email);
 			this.props.dispatch(
 				setWorkspaces(getWorkSpacesByEmail(this.props.email))
 			);
@@ -48,28 +45,23 @@ class Workspaces extends Component {
 	/* modal view */
 	hideModal = () => {
 		this.setState({
-			modalflag: false
-		})
-	}
+			modalflag: false,
+		});
+	};
 	viewModal = () => {
 		this.setState({
-			modalflag: true
-		})
-	}
-
+			modalflag: true,
+		});
+	};
 
 	render() {
 		return (
 			<div className="container-workspaces">
-				{
-					this.state.modalflag &&
+				{this.state.modalflag && (
 					<WorkSpaceModal
 						callBackHideModal={this.hideModal}
 					/>
-				}
-				{this.props.workspaces.map((w, i) => (
-					<div key={i + "kuyyfvk"}>{w.name}</div>
-				))}
+				)}
 				<div className="aside-left">
 					<div className="branch-aside-workspace">
 						spazi di lavoro
@@ -80,12 +72,19 @@ class Workspaces extends Component {
 					</div>
 					<div></div>
 				</div>
-				<div className="aside-right"></div>
+				<this.RenderWorkspaces />
 			</div>
 		);
 	}
+
+	RenderWorkspaces = () =>
+		this.props.workspaces.map((w, i) => (
+			<Workspace
+				boards={w.boards}
+				customKey={i + "workspace-map"}
+				name={w.name}
+			/>
+		));
 }
-
-
 
 export default connect(mapStateToProps)(Workspaces);
