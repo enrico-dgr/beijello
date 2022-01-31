@@ -1,6 +1,9 @@
 import "./Workspaces.css";
 
 import React, { Component } from "react";
+
+
+/* Services WorkspaceApi */
 import {
 	addWorkSpace,
 	getWorkSpacesByEmail,
@@ -8,12 +11,13 @@ import {
 
 /* funcComponents */
 import Button from "../../../components/funcComponents/UI/button/Button";
-import Modal from "../../../components/funcComponents/Modal";
+import WorkSpaceModal from "../../../components/funcComponents/workspaces/WorkSpaceModal";
+
 /* redux */
 import { connect } from "react-redux";
 import { setWorkspaces } from "../../../redux/ducks/workspacesDuck";
 
-/* Services WorkspaceApi */
+
 
 const mapStateToProps = (state) => {
 	return {
@@ -29,40 +33,50 @@ class Workspaces extends Component {
 		};
 	}
 	componentDidMount() {
+		console.log(this.props.email)
 		this.props.dispatch(
 			setWorkspaces(getWorkSpacesByEmail(this.props.email))
 		);
 	}
-	componentDidUpdate() {}
-
-	/*adding New Work space */
-	addNewWorkspace = () => {
+	componentDidUpdate(prevProps) {
+		if (this.props.email !== undefined && prevProps.email !== this.props.email) {
+			console.log(this.props.email)
+			this.props.dispatch(
+				setWorkspaces(getWorkSpacesByEmail(this.props.email))
+			);
+		}
+	}
+	/* modal view */
+	hideModal = () => {
 		this.setState({
-			modalflag: true,
-		});
+			modalflag: false
+		})
+	}
+	viewModal = () => {
+		this.setState({
+			modalflag: true
+		})
+	}
 
-		let ob = {
-			name: "ciccio",
-			users: [{ email: this.props.email, role: "admin" }],
-		};
-		addWorkSpace(ob);
-		this.props.dispatch(
-			setWorkspaces(getWorkSpacesByEmail(this.props.email))
-		);
-	};
+
 	render() {
 		return (
 			<div className="container-workspaces">
-				{this.state.modalflag && <Modal />}
+				{
+					this.state.modalflag &&
+					<WorkSpaceModal
+						callBackHideModal={this.hideModal}
+					/>
+				}
 				{this.props.workspaces.map((w, i) => (
-					<div key={i + "kuyyfvk"}>Workspace</div>
+					<div key={i + "kuyyfvk"}>{w.name}</div>
 				))}
 				<div className="aside-left">
 					<div className="branch-aside-workspace">
 						spazi di lavoro
 						<Button
 							label="+"
-							onClick={this.addNewWorkspace}
+							onClick={this.viewModal}
 						/>
 					</div>
 					<div></div>
@@ -72,5 +86,7 @@ class Workspaces extends Component {
 		);
 	}
 }
+
+
 
 export default connect(mapStateToProps)(Workspaces);
