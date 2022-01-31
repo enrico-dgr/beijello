@@ -6,7 +6,7 @@ const getWorkSpaces = () => {
 	let workSpaces = [];
 
 	if (encryptedWorkSpaces) {
-		workSpaces = JSON.parse(decryptText(encryptedWorkSpaces));
+		workSpaces = [JSON.parse(decryptText(encryptedWorkSpaces))];
 	}
 
 	return workSpaces;
