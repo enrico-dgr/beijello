@@ -27,6 +27,7 @@ const NewBoard = (props) => {
 	};
 
 	const hideModal = () => {
+		console.log(state);
 		setState({ ...state, showModal: false });
 	};
 
@@ -57,15 +58,14 @@ const NewBoard = (props) => {
 		// update redux
 		props.dispatch(setWorkspace(workspace, props.workspaceName));
 
-		if (props.callBackHideModal !== undefined) {
-			props.callBackHideModal();
-		}
+		hideModal()
 	};
 
 	return (
-		<div className={"board-preview"} onClick={showModal}>
-			<p>Add new board</p>
-
+		<div>
+			<div className={"board-preview"} onClick={showModal}>
+				<p>Add new board</p>
+			</div>
 			{/* Modal */}
 			{state.showModal && (
 				<Modal>
