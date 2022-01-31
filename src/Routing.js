@@ -10,27 +10,22 @@ import Login from "./screens/auth/Login";
 import NotFound from "./screens/NotFound";
 import Registration from "./screens/auth/Registration";
 // SCREENS
-import Welcome from "./screens/home/Welcome";
 
 import Board from "./screens/home/Board";
 
 //REDUX
-import applicationStore from './applicationStore';
-import { Provider } from 'react-redux';
-
+import applicationStore from "./applicationStore";
+import { Provider } from "react-redux";
 
 function Routing() {
 	return (
 		<div className="App">
-
 			<Provider store={applicationStore}>
 				<Routes>
-					<Route path="board" element={<Board />} />
 					<Route path="" element={<Home />}>
 						<Route path="" element={<Workspaces />} />
-						{/* <Route path="" element={<Welcome />} /> */}
 
-						{/* <Route path="board" element={<Board />} /> */}
+						<Route path="board/:name" element={<Board />} />
 						<Route
 							path="profile/changepsw"
 							element={<ChangePsw />}
@@ -50,7 +45,6 @@ function Routing() {
 					</Route>
 					<Route path="*" element={<NotFound />} />
 				</Routes>
-
 			</Provider>
 		</div>
 	);

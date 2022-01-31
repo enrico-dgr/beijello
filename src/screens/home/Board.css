@@ -7,8 +7,15 @@
 
 .board-container {
     display: flex;
+    gap:10px;
 }
 
 .board-title {
     padding: 10px 10px;
+}
+
+.board-btn-add-list {
+   min-width: 120px;
+   height: 48px;
+  
 }

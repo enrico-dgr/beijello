@@ -1,52 +1,57 @@
-import { decryptText, encryptText } from '../utils/crypto'
-
+import { decryptText, encryptText } from "../utils/crypto";
 
 const getWorkSpaces = () => {
+	let encryptedWorkSpaces = localStorage.getItem("workSpaces");
 
-    let encryptedWorkSpaces = localStorage.getItem('workSpaces')
+	let workSpaces = [];
 
+	if (encryptedWorkSpaces) {
+		workSpaces = JSON.parse(decryptText(encryptedWorkSpaces));
+	}
 
-    let workSpaces = [];
-
-    if (encryptedWorkSpaces) {
-        workSpaces = [...JSON.parse(decryptText(encryptedWorkSpaces))];
-    }
-
-    return workSpaces;
-}
+	return workSpaces;
+};
 
 const getWorkSpacesByEmail = (email) => {
-    let workSpacesByEmail = getWorkSpaces().filter(
-        (item) => {
-            let flag = false;
-            if (item.users.find((user) => user.email === email)) {
-                flag = true
-            }
-            return flag;
-        }
-    )
+	let workSpacesByEmail = getWorkSpaces().filter((workspace) => {
+		let flag = false;
+		if (workspace.users.find((user) => user.email === email)) {
+			flag = true;
+		}
+		return flag;
+	});
 
-    return workSpacesByEmail;
-}
+	return workSpacesByEmail;
+};
 
 /* setting workSpaces */
 const setWorkSpaces = (workSpaces) => {
+	let encryptedWorkSpaces = encryptText(JSON.stringify(workSpaces));
 
-    let encryptedWorkSpaces = encryptText(JSON.stringify(workSpaces))
-
-    localStorage.setItem('workSpaces', encryptedWorkSpaces);
-}
+	localStorage.setItem("workSpacesDecrypted", JSON.stringify(workSpaces));
+	localStorage.setItem("workSpaces", encryptedWorkSpaces);
+};
 
 /* adding workSpaces */
-const addWorkSpaces = (workSpace) => {
-    let decryptedWorkSpaces = getWorkSpaces()
-    decryptedWorkSpaces.push(workSpace);
-    setWorkSpaces(decryptedWorkSpaces);
-}
+const addWorkSpace = (workSpace) => {
+	let decryptedWorkSpaces = getWorkSpaces();
+	decryptedWorkSpaces.push(workSpace);
+	setWorkSpaces(decryptedWorkSpaces);
+};
+
+const updateWorkspace = (workspace, workspaceName, email) => {
+	let workspaces = getWorkSpacesByEmail(email);
+	const index = workspaces.findIndex((w) => w.name === workspaceName);
+
+	if (index > -1) {
+		workspaces[index] = workspace;
+	}
+};
 
 export {
-    getWorkSpaces,
-    getWorkSpacesByEmail,
-    setWorkSpaces,
-    addWorkSpaces,
-}
+	getWorkSpaces,
+	getWorkSpacesByEmail,
+	setWorkSpaces,
+	addWorkSpace,
+	updateWorkspace,
+};
