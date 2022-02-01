@@ -1,3 +1,5 @@
+import "./Workspace.css";
+
 import BoardPreview from "./BoardPreview";
 import NewBoard from "./NewBoard";
 import PropTypes from "prop-types";

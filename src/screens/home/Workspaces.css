@@ -1,10 +1,10 @@
-.container-workspaces {
-	align-items: center;
+.workspaces-container {
+	align-items: start;
 	background-color: rgba(141, 30, 30, 0);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin: 15px auto;
+	padding: 15px 40px;
 	min-height: 480px;
 	text-align: left;
 	width: 1000px;
