@@ -6,7 +6,9 @@ import { signOut, tryLocalSession } from "../services/fakeApi";
 import React from "react";
 import SwitchLanguage from "../components/funcComponents/SwitchLanguage";
 import { connect } from "react-redux";
+import { getWorkSpacesByEmail } from "../services/workspaceApi";
 import { setUser } from "../redux/ducks/userMeDuck";
+import { setWorkspaces } from "../redux/ducks/workspacesDuck";
 import { useEffect } from "react";
 
 const mapStateToProps = (state) => ({
@@ -32,6 +34,12 @@ const Home = (props) => {
 			navigate("/auth/login");
 		} else if (localSession && !props.user.email) {
 			props.dispatch(setUser(localSession));
+		}
+
+		if (props.user.email !== undefined) {
+			props.dispatch(
+				setWorkspaces(getWorkSpacesByEmail(props.user.email))
+			);
 		}
 	}, [props.user]);
 

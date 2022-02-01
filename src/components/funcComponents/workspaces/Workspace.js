@@ -14,22 +14,24 @@ const Workspace = (props) => {
 				<NewBoard workspaceName={props.name} />
 				{props.workspaces
 					.find((w) => w.name === props.name)
-					?.boards.map(MapPreview)}
+					?.boards.map(MapPreview(props.name))}
 			</div>
 		</div>
 	);
 };
 
 // assign keys to each BoardPreview
-const MapPreview = (board, i) => (
-	<div key={i + "board-preview-ke"}>
-		<BoardPreview
-			customKey={i + "board-preview-key"}
-			layout={board.layout}
-			name={board.name}
-		/>
-	</div>
-);
+const MapPreview = (workspaceName) => (board, i) =>
+	(
+		<div key={i + "board-preview-ke"}>
+			<BoardPreview
+				customKey={i + "board-preview-key"}
+				layout={board.layout}
+				boardName={board.name}
+				workspaceName={workspaceName}
+			/>
+		</div>
+	);
 
 Workspace.propTypes = {
 	name: PropTypes.string,

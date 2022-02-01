@@ -8,9 +8,6 @@ import WorkSpaceModal from "../../components/funcComponents/workspaces/NewWorksp
 import Workspace from "../../components/funcComponents/workspaces/Workspace";
 /* redux */
 import { connect } from "react-redux";
-/* Services WorkspaceApi */
-import { getWorkSpacesByEmail } from "../../services/workspaceApi";
-import { setWorkspaces } from "../../redux/ducks/workspacesDuck";
 
 const mapStateToProps = (state) => {
 	return {
@@ -25,23 +22,7 @@ class Workspaces extends Component {
 			modalflag: false,
 		};
 	}
-	componentDidMount() {
-		console.log(this.props.email);
-		this.props.dispatch(
-			setWorkspaces(getWorkSpacesByEmail(this.props.email))
-		);
-	}
-	componentDidUpdate(prevProps) {
-		if (
-			this.props.email !== undefined &&
-			prevProps.email !== this.props.email
-		) {
-			console.log(this.props.email);
-			this.props.dispatch(
-				setWorkspaces(getWorkSpacesByEmail(this.props.email))
-			);
-		}
-	}
+
 	/* modal view */
 	hideModal = () => {
 		this.setState({
