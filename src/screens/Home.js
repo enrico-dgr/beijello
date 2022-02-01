@@ -18,15 +18,19 @@ const mapStateToProps = (state) => ({
 const Home = (props) => {
 	let navigate = useNavigate();
 
+	/* metodo di navigazione */
 	const handleNavigate = (dest) => () => {
 		navigate(dest);
 	};
 
+	/* log out */
 	const handleSignOut = () => {
 		signOut();
 		navigate("/auth/login");
 	};
 
+
+	/* component did update con dipendenza props.user */
 	useEffect(() => {
 		let localSession = tryLocalSession();
 
@@ -50,7 +54,7 @@ const Home = (props) => {
 					onClick={handleNavigate("/")}
 					className="navbar-logotype"
 				>
-					BEIJE HOME
+					BEIJELLO
 				</p>
 				<div
 					style={{

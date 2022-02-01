@@ -23,7 +23,7 @@ class Workspaces extends Component {
 		};
 	}
 
-	/* modal view */
+	/* modal view METHODS */
 	hideModal = () => {
 		this.setState({
 			modalflag: false,
@@ -34,6 +34,9 @@ class Workspaces extends Component {
 			modalflag: true,
 		});
 	};
+	/*  */
+
+
 
 	render() {
 		return (
@@ -43,23 +46,21 @@ class Workspaces extends Component {
 						callBackHideModal={this.hideModal}
 					/>
 				)}
-				<div className="aside-left">
-					<div className="branch-aside-workspace">
-						spazi di lavoro
+				<div className="cover-workspace">
+					<div className="workspace-button-create">
 						<Button
-							label="+"
+							label="Nuovo spazio di lavoro"
 							onClick={this.viewModal}
 						/>
 					</div>
-					<div></div>
+					{this.props.workspaces.map(this.RenderWorkspaces)}
 				</div>
-				{this.props.workspaces.map(this.RenderWorkspaces)}
 			</div>
 		);
 	}
 
 	RenderWorkspaces = (w, i) => (
-		<div key={i + "workspace-ma"}>
+		<div className="workspace-container" key={i + "workspace-ma"}>
 			<Workspace
 				boards={w.boards}
 				customKey={i + "workspace-map"}
