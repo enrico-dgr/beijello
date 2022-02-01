@@ -3,6 +3,7 @@ import "./Home.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { signOut, tryLocalSession } from "../services/fakeApi";
 
+import { KEYS } from "../utils/localStorage";
 import React from "react";
 import SwitchLanguage from "../components/funcComponents/SwitchLanguage";
 import { connect } from "react-redux";
@@ -10,6 +11,7 @@ import { getWorkSpacesByEmail } from "../services/workspaceApi";
 import { setUser } from "../redux/ducks/userMeDuck";
 import { setWorkspaces } from "../redux/ducks/workspacesDuck";
 import { useEffect } from "react";
+import users from "../services/users.service";
 
 const mapStateToProps = (state) => ({
 	user: state.userMeDuck.user,
@@ -23,23 +25,29 @@ const Home = (props) => {
 	};
 
 	const handleSignOut = () => {
-		signOut();
+		localStorage.removeItem(KEYS.AUTH_TOKEN);
+		props.dispatch(setUser({}));
 		navigate("/auth/login");
 	};
 
 	useEffect(() => {
-		let localSession = tryLocalSession();
+		const token = localStorage.getItem(KEYS.AUTH_TOKEN);
 
-		if (!localSession) {
+		if (token !== null) {
+			users.authToken(token).then((res) => {
+				if (res.status === 200) {
+					props.dispatch(setUser(res.data));
+					props.dispatch(
+						setWorkspaces(
+							getWorkSpacesByEmail(res.data.email)
+						)
+					);
+				} else {
+					navigate("/auth/login");
+				}
+			});
+		} else {
 			navigate("/auth/login");
-		} else if (localSession && !props.user.email) {
-			props.dispatch(setUser(localSession));
-		}
-
-		if (props.user.email !== undefined) {
-			props.dispatch(
-				setWorkspaces(getWorkSpacesByEmail(props.user.email))
-			);
 		}
 	}, [props.user]);
 

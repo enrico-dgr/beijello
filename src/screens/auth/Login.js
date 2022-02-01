@@ -4,7 +4,6 @@ import "./Login.css";
 import React, { Component } from "react";
 import {
 	applyFixture,
-	signIn,
 	tryLastSession,
 	tryLocalSession,
 } from "../../services/fakeApi";
@@ -13,6 +12,7 @@ import Checkbox from "../../components/funcComponents/UI/checkbox/Checkbox";
 import CircleButton from "../../components/funcComponents/CircleButton";
 // FUNC COMPONENTS
 import Input from "../../components/funcComponents/UI/input/Input";
+import { KEYS } from "../../utils/localStorage";
 import { Navigate } from "react-router-dom";
 import SubmitButton from "../../components/funcComponents/SubmitButton";
 import { checkEmail } from "../../utils/utils";
@@ -21,6 +21,7 @@ import { connect } from "react-redux";
 import facebook from "../../assets/images/facebook-to-zindex.png";
 import { setUser } from "../../redux/ducks/userMeDuck";
 import twitter from "../../assets/images/twitter-to-zindex.png";
+import users from "../../services/users.service";
 import { withTranslation } from "react-i18next";
 
 class Login extends Component {
@@ -72,18 +73,22 @@ class Login extends Component {
 		});
 
 		if (!emailError && !passwordError) {
-			let session = signIn(
-				this.state.email,
-				this.state.password,
+			users.login(
+				{
+					email: this.state.email,
+					password: this.state.password,
+				},
 				this.state.rememberSession
-			);
+			).then((res) => {
+				if (res.status === 200) {
+					this.props.dispatch(setUser(res.data));
+					localStorage.setItem(KEYS.AUTH_TOKEN, res.token);
 
-			if (session.errorMsg === "") {
-				this.setState({ path: "/" });
-				this.props.dispatch(setUser(session.sessionUser));
-			} else {
-				alert(session.errorMsg);
-			}
+					this.setState({ path: "/" });
+				} else {
+					alert(res.statusText);
+				}
+			});
 		}
 	};
 

@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "lofol@gmail.com"
+    },
+    {
+      "email": "newTest@gmail.com",
+      "id": 2
+    },
+    {
+      "name": "Enrico",
+      "surname": "Di Grazia",
+      "date": "1998-04-05",
+      "gender": "Male",
+      "phone": "3922958942",
+      "email": "enrico.digrazia98@gmail.com",
+      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+      "maritalStatus": "single",
+      "id": 3
+    }
+  ],
+  "workspaces": []
+}
