@@ -1,23 +1,22 @@
 .workspaces-container {
-	align-items: start;
-	background-color: rgba(141, 30, 30, 0);
+	height:100vh;
+	background-image:  url('../../assets/images/background_workspace.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.cover-workspace{
+	padding: 50px;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 15px 40px;
-	min-height: 480px;
-	text-align: left;
-	width: 1000px;
+	height: 100%;
+	background-color: rgba(111, 111, 144, 0.3);
+	text-align: center;
+	padding-top: 60px;
+	overflow: scroll;
 }
-.aside-left {
-	flex-basis: 250px;
+
+.workspace-button-create > button:hover{
+	transition: all linear .2s;
+	background-color: rgba(42, 42, 46, 0.9);
+	color: white;
 }
-.aside-right {
-	flex: 1;
-}
-.branch-aside-workspace {
-	display: flex;
-	padding: 0 5px;
-	justify-content: space-between;
-	background-color: turquoise;
-}
+
