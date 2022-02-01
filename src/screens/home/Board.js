@@ -31,6 +31,10 @@ const Board = (props) => {
 		setModalFlag(true);
 	};
 
+    const closeModal = () => {
+		setModalFlag(false);
+	};
+
 	const renderTicketList = (ticketList, i) => {
 		return <TicketList key={ticketList.name} ticketList={ticketList} />;
 	};
@@ -47,7 +51,7 @@ const Board = (props) => {
 					className={"board-btn-add-list"}
 				/>
 			</div>
-			{modalFlag && <NewTicketListModal boardName={board.name} />}
+			{modalFlag && <NewTicketListModal onClickButton={closeModal}/>}
 		</div>
 	);
 };
