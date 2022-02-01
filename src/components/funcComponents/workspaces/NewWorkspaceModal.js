@@ -1,10 +1,12 @@
+import "./NewWorkspaceModal.css";
+
 /* workspaceAPI */
 import {
 	addWorkSpace,
 	getWorkSpacesByEmail,
 } from "../../../services/workspaceApi";
-import { useEffect, useState } from "react";
 
+import Input from "../UI/input/Input";
 /* funcComponents */
 import Modal from "../Modal";
 import PropTypes from "prop-types";
@@ -12,6 +14,7 @@ import SubmitButton from "../SubmitButton";
 /* redux */
 import { connect } from "react-redux";
 import { setWorkspaces } from "../../../redux/ducks/workspacesDuck";
+import { useState } from "react";
 
 const mapStateToProps = (state) => {
 	return {
@@ -22,14 +25,14 @@ const mapStateToProps = (state) => {
 
 const WorkSpaceModal = (props) => {
 	const [state, setState] = useState({
-		inputValue: null,
+		name: "",
 	});
 
-	const takeinput = (e) => {
+	const setName = (e) => {
 		let value = e.target.value;
 		setState({
 			...state,
-			inputValue: value,
+			name: value,
 		});
 	};
 
@@ -42,7 +45,7 @@ const WorkSpaceModal = (props) => {
 	/*adding New Work workspace */
 	const addNewWorkspace = () => {
 		let ob = {
-			name: state.inputValue,
+			name: state.name,
 			users: [{ email: props.email, role: "admin" }],
 			boards: [],
 		};
@@ -54,21 +57,24 @@ const WorkSpaceModal = (props) => {
 	};
 
 	return (
-		<>
-			<Modal>
-				<label>inserisci nome workspace</label>
-				<input type={"text"} onChange={takeinput}></input>
-
-				<SubmitButton
-					onClick={handlerHideModal}
-					label="annulla"
-				></SubmitButton>
-				<SubmitButton
-					onClick={addNewWorkspace}
-					label="crea "
-				></SubmitButton>
-			</Modal>
-		</>
+		<Modal className={"new-workspace-modal"}>
+			<Input
+				type="text"
+				label="Workspace name"
+				value={state.name}
+				onChangeCallback={setName}
+				errorFlag={false}
+				errorText={""}
+			/>
+			<SubmitButton
+				onClick={handlerHideModal}
+				label="annulla"
+			></SubmitButton>
+			<SubmitButton
+				onClick={addNewWorkspace}
+				label="crea "
+			></SubmitButton>
+		</Modal>
 	);
 };
 
