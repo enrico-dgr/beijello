@@ -1,35 +1,37 @@
+import "./Workspace.css";
+
 import BoardPreview from "./BoardPreview";
 import NewBoard from "./NewBoard";
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
-
-
 const Workspace = (props) => {
-
 	return (
 		<div className={"workspace"} key={props.customKey}>
 			<h1>{props.name}</h1>
 			<div className={"workspace__board-preview-list"}>
 				<NewBoard workspaceName={props.name} />
-				{props.workspaces.find(w => w.name===props.name)?.boards.map(MapPreview)}
+				{props.workspaces
+					.find((w) => w.name === props.name)
+					?.boards.map(MapPreview(props.name))}
 			</div>
 		</div>
 	);
 };
 
 // assign keys to each BoardPreview
-const MapPreview = (board, i) => (
-	<div key={i + "board-preview-ke"}>
-
-		<BoardPreview
-			customKey={i + "board-preview-key"}
-			layout={board.layout}
-			name={board.name}
-		/>
-	</div>
-);
+const MapPreview = (workspaceName) => (board, i) =>
+	(
+		<div key={i + "board-preview-ke"}>
+			<BoardPreview
+				customKey={i + "board-preview-key"}
+				layout={board.layout}
+				boardName={board.name}
+				workspaceName={workspaceName}
+			/>
+		</div>
+	);
 
 Workspace.propTypes = {
 	name: PropTypes.string,
@@ -39,7 +41,7 @@ Workspace.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-	workspaces: state.workspacesDuck.workspaces
-})
+	workspaces: state.workspacesDuck.workspaces,
+});
 
 export default connect(mapStateToProps)(Workspace);

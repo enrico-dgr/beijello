@@ -1,0 +1,4 @@
+.workspace__board-preview-list {
+	display: flex;
+	flex-wrap: wrap;
+}

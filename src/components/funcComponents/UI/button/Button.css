@@ -1,4 +1,8 @@
 .toAdd-btn {
-    padding: 3px 6px;
+    padding: 13px 16px;
     cursor: pointer;
+    background-color: rgb(189, 187, 187);
+    border-radius: 15px;
+    border: none;
+    font-weight: bolder;
 }

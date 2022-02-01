@@ -1,21 +1,21 @@
 import "./Routing.css";
 
 import { Route, Routes } from "react-router-dom";
-import Workspaces from "./screens/home/workspaces/Workspaces";
+
 import Auth from "./screens/Auth";
+import Board from "./screens/home/Board";
 import ChangePsw from "./screens/profile/ChangePsw";
 import ForgotPassword from "./screens/auth/ForgotPassword";
 import Home from "./screens/Home";
 import Login from "./screens/auth/Login";
 import NotFound from "./screens/NotFound";
+import { Provider } from "react-redux";
 import Registration from "./screens/auth/Registration";
-// SCREENS
-
-import Board from "./screens/home/Board";
-
+import Workspaces from "./screens/home/Workspaces";
 //REDUX
 import applicationStore from "./applicationStore";
-import { Provider } from "react-redux";
+
+// SCREENS
 
 function Routing() {
 	return (
@@ -25,7 +25,10 @@ function Routing() {
 					<Route path="" element={<Home />}>
 						<Route path="" element={<Workspaces />} />
 
-						<Route path="board/:name" element={<Board />} />
+						<Route
+							path="board/:workspaceName/:boardName"
+							element={<Board />}
+						/>
 						<Route
 							path="profile/changepsw"
 							element={<ChangePsw />}

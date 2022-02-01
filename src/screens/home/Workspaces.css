@@ -1,0 +1,22 @@
+.workspaces-container {
+	height:100vh;
+	background-image:  url('../../assets/images/background_workspace.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.cover-workspace{
+	padding: 50px;
+	display: flex;
+	height: 100%;
+	background-color: rgba(111, 111, 144, 0.3);
+	text-align: center;
+	padding-top: 60px;
+	overflow: scroll;
+}
+
+.workspace-button-create > button:hover{
+	transition: all linear .2s;
+	background-color: rgba(42, 42, 46, 0.9);
+	color: white;
+}
+

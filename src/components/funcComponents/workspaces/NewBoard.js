@@ -1,3 +1,5 @@
+import "./NewBoard.css";
+
 import Input from "../UI/input/Input";
 import Modal from "../Modal";
 import PropTypes from "prop-types";
@@ -58,17 +60,21 @@ const NewBoard = (props) => {
 		// update redux
 		props.dispatch(setWorkspace(workspace, props.workspaceName));
 
-		hideModal()
+		hideModal();
 	};
 
 	return (
 		<div>
-			<div className={"board-preview"} onClick={showModal}>
+			<div
+				// class available in BoardPreview.css
+				className={"board-preview"}
+				onClick={showModal}
+			>
 				<p>Add new board</p>
 			</div>
 			{/* Modal */}
 			{state.showModal && (
-				<Modal>
+				<Modal className={"board-preview-modal"}>
 					<Input
 						type="text"
 						label="Board name"
@@ -92,7 +98,11 @@ const NewBoard = (props) => {
 							</option>
 						</select>
 					</label>
-					<div>
+					<div
+						className={
+							"board-preview-modal__btns-container"
+						}
+					>
 						<SubmitButton
 							onClick={hideModal}
 							label="Annulla"

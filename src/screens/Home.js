@@ -6,7 +6,9 @@ import { signOut, tryLocalSession } from "../services/fakeApi";
 import React from "react";
 import SwitchLanguage from "../components/funcComponents/SwitchLanguage";
 import { connect } from "react-redux";
+import { getWorkSpacesByEmail } from "../services/workspaceApi";
 import { setUser } from "../redux/ducks/userMeDuck";
+import { setWorkspaces } from "../redux/ducks/workspacesDuck";
 import { useEffect } from "react";
 
 const mapStateToProps = (state) => ({
@@ -16,15 +18,19 @@ const mapStateToProps = (state) => ({
 const Home = (props) => {
 	let navigate = useNavigate();
 
+	/* metodo di navigazione */
 	const handleNavigate = (dest) => () => {
 		navigate(dest);
 	};
 
+	/* log out */
 	const handleSignOut = () => {
 		signOut();
 		navigate("/auth/login");
 	};
 
+
+	/* component did update con dipendenza props.user */
 	useEffect(() => {
 		let localSession = tryLocalSession();
 
@@ -32,6 +38,12 @@ const Home = (props) => {
 			navigate("/auth/login");
 		} else if (localSession && !props.user.email) {
 			props.dispatch(setUser(localSession));
+		}
+
+		if (props.user.email !== undefined) {
+			props.dispatch(
+				setWorkspaces(getWorkSpacesByEmail(props.user.email))
+			);
 		}
 	}, [props.user]);
 
@@ -42,7 +54,7 @@ const Home = (props) => {
 					onClick={handleNavigate("/")}
 					className="navbar-logotype"
 				>
-					BEIJE HOME
+					BEIJELLO
 				</p>
 				<div
 					style={{
