@@ -19,6 +19,8 @@ const TicketList = (props) => {
                 </div>
                 <div>
                     {ticketList.tickets.map(renderTicket)}
+                    <SubmitButton label="+ Aggiungi ticket" onClick={openModal}  />
+                    {modalFlag && <NewTicketModal onClickButton={closeModal}/>}
                 </div>
             </div>
         </>
