@@ -15,13 +15,17 @@ const Board = (props) => {
 	const params = useParams();
 
 	useEffect(() => {
-		if (props.boards !== undefined && params.name !== undefined) {
-			const newBoard = props.boards.find(
-				(b) => b.name === params.name
-			);
+		if (
+			props.workspaces.length > 0 &&
+			params.boardName !== undefined &&
+			params.workspaceName !== undefined
+		) {
+			const newBoard = props.workspaces
+				.find((w) => w.name === params.workspaceName)
+				.boards.find((b) => b.name === params.boardName);
 			setBoard(newBoard);
 		}
-	}, [params.name, props.boards]);
+	}, [params, props.workspaces]);
 
 	const openModal = () => {
 		setModalFlag(true);
@@ -31,32 +35,26 @@ const Board = (props) => {
 		return <TicketList key={ticketList.name} ticketList={ticketList} />;
 	};
 	return (
-		<>
-			<div className="board-wrapper">
-				<div className="board-title">
-					<h3>{!!board && board.name}</h3>
-				</div>
-				<div className="board-container">
-					{!!board &&
-						board.ticketLists.map(renderTicketList)}
-					<Button
-						label="+ Aggiungi lista"
-						onClick={openModal}
-						className={"board-btn-add-list"}
-					/>
-				</div>
-				{modalFlag && (
-					<NewTicketListModal boardName={board.name} />
-				)}
+		<div className="board-wrapper">
+			<div className="board-title">
+				<h3>{!!board && board.name}</h3>
 			</div>
-		</>
+			<div className="board-container">
+				{!!board && board.ticketLists.map(renderTicketList)}
+				<Button
+					label="+ Aggiungi lista"
+					onClick={openModal}
+					className={"board-btn-add-list"}
+				/>
+			</div>
+			{modalFlag && <NewTicketListModal boardName={board.name} />}
+		</div>
 	);
 };
 
-const mapStateToProps = (state) => {
-	console.log(state);
-	return { boards: state.workspacesDuck.workspaces?.boards };
-};
+const mapStateToProps = (state) => ({
+	workspaces: state.workspacesDuck.workspaces,
+});
 
 Board.propTypes = {
 	name: PropTypes.string,

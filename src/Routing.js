@@ -17,8 +17,6 @@ import applicationStore from "./applicationStore";
 
 // SCREENS
 
-
-
 function Routing() {
 	return (
 		<div className="App">
@@ -28,7 +26,7 @@ function Routing() {
 						<Route path="" element={<Workspaces />} />
 
 						<Route
-							path="board/:name"
+							path="board/:workspaceName/:boardName"
 							element={<Board />}
 						/>
 						<Route
