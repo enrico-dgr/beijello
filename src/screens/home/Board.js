@@ -8,11 +8,13 @@ import PropTypes from "prop-types";
 import TicketList from "../../components/funcComponents/TicketList";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Board = (props) => {
 	const [board, setBoard] = useState(undefined);
 	const [modalFlag, setModalFlag] = useState(false);
 	const params = useParams();
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		if (
@@ -31,7 +33,7 @@ const Board = (props) => {
 		setModalFlag(true);
 	};
 
-    const closeModal = () => {
+	const closeModal = () => {
 		setModalFlag(false);
 	};
 
@@ -46,12 +48,14 @@ const Board = (props) => {
 			<div className="board-container">
 				{!!board && board.ticketLists.map(renderTicketList)}
 				<Button
-					label="+ Aggiungi lista"
+					label={`+ ${t("Board.NewList")}`}
 					onClick={openModal}
 					className={"board-btn-add-list"}
 				/>
 			</div>
-			{modalFlag && <NewTicketListModal onClickButton={closeModal}/>}
+			{modalFlag && (
+				<NewTicketListModal onClickButton={closeModal} />
+			)}
 		</div>
 	);
 };

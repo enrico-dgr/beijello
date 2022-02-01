@@ -10,6 +10,7 @@ import { getWorkSpacesByEmail } from "../services/workspaceApi";
 import { setUser } from "../redux/ducks/userMeDuck";
 import { setWorkspaces } from "../redux/ducks/workspacesDuck";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const mapStateToProps = (state) => ({
 	user: state.userMeDuck.user,
@@ -17,6 +18,7 @@ const mapStateToProps = (state) => ({
 
 const Home = (props) => {
 	let navigate = useNavigate();
+	const { t } = useTranslation();
 
 	/* metodo di navigazione */
 	const handleNavigate = (dest) => () => {
@@ -28,7 +30,6 @@ const Home = (props) => {
 		signOut();
 		navigate("/auth/login");
 	};
-
 
 	/* component did update con dipendenza props.user */
 	useEffect(() => {
@@ -64,7 +65,7 @@ const Home = (props) => {
 						alignItems: "center",
 					}}
 				>
-					<p onClick={handleSignOut}>LOG OUT</p>
+					<p onClick={handleSignOut}>{t("Home.Logout")}</p>
 					<SwitchLanguage
 						classNameContainer={
 							"navbar__switch-language"
