@@ -1,0 +1,11 @@
+.board-preview-modal {
+	background-color: rgb(221, 207, 182);
+	border-radius: 20px;
+	padding: 20px;
+	box-shadow: 2px 2px 10px rgba(173, 162, 143, 0.459);
+}
+
+.board-preview-modal__btns-container {
+	display: flex;
+	margin: 10px 0 0 0;
+}
