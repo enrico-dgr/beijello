@@ -43,14 +43,12 @@ const getByUserId = async (userId, dispatch) => {
 // -----------
 
 /* adding workSpaces */
-const create = async ({ name }, userId) => {
+const create = async ({ name }, userId, dispatch) => {
 	if (!name || !userId) {
-		return {
-			status: 404,
-			statusText: "Data missing",
-		};
+		throw Error("Data missing");
 	}
 
+	// try to create workspace
 	const resCreateWorkspace = await workspaces.post(
 		`/workspaces`,
 		{
@@ -64,15 +62,11 @@ const create = async ({ name }, userId) => {
 		}
 	);
 
-	let res = {
-		status: resCreateWorkspace.status,
-		statusText: resCreateWorkspace.statusText,
-	};
-
 	if (resCreateWorkspace.status !== 201) {
-		return res;
+		throw new Error(resCreateWorkspace.statusText);
 	}
 
+	// try to create workspace-user relation
 	const resCreateRelations = await workspaces.post(`/workspaceUsers`, {
 		userId: userId,
 		workspaceId: resCreateWorkspace.data.id,
@@ -81,17 +75,11 @@ const create = async ({ name }, userId) => {
 
 	// return errors on relation and delete workspace
 	if (resCreateRelations.status !== 201) {
-		res = {
-			status: resCreateRelations.status,
-			statusText: resCreateRelations.statusText,
-		};
 		deleteById(resCreateWorkspace.data.id);
-		return res;
+		throw new Error(resCreateWorkspace.statusText);
 	}
 
-	res.data = resCreateWorkspace.data;
-
-	return res;
+	return getByUserId(userId, dispatch);
 };
 
 // -----------
@@ -112,7 +100,7 @@ const update = async (workspace, userId, dispatch) => {
 		resPermission.data[0].role !== "admin" &&
 		resPermission.data[0].role !== "collaborator"
 	) {
-		error = "Authorization is not enought to edit this workspace";
+		error = "Authorization is not enough to edit this workspace";
 	}
 
 	if (error !== "") {

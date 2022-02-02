@@ -1,10 +1,5 @@
 import { decryptText, encryptText } from "../utils/crypto";
-import {
-	setFailure,
-	setIdle,
-	setLoading,
-	setSuccess,
-} from "../redux/ducks/userMeDuck";
+import { setFailure, setLoading, setSuccess } from "../redux/ducks/userMeDuck";
 
 import { KEYS } from "../utils/localStorage";
 import axios from "axios";
@@ -59,7 +54,7 @@ const authToken = async (token, dispatch) => {
 			})
 		);
 	} else {
-		dispatch(setFailure);
+		dispatch(setFailure());
 		throw new Error(res.statusText);
 	}
 };

@@ -1,7 +1,5 @@
 import "./NewWorkspaceModal.css";
 
-import { ToastContainer, toast } from "react-toastify";
-
 import Input from "../UI/input/Input";
 /* funcComponents */
 import Modal from "../Modal";
@@ -10,6 +8,7 @@ import SubmitButton from "../SubmitButton";
 /* redux */
 import { connect } from "react-redux";
 import { setWorkspaces } from "../../../redux/ducks/workspacesDuck";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import workspacesAPI from "../../../services/workspacesApi";
 
@@ -42,55 +41,17 @@ const WorkSpaceModal = (props) => {
 	/*adding New Work workspace */
 	const addNewWorkspace = () => {
 		workspacesAPI
-			.create({ name: state.name }, props.user.id)
-			.then((res) => {
-				if (res.status === 201) {
-					console.log("201");
-					return true;
-				} else {
-					toast.error(res.statusText, {
-						position: "top-center",
-						autoClose: 3000,
-						hideProgressBar: false,
-						closeOnClick: true,
-						pauseOnHover: true,
-						draggable: true,
-						progress: undefined,
-					});
-
-					return false;
-				}
-			})
-			.then((created) =>
-				created
-					? workspacesAPI
-							.getByUserId(
-								props.user.id,
-								props.dispatch
-							)
-							.then((res) => {
-								if (res.status === 200) {
-									props.dispatch(
-										setWorkspaces(
-											res.data
-										)
-									);
-								} else {
-									toast.error(
-										res.statusText,
-										{
-											position: "top-center",
-											autoClose: 3000,
-											hideProgressBar: false,
-											closeOnClick: true,
-											pauseOnHover: true,
-											draggable: true,
-											progress: undefined,
-										}
-									);
-								}
-							})
-					: undefined
+			.create({ name: state.name }, props.user.id, props.dispatch)
+			.catch((err) =>
+				toast.error(err.message, {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				})
 			);
 
 		if (props.callBackHideModal !== undefined) {

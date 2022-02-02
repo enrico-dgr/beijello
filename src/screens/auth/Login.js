@@ -12,14 +12,13 @@ import Checkbox from "../../components/funcComponents/UI/checkbox/Checkbox";
 import CircleButton from "../../components/funcComponents/CircleButton";
 // FUNC COMPONENTS
 import Input from "../../components/funcComponents/UI/input/Input";
-import { KEYS } from "../../utils/localStorage";
 import { Navigate } from "react-router-dom";
 import SubmitButton from "../../components/funcComponents/SubmitButton";
 import { checkEmail } from "../../utils/utils";
 import { connect } from "react-redux";
 // IMAGES
 import facebook from "../../assets/images/facebook-to-zindex.png";
-import { setUser } from "../../redux/ducks/userMeDuck";
+import { toast } from "react-toastify";
 import twitter from "../../assets/images/twitter-to-zindex.png";
 import users from "../../services/usersApi";
 import { withTranslation } from "react-i18next";
@@ -80,7 +79,19 @@ class Login extends Component {
 				},
 				this.state.rememberSession,
 				this.props.dispatch
-			).then(() => this.setState({ path: "/" }));
+			)
+				.then(() => this.setState({ path: "/" }))
+				.catch((err) =>
+					toast.error(err.message, {
+						position: "top-center",
+						autoClose: 3000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+					})
+				);
 		}
 	};
 
