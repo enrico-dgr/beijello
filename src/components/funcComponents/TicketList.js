@@ -8,8 +8,9 @@ import SubmitButton from "../funcComponents/SubmitButton";
 const TicketList = (props) => {
     const { ticketList } = props
     const [modalFlag, setModalFlag] = useState(false);
+
     const renderTicket = (ticket, i) => {
-        return <Ticket key={ticket.name} ticket={ticket} />
+        return <Ticket ticket={ticket} key={ticket.title}/>
     }
 
     const openModal = () => {
@@ -31,7 +32,7 @@ const TicketList = (props) => {
                     {ticketList.tickets.map(renderTicket)}
                     <SubmitButton label="+ Aggiungi ticket" onClick={openModal}  />
 
-                    {modalFlag && <NewTicketModal onClickButton={closeModal}/>}
+                    {modalFlag && <NewTicketModal onClickButton={closeModal} ticketList={ticketList}/>}
 
                 </div>
             </div>
@@ -40,7 +41,5 @@ const TicketList = (props) => {
     )
 
 }
-// const mapStateToProps = (state) => ({
-// 	workspaces: state.workspacesDuck.workspaces,
-// });
+
 export default TicketList

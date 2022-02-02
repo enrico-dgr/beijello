@@ -1,0 +1,20 @@
+.newTicketModal-container{
+    background-color: whitesmoke;
+    height: 400px;
+    width: 400px;
+    position: relative;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.newTicketModal-btn {
+    width: 100px;
+}
+
+.newTicketModal-buttons{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+   
+}

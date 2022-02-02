@@ -53,7 +53,7 @@ const NewTicketListModal = (props) => {
 	return (
 		<Modal>
 			<label>Inserisci titolo lista</label>
-			<input type={"text"} onChange={takeinput}></input>
+			<input type={"text"} onChange={takeinput} />
 
 			<SubmitButton label="Annulla" onClick={props.onClickButton} />
 			<SubmitButton onClick={addTicketList} label="Crea" />
