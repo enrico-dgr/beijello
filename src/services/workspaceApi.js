@@ -40,13 +40,26 @@ const addWorkSpace = (workSpace) => {
 };
 
 const updateWorkspace = (workspace, workspaceName, email) => {
+	let res = {errorMessage: ''};
 	let workspaces = getWorkSpacesByEmail(email);
+
+	if(workspaces.length < 1) {
+		res.errorMessage = 'invalid email';
+		return res
+	}
+
 	const index = workspaces.findIndex((w) => w.name === workspaceName);
 
-	if (index > -1) {
-		workspaces[index] = workspace;
-		setWorkSpaces(workspaces)
+	if (index < 0) {
+		res.errorMessage = 'invalid workspace';
+		return res
 	}
+
+	workspaces[index] = workspace;
+	setWorkSpaces(workspaces)
+	res.workspaces = workspaces
+	
+	return res
 };
 
 export {

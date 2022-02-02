@@ -8,6 +8,7 @@ import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
 import { setWorkspace } from "../../../redux/ducks/workspacesDuck";
 import { updateWorkspace } from "../../../services/workspaceApi";
+import { useTranslation } from "react-i18next";
 
 const mapStateToProps = (state) => ({
 	email: state.userMeDuck.user?.email,
@@ -23,6 +24,8 @@ const NewBoard = (props) => {
 		},
 		showModal: false,
 	});
+
+	const { t } = useTranslation();
 
 	const showModal = () => {
 		setState({ ...state, showModal: true });
@@ -70,14 +73,14 @@ const NewBoard = (props) => {
 				className={"add-new-board"}
 				onClick={showModal}
 			>
-				<p>Add new board</p>
+				<p>{t("Workspaces.NewBoard")}</p>
 			</div>
 			{/* Modal */}
 			{state.showModal && (
 				<Modal className={"board-preview-modal"}>
 					<Input
 						type="text"
-						label="Board name"
+						label={t("Workspaces.NewBoardName")}
 						value={state.name}
 						onChangeCallback={setName}
 						errorFlag={false}
@@ -105,11 +108,11 @@ const NewBoard = (props) => {
 					>
 						<SubmitButton
 							onClick={hideModal}
-							label="Annulla"
+							label={t("Workspaces.NewBoardCancel")}
 						></SubmitButton>
 						<SubmitButton
 							onClick={addNewBoard}
-							label="Crea"
+							label={t("Workspaces.NewBoardCreate")}
 						></SubmitButton>
 					</div>
 				</Modal>

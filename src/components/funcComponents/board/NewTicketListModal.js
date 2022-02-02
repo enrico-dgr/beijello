@@ -5,8 +5,12 @@ import { connect } from "react-redux";
 import { setWorkspace } from "../../../redux/ducks/workspacesDuck";
 import { updateWorkspace } from "../../../services/workspaceApi";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const NewTicketListModal = (props) => {
+
+	const params = useParams()
+
 	const [state, setState] = useState({
 		ticketListTitle: null,
 	});
@@ -21,30 +25,29 @@ const NewTicketListModal = (props) => {
 	};
 
 	const addTicketList = () => {
+
 		let newTicketList = {
 			name: state.ticketListTitle,
 			tickets: [],
 		};
 
 		let workspace = props.workspaces.find(
-			(w) => w.name === props.workspaceName
+			(w) => w.name === params.workspaceName
 		);
 
 		const indexBoard = workspace.boards.findIndex(
-			(b) => b.name === props.boardName
+			(b) => b.name === params.boardName
 		);
 
 		workspace.boards[indexBoard].ticketLists.push(newTicketList);
 
 		// update storage
-		updateWorkspace(workspace, props.workspaceName, props.email);
-
+		updateWorkspace(workspace, params.workspaceName, props.email)
 		// update redux
-		props.dispatch(setWorkspace(workspace, props.workspaceName));
+		props.dispatch(setWorkspace(workspace, params.workspaceName));
 
-		if (props.callBackHideModal !== undefined) {
-			props.callBackHideModal();
-		}
+		props.onClickButton();
+
 	};
 
 	return (
@@ -52,16 +55,22 @@ const NewTicketListModal = (props) => {
 			<label>Inserisci titolo lista</label>
 			<input type={"text"} onChange={takeinput}></input>
 
-			<SubmitButton label="Annulla" />
+			<SubmitButton label="Annulla" onClick={props.onClickButton} />
 			<SubmitButton onClick={addTicketList} label="Crea" />
 		</Modal>
 	);
 };
 
-const mapStateToProps = (state) => {};
+const mapStateToProps = (state) => ({
+	workspaces: state.workspacesDuck.workspaces,
+	email: state.userMeDuck.user.email,
+});
 
 NewTicketListModal.propTypes = {
-	boardName: PropTypes.string,
+	onClickButton: PropTypes.func,
 };
 
+NewTicketListModal.defaultProps = {
+	onClickButton: () => undefined
+};
 export default connect(mapStateToProps)(NewTicketListModal);

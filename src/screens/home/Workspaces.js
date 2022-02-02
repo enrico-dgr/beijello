@@ -8,6 +8,7 @@ import WorkSpaceModal from "../../components/funcComponents/workspaces/NewWorksp
 import Workspace from "../../components/funcComponents/workspaces/Workspace";
 /* redux */
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 
 const mapStateToProps = (state) => {
 	return {
@@ -36,9 +37,8 @@ class Workspaces extends Component {
 	};
 	/*  */
 
-
-
 	render() {
+		const { t } = this.props;
 		return (
 			<div className="workspaces-container">
 				{this.state.modalflag && (
@@ -49,7 +49,7 @@ class Workspaces extends Component {
 				<div className="cover-workspaces">
 					<div className="workspace-button-create">
 						<Button
-							label="Nuovo spazio di lavoro"
+							label={t("Workspaces.NewWorkspace")}
 							onClick={this.viewModal}
 						/>
 					</div>
@@ -72,4 +72,4 @@ class Workspaces extends Component {
 	);
 }
 
-export default connect(mapStateToProps)(Workspaces);
+export default connect(mapStateToProps)(withTranslation()(Workspaces));
