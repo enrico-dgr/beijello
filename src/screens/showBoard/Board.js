@@ -1,13 +1,16 @@
 import "./Board.css";
-
+import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 
+/* func Components */
 import Button from "../../components/funcComponents/UI/button/Button";
 import NewTicketListModal from "../../components/funcComponents/board/NewTicketListModal";
-import PropTypes from "prop-types";
 import TicketList from "../../components/funcComponents/TicketList";
+/*  */
 import { connect } from "react-redux";
+
 import { useParams } from "react-router-dom";
+
 import { useTranslation } from "react-i18next";
 
 const Board = (props) => {
@@ -29,13 +32,15 @@ const Board = (props) => {
 		}
 	}, [params, props.workspaces]);
 
+
+	/* menage modal */
 	const openModal = () => {
 		setModalFlag(true);
 	};
-
 	const closeModal = () => {
 		setModalFlag(false);
 	};
+	/*  */
 
 	const renderTicketList = (ticketList, i) => {
 		return <TicketList key={ticketList.name} ticketList={ticketList} />;
@@ -46,12 +51,16 @@ const Board = (props) => {
 				<h3>{!!board && board.name}</h3>
 			</div>
 			<div className="board-container">
-				{!!board && board.ticketLists.map(renderTicketList)}
-				<Button
-					label={`+ ${t("Board.NewList")}`}
-					onClick={openModal}
-					className={"board-btn-add-list"}
-				/>
+				<div className="board-button-list ">
+					<Button
+						label={`+ ${t("Board.NewList")}`}
+						onClick={openModal}
+						className={"board-btn-add-list"}
+					/>
+				</div>
+				<div className="board-container-ticketList">
+					{!!board && board.ticketLists.map(renderTicketList)}
+				</div>
 			</div>
 			{modalFlag && (
 				<NewTicketListModal onClickButton={closeModal} />

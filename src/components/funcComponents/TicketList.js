@@ -1,5 +1,5 @@
-import React, {useState} from "react";
 import './TicketList.css';
+import React, { useState } from "react";
 import Ticket from './Ticket.js';
 import NewTicketModal from '../funcComponents/board/NewTicketModal'
 import SubmitButton from "../funcComponents/SubmitButton";
@@ -13,12 +13,12 @@ const TicketList = (props) => {
     }
 
     const openModal = () => {
-		setModalFlag(true);
-	};
+        setModalFlag(true);
+    };
 
     const closeModal = () => {
-		setModalFlag(false);
-	};
+        setModalFlag(false);
+    };
 
     return (
 
@@ -27,9 +27,9 @@ const TicketList = (props) => {
                 <div className="ticketList-title">
                     <p >{ticketList.name}</p>
                 </div>
-                <div>
+                <div className="ticketList-tickets-container">
+                    <SubmitButton label="+ Aggiungi ticket" onClick={openModal} />
                     {ticketList.tickets.map(renderTicket)}
-                    <SubmitButton label="+ Aggiungi ticket" onClick={openModal}  />
                     {modalFlag && <NewTicketModal />}
                 </div>
             </div>
