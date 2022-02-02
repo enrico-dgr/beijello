@@ -1,72 +1,83 @@
 {
-    "NotFound": {
-        "Title":"Errore 404",
-        "Subtitle": "Qualcosa e' andato storto :(",
-        "GoHomepage":"Vai alla Home"
-    },
-    "Login": {
-        "SubmitButton":"Accedi",
-        "EmailError": "Richiesta una email valida: ex@abc.xyz",
-        "ForgotPassword": "Password dimenticata?",
-        "PasswordError": "Richiesta password valida",
-        "OrSignUpWith": "o registrati usando",
-        "RememberMe": "Ricordami",
-        "SignUp": "Registrati",
-        "Title": "Accedi per continuare"
-    },
-    "ForgotPassword": {
-        "Title": "Password dimenticata",
-        "SendEmail": "Invia email",
-        "EmailSent": "Email inviata"
-    },
-    "Home":{
-        "Welcome":"Benvenuto",
-        "ChangePswBtn":"Cambia password"
-    },
-    "ChangePassword":{
-        "Title":"Cambia Password",
-        "Errors":{
-            "CurrentPasswordWrong":"La password attuale è errata",
-            "NewPasswordDontMatch":"Le nuove passwords non coincidono"
-        },
-        "CurrentPsw": "Password Attuale",
-        "NewPsw":"Nuova Password",
-        "ConfirmNewPsw":"Conferma nuova Password",
-        "BtnConfirm":"Conferma"
-    },
-    "Registration": {
-        "EmailErrors":{
-            "EmptyEmail":"Email is required",
-            "InvalidEmail":"Richiesta una email valida: ex@abc.xyz",
-            "UsedEmail": "Email già in uso"
-        },
-        "Gender":{
-            "Male":"Uomo",
-            "Female":"Donna",
-            "Other":"Altro"
-        },
-        "MaritalStatus": {
-            "Divorced":"Divorziato",
-            "Married":"Sposato",
-            "Name":"Stato civile",
-            "SelfMarried":"Sposato con se stesso",
-            "Single":"Single"
-        },
-        "DateError": "Richiesta una data valida",
-        "Name":"Nome",
-        "PhoneNumber":"Telefono",
-        "SignIn":"Vai al login",
-        "Surname":"Cognome",
-        "Title":"Registrazione",
-        "NameError": "Richiesto un nome valido",
-        "PhoneNumberError": "Richiesto un numero di telefono",
-        "SubmitButton":"Registrati",
-        "SurnameError": "Richiesto un cognome valido",
-        "GenderError": "Richiesto scegliere un genere",
-        "MaritalStatusError": "Richiesto stato civile",
-        "PasswordErrors": {
-            "EmptyPassword": "Richiesta password valida",
-            "InvalidPassword": "Richiesti almeno 8 caratteri, 1 maiuscola, 1 numero, 1 simbolo"
-        }
-    }
+	"NotFound": {
+		"Title": "Errore 404",
+		"Subtitle": "Qualcosa e' andato storto :(",
+		"GoHomepage": "Vai alla Home"
+	},
+	"Login": {
+		"SubmitButton": "Accedi",
+		"EmailError": "Richiesta una email valida: ex@abc.xyz",
+		"ForgotPassword": "Password dimenticata?",
+		"PasswordError": "Richiesta password valida",
+		"OrSignUpWith": "o registrati usando",
+		"RememberMe": "Ricordami",
+		"SignUp": "Registrati",
+		"Title": "Accedi per continuare"
+	},
+	"ForgotPassword": {
+		"Title": "Password dimenticata",
+		"SendEmail": "Invia email",
+		"EmailSent": "Email inviata"
+	},
+	"Home": {
+		"Welcome": "Benvenuto",
+		"ChangePswBtn": "Cambia password",
+		"Logout": "Esci"
+	},
+	"ChangePassword": {
+		"Title": "Cambia Password",
+		"Errors": {
+			"CurrentPasswordWrong": "La password attuale è errata",
+			"NewPasswordDontMatch": "Le nuove passwords non coincidono"
+		},
+		"CurrentPsw": "Password Attuale",
+		"NewPsw": "Nuova Password",
+		"ConfirmNewPsw": "Conferma nuova Password",
+		"BtnConfirm": "Conferma"
+	},
+	"Registration": {
+		"EmailErrors": {
+			"EmptyEmail": "Email is required",
+			"InvalidEmail": "Richiesta una email valida: ex@abc.xyz",
+			"UsedEmail": "Email già in uso"
+		},
+		"Gender": {
+			"Male": "Uomo",
+			"Female": "Donna",
+			"Other": "Altro"
+		},
+		"MaritalStatus": {
+			"Divorced": "Divorziato",
+			"Married": "Sposato",
+			"Name": "Stato civile",
+			"SelfMarried": "Sposato con se stesso",
+			"Single": "Single"
+		},
+		"DateError": "Richiesta una data valida",
+		"Name": "Nome",
+		"PhoneNumber": "Telefono",
+		"SignIn": "Vai al login",
+		"Surname": "Cognome",
+		"Title": "Registrazione",
+		"NameError": "Richiesto un nome valido",
+		"PhoneNumberError": "Richiesto un numero di telefono",
+		"SubmitButton": "Registrati",
+		"SurnameError": "Richiesto un cognome valido",
+		"GenderError": "Richiesto scegliere un genere",
+		"MaritalStatusError": "Richiesto stato civile",
+		"PasswordErrors": {
+			"EmptyPassword": "Richiesta password valida",
+			"InvalidPassword": "Richiesti almeno 8 caratteri, 1 maiuscola, 1 numero, 1 simbolo"
+		}
+	},
+	"Workspaces": {
+		"NewWorkspace": "Nuovo spazio di lavoro",
+		"NewBoard": "Nuova bacheca",
+		"NewBoardName": "Nome bacheca",
+		"NewBoardCancel": "Annulla",
+		"NewBoardCreate": "Crea"
+	},
+	"Board": {
+		"NewList": "Aggiungi lista"
+	}
 }

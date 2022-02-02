@@ -9,12 +9,12 @@ import { connect } from "react-redux";
 const Workspace = (props) => {
 	return (
 		<div className={"workspace"} key={props.customKey}>
-			<h1>{props.name}</h1>
+			<h1 className="title-workspace">{props.name}</h1>
 			<div className={"workspace__board-preview-list"}>
 				<NewBoard workspaceName={props.name} />
-				{props.workspaces
-					.find((w) => w.name === props.name)
-					?.boards.map(MapPreview(props.name))}
+				{
+					props.workspaces.find((w) => w.name === props.name)?.boards.map(MapPreview(props.name))
+				}
 			</div>
 		</div>
 	);
@@ -22,16 +22,16 @@ const Workspace = (props) => {
 
 // assign keys to each BoardPreview
 const MapPreview = (workspaceName) => (board, i) =>
-	(
-		<div key={i + "board-preview-ke"}>
-			<BoardPreview
-				customKey={i + "board-preview-key"}
-				layout={board.layout}
-				boardName={board.name}
-				workspaceName={workspaceName}
-			/>
-		</div>
-	);
+(
+	<div key={i + "board-preview-ke"}>
+		<BoardPreview
+			customKey={i + "board-preview-key"}
+			layout={board.layout}
+			boardName={board.name}
+			workspaceName={workspaceName}
+		/>
+	</div>
+);
 
 Workspace.propTypes = {
 	name: PropTypes.string,

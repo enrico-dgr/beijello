@@ -17,20 +17,40 @@
     width: 100%;
     z-index: 1005;
 }
-
 .navbar p {
     cursor: pointer;
 }
-
-.navbar p:hover {
+.navbar-logotype{
+    padding-left: 10px;
+    font-size: 22px;
+}
+.navbar .navbar-logotype:hover {
     color:rgba(255, 255, 255, 0.603);
     cursor: pointer;
 }
 
-.navbar-logotype{
-    padding-left: 15px;
-    font-size: 22px;
+.navbar-left-item{
+    display: flex;
+    align-items: center;
 }
+.navbar-direct-workspaces{
+    margin-bottom: 1px;
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+.navbar-direct-selected{
+    color: #fff;
+
+}
+.navbar-direct-unselected{
+    color:rgba(255, 255, 255, 0.603);
+}
+.navbar-direct-workspaces:hover{
+    color: #fff;
+}
+
+
 
 .navbar__switch-language {
     background-color: inherit;
