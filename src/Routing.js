@@ -11,6 +11,7 @@ import Login from "./screens/auth/Login";
 import NotFound from "./screens/NotFound";
 import { Provider } from "react-redux";
 import Registration from "./screens/auth/Registration";
+import { ToastContainer } from "react-toastify";
 import Workspaces from "./screens/home/Workspaces";
 //REDUX
 import applicationStore from "./applicationStore";

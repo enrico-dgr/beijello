@@ -11,10 +11,9 @@ import {
 import Input from "../../components/funcComponents/UI/input/Input";
 import { KEYS } from "../../utils/localStorage";
 import SubmitButton from "../../components/funcComponents/SubmitButton";
-import { signUp } from "../../services/fakeApi";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import users from "../../services/users.service";
+import users from "../../services/usersApi";
 
 const Registration = () => {
 	const { t } = useTranslation();

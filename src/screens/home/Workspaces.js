@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
 	return {
-		email: state.userMeDuck.user.email,
+		email: state.userMeDuck.user?.email,
 		workspaces: state.workspacesDuck.workspaces,
 	};
 };
@@ -53,7 +53,7 @@ class Workspaces extends Component {
 					</div>
 					<div></div>
 				</div>
-				{this.props.workspaces.map(this.RenderWorkspaces)}
+				{this.props.workspaces?.map(this.RenderWorkspaces)}
 			</div>
 		);
 	}

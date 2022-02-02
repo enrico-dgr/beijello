@@ -1,4 +1,10 @@
 import { decryptText, encryptText } from "../utils/crypto";
+import {
+	setFailure,
+	setIdle,
+	setLoading,
+	setSuccess,
+} from "../redux/ducks/userMeDuck";
 
 import { KEYS } from "../utils/localStorage";
 import axios from "axios";
@@ -6,6 +12,7 @@ import axios from "axios";
 const users = axios.create({
 	baseURL: "http://localhost:3308/users",
 });
+
 // -----------
 // METHODS
 // -----------
@@ -35,26 +42,27 @@ const getUsersByEmail = (email) =>
 	);
 
 /**
- *
- * @returns Possibilities:
- * - `res.status` is `200` on auth, along with `data`
- * - `res.status` is `401` on invalid token, need to login
+ * verify token and set user data on success
  */
-const authToken = (token) =>
-	users.get(`?email=${JSON.parse(decryptText(token)).email}`).then((res) =>
-		res.data.length === 1
-			? {
-					status: 200,
-					// no passwords should be available to client
-					data: {
-						...res.data[0],
-						password: undefined,
-					},
-			  }
-			: {
-					status: 401,
-			  }
+const authToken = async (token, dispatch) => {
+	dispatch(setLoading());
+
+	const res = await users.get(
+		`?email=${JSON.parse(decryptText(token)).email}`
 	);
+
+	if (res.status === 200) {
+		dispatch(
+			setSuccess({
+				...res.data[0],
+				password: undefined,
+			})
+		);
+	} else {
+		dispatch(setFailure);
+		throw new Error(res.statusText);
+	}
+};
 
 // -----------
 // **POST**
@@ -127,13 +135,11 @@ const register = async (user) => {
 /**
  * `res.status` is `200` on success
  */
-const login = async (user, remember) => {
-	// default response
-	let res = {
-		data: {},
-		status: 0,
-		statusText: "Default axios response",
-	};
+const login = async (user, remember, dispatch) => {
+	let error = "";
+
+	// simulate request sent to back-end
+	dispatch(setLoading());
 
 	// back-end data validation omitted,
 	// but registration form does some validation data
@@ -142,19 +148,26 @@ const login = async (user, remember) => {
 	const resByEmail = await getFullUsersByEmail(user.email);
 
 	if (resByEmail.status !== 200) {
-		res.status = resByEmail.status;
-		res.statusText = resByEmail.statusText;
+		error =
+			resByEmail.statusText !== ""
+				? resByEmail.statusText
+				: "Unknown error";
 	} else if (resByEmail.data.length > 1) {
-		res.status = 500;
-		res.statusText = "Multiple email found";
+		error = "Multiple email found";
 	} else if (resByEmail.data.length === 0) {
-		res.status = 400;
-		res.statusText = "Wrong credential";
+		error = "Wrong credential";
 	} else if (decryptText(resByEmail.data[0].password) !== user.password) {
-		res.status = 400;
-		res.statusText = "Wrong credential";
+		error = "Wrong credential";
+	}
+
+	// dispatch result
+	if (error !== "") {
+		dispatch(setFailure(error));
+		throw new Error(error);
 	} else {
 		const data = { ...resByEmail.data[0], password: undefined };
+
+		dispatch(setSuccess(data));
 
 		if (remember) {
 			localStorage.setItem(
@@ -163,17 +176,13 @@ const login = async (user, remember) => {
 			);
 		}
 
-		res = {
-			data,
-			status: 200,
-			statusText: resByEmail.statusText,
-			// not a real token, just encrypted data,
-			// back-end should give you this ready to store
-			token: encryptText(JSON.stringify(data)),
-		};
+		// not a real token, just encrypted data,
+		// back-end should give you this ready to store
+		localStorage.setItem(
+			KEYS.AUTH_TOKEN,
+			encryptText(JSON.stringify(data))
+		);
 	}
-
-	return res;
 };
 
 const toExport = {

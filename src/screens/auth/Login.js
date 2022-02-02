@@ -21,7 +21,7 @@ import { connect } from "react-redux";
 import facebook from "../../assets/images/facebook-to-zindex.png";
 import { setUser } from "../../redux/ducks/userMeDuck";
 import twitter from "../../assets/images/twitter-to-zindex.png";
-import users from "../../services/users.service";
+import users from "../../services/usersApi";
 import { withTranslation } from "react-i18next";
 
 class Login extends Component {
@@ -78,17 +78,9 @@ class Login extends Component {
 					email: this.state.email,
 					password: this.state.password,
 				},
-				this.state.rememberSession
-			).then((res) => {
-				if (res.status === 200) {
-					this.props.dispatch(setUser(res.data));
-					localStorage.setItem(KEYS.AUTH_TOKEN, res.token);
-
-					this.setState({ path: "/" });
-				} else {
-					alert(res.statusText);
-				}
-			});
+				this.state.rememberSession,
+				this.props.dispatch
+			).then(() => this.setState({ path: "/" }));
 		}
 	};
 
