@@ -12,7 +12,7 @@ import { withTranslation } from "react-i18next";
 
 const mapStateToProps = (state) => {
 	return {
-		email: state.userMeDuck.user.email,
+		email: state.userMeDuck.user?.email,
 		workspaces: state.workspacesDuck.workspaces,
 	};
 };
@@ -54,7 +54,9 @@ class Workspaces extends Component {
 						/>
 					</div>
 					<div className="workspaces-list">
-						{this.props.workspaces.map(this.RenderWorkspaces)}
+						{this.props.workspaces?.map(
+							this.RenderWorkspaces
+						)}
 					</div>
 				</div>
 			</div>
