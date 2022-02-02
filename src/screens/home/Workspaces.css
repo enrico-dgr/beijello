@@ -3,20 +3,34 @@
 	background-image:  url('../../assets/images/background_workspace.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
+	overflow: hidden;
 }
-.cover-workspace{
-	padding: 50px;
+.cover-workspaces{
 	display: flex;
 	height: 100%;
 	background-color: rgba(111, 111, 144, 0.3);
 	text-align: center;
-	padding-top: 60px;
-	overflow: scroll;
+	padding: 60px 0 0 50px;
 }
-
+.workspace-button-create{
+	flex-shrink:0;
+	display: flex;
+	align-items: center;
+	width: 150px;
+}
 .workspace-button-create > button:hover{
 	transition: all linear .2s;
 	background-color: rgba(42, 42, 46, 0.9);
 	color: white;
+}
+.workspaces-list{
+	overflow:auto;
+	flex: 1;
+	display: flex;
+	flex-wrap: nowrap;
+}
+.workspace-container{
+
+	margin: 15px;
 }
 
