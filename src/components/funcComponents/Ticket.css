@@ -1,9 +1,13 @@
 .ticketContainer {
     background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     margin-top: 10px;
     border-radius: 7px;
    border: 2px solid red;
 }
-.ticket-btn-add-ticket {
-    margin-top: 10px;
+
+.ticketBtn-remove-ticket {
+    padding: 5px 11px;
 }

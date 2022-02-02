@@ -101,12 +101,12 @@ const NewTicketModal = (props) => {
 
 				<div className="newTicketModal-ticketFlag">
 					<label>
-						Choose flag
+						Scegli etichetta
 						<select onChange={handleTicketFlag}>
-							<option value="red">red</option>
-							<option value="green">green</option>
-							<option value="orange">orange</option>
-							<option value="blue">blue</option>
+							<option value="red">rosso</option>
+							<option value="green">verde</option>
+							<option value="orange">arancione</option>
+							<option value="blue">blu</option>
 						</select>
 					</label>
 				</div>
