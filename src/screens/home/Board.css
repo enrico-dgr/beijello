@@ -1,0 +1,22 @@
+.board-wrapper {
+    height: 100vh;
+    padding-top: 60px;
+    /* width: 100vw; */
+    overflow-x: scroll;
+    border: 2px solid green;
+}
+
+.board-container {
+    display: flex;
+    gap:10px;
+}
+
+.board-title {
+    padding: 10px 10px;
+}
+
+.board-btn-add-list {
+   min-width: 120px;
+   height: 48px;
+
+}

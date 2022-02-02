@@ -10,6 +10,7 @@ import Home from "./screens/Home";
 import Login from "./screens/auth/Login";
 import NotFound from "./screens/NotFound";
 import Registration from "./screens/auth/Registration";
+import { ToastContainer } from "react-toastify";
 import Workspaces from "./screens/home/Workspaces";
 /*  */
 //REDUX

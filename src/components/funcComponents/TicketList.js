@@ -1,44 +1,50 @@
-import './TicketList.css';
-import React, { useState } from "react";
-import Ticket from './Ticket.js';
-import NewTicketModal from '../funcComponents/board/NewTicketModal'
-import SubmitButton from "../funcComponents/SubmitButton";
+import "./TicketList.css";
 
+import React, { useState } from "react";
+
+import NewTicketModal from "../funcComponents/board/NewTicketModal";
+import SubmitButton from "../funcComponents/SubmitButton";
+import Ticket from "./Ticket.js";
 
 const TicketList = (props) => {
-    const { ticketList } = props
-    const [modalFlag, setModalFlag] = useState(false);
-    const renderTicket = (ticket, i) => {
-        return <Ticket key={ticket.name} ticket={ticket} />
-    }
+	const { ticketList } = props;
+	const [modalFlag, setModalFlag] = useState(false);
 
-    const openModal = () => {
-        setModalFlag(true);
-    };
+	const renderTicket = (ticket, i) => {
+		return <Ticket ticket={ticket} key={ticket.title} />;
+	};
 
-    const closeModal = () => {
-        setModalFlag(false);
-    };
+	const openModal = () => {
+		setModalFlag(true);
+	};
 
-    return (
+	const closeModal = () => {
+		setModalFlag(false);
+	};
 
-        <>
-            <div className="ticketList-container" >
-                <div className="ticketList-title">
-                    <p >{ticketList.name}</p>
-                </div>
-                <div className="ticketList-tickets-container">
-                    <SubmitButton label="+ Aggiungi ticket" onClick={openModal} />
-                    {ticketList.tickets.map(renderTicket)}
-                    {modalFlag && <NewTicketModal />}
-                </div>
-            </div>
-        </>
+	return (
+		<>
+			<div className="ticketList-container">
+				<div className="ticketList-title">
+					<p>{ticketList.name}</p>
+				</div>
+				<div className="ticketList-tickets-container">
+					<SubmitButton
+						label="+ Aggiungi ticket"
+						onClick={openModal}
+					/>
+					{ticketList.tickets.map(renderTicket)}
 
-    )
+					{modalFlag && (
+						<NewTicketModal
+							onClickButton={closeModal}
+							ticketList={ticketList}
+						/>
+					)}
+				</div>
+			</div>
+		</>
+	);
+};
 
-}
-// const mapStateToProps = (state) => ({
-// 	workspaces: state.workspacesDuck.workspaces,
-// });
-export default TicketList
+export default TicketList;

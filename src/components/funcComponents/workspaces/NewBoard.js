@@ -6,12 +6,13 @@ import PropTypes from "prop-types";
 import React from "react";
 import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
-import { setWorkspace } from "../../../redux/ducks/workspacesDuck";
-import { updateWorkspace } from "../../../services/workspaceApi";
+import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import workspacesAPI from "../../../services/workspacesApi";
 
 const mapStateToProps = (state) => ({
 	email: state.userMeDuck.user?.email,
+	userId: state.userMeDuck.user?.id,
 
 	workspaces: state.workspacesDuck.workspaces,
 });
@@ -32,7 +33,6 @@ const NewBoard = (props) => {
 	};
 
 	const hideModal = () => {
-		console.log(state);
 		setState({ ...state, showModal: false });
 	};
 
@@ -57,11 +57,19 @@ const NewBoard = (props) => {
 			ticketLists: [],
 		});
 
-		// update storage
-		updateWorkspace(workspace, props.workspaceName, props.email);
-
-		// update redux
-		props.dispatch(setWorkspace(workspace, props.workspaceName));
+		workspacesAPI
+			.update(workspace, props.userId, props.dispatch)
+			.catch((err) => {
+				toast.error(err, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			});
 
 		hideModal();
 	};
