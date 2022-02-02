@@ -46,14 +46,16 @@ class Workspaces extends Component {
 						callBackHideModal={this.hideModal}
 					/>
 				)}
-				<div className="cover-workspace">
+				<div className="cover-workspaces">
 					<div className="workspace-button-create">
 						<Button
 							label={t("Workspaces.NewWorkspace")}
 							onClick={this.viewModal}
 						/>
 					</div>
-					{this.props.workspaces.map(this.RenderWorkspaces)}
+					<div className="workspaces-list">
+						{this.props.workspaces.map(this.RenderWorkspaces)}
+					</div>
 				</div>
 			</div>
 		);

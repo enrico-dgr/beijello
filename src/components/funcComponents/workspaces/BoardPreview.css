@@ -1,6 +1,36 @@
-.board-preview {
+.add-new-board {
 	align-items: center;
-	background-color: aquamarine;
+	background-color: rgb(177, 177, 174);
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	margin: 4px;
+	position: relative;
+	height: 50px;
+	width: 200px;
+	border-radius: 15px;
+}
+
+.add-new-board::after {
+	border-radius: 15px;
+	background-color: rgba(255, 255, 255, 0);
+	content: "";
+	height: 100%;
+	left: 0;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	transition: background-color ease 0.3s;
+	width: 100%;
+}
+
+.add-new-board:hover::after {
+	background-color: rgba(255, 255, 255, 0.487);
+}
+
+.board-preview{
+	align-items: center;
+	background-color: rgba(85, 104, 212, .95);;
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
@@ -8,9 +38,11 @@
 	position: relative;
 	height: 200px;
 	width: 200px;
+	border-radius: 15px;
 }
 
-.board-preview::after {
+.board-preview::after{
+	border-radius: 15px;
 	background-color: rgba(255, 255, 255, 0);
 	content: "";
 	height: 100%;

@@ -70,7 +70,7 @@ const NewBoard = (props) => {
 		<div>
 			<div
 				// class available in BoardPreview.css
-				className={"board-preview"}
+				className={"add-new-board"}
 				onClick={showModal}
 			>
 				<p>{t("Workspaces.NewBoard")}</p>
