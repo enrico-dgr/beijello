@@ -1,6 +1,6 @@
 import "./Home.css";
 
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { signOut, tryLocalSession } from "../services/fakeApi";
 
 import React from "react";
@@ -18,11 +18,15 @@ const mapStateToProps = (state) => ({
 
 const Home = (props) => {
 	let navigate = useNavigate();
+	let location = useLocation()
+
+	console.log("location", location);
 	const { t } = useTranslation();
 
+
 	/* metodo di navigazione */
-	const handleNavigate = (dest) => () => {
-		navigate(dest);
+	const handleNavigate = (path) => () => {
+		navigate(path);
 	};
 
 	/* log out */
@@ -51,12 +55,20 @@ const Home = (props) => {
 	return (
 		<div className="home-container">
 			<div className="navbar">
-				<p
-					onClick={handleNavigate("/")}
-					className="navbar-logotype"
-				>
-					BEIJELLO
-				</p>
+				<div className="navbar-left-item">
+					<p
+						onClick={handleNavigate("/")}
+						className="navbar-logotype"
+					>
+						BEIJELLO
+					</p>
+					<p
+						onClick={handleNavigate("/")}
+						className={`navbar-direct-workspaces ${(location.pathname === "/") ? "navbar-direct-selected" : "navbar-direct-unselected"}`}
+					>
+						Workspaces
+					</p>
+				</div>
 				<div
 					style={{
 						justifySelf: "flex-end",

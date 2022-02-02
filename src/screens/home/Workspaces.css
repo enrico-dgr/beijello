@@ -24,13 +24,14 @@
 	color: white;
 }
 .workspaces-list{
-	overflow:auto;
-	flex: 1;
+	flex: 1; 
 	display: flex;
-	flex-wrap: nowrap;
+	overflow:auto;
 }
 .workspace-container{
-
+	width: 200px;
+	display: flex;
+	flex-direction: column;
 	margin: 15px;
 }
 
