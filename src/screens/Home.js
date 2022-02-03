@@ -36,17 +36,30 @@ const Home = (props) => {
 		navigate("/auth/login");
 	};
 
-	/* component did update con dipendenza props.user */
+	/**
+	 * User data flow:
+	 * - (1) token exists and there is no email saved
+	 *  - check token
+	 *  - if token is invalid, redirect to login
+	 * - (2) token does not exist
+	 *  - redirect to login
+	 * - (3) user id exists
+	 *  - load workspaces associated to user
+	 *  - if loading fails, make a sandwich (whoops, a toast :D )
+	 */
 	useEffect(() => {
 		const token = localStorage.getItem(KEYS.AUTH_TOKEN);
 
 		if (token !== null && !props.user?.email) {
+			// (1)
 			users.authToken(token, props.dispatch).catch(() =>
 				navigate("/auth/login")
 			);
 		} else if (token === null) {
+			// (2)
 			navigate("/auth/login");
-		} else if (!!props.user.id) {
+		} else if (!!props.user?.id) {
+			// (3)
 			workspaces
 				.getByUserId(props.user.id, props.dispatch)
 				.catch((err) => {
@@ -61,7 +74,7 @@ const Home = (props) => {
 					});
 				});
 		}
-	});
+	}, [props.user, props.dispatch, navigate]);
 
 	return (
 		<div className="home-container">

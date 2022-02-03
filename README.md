@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Beijello Docs
 
 ## Available Scripts
 
@@ -13,6 +11,23 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### `npm run db`
+
+Runs the database server and view logs in terminal.  
+Database file `./db.json`  
+Config file `./json-server.json`  
+Open [http://localhost:3308](http://localhost:3308) to make `GET` requests.
+
+#### Examples
+
+`GET` first user in db: [http://localhost:3308/users/1](http://localhost:3308/users/1)
+
+> See [https://github.com/typicode/json-server](https://github.com/typicode/json-server) for more.
+
+### `npm run start:prod`
+
+Actually running `npm start` with _silent_ database server in one command.
 
 ### `npm test`
 
