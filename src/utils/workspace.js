@@ -34,9 +34,9 @@ const moveTicketTo = ({
 		indexBoard
 	].ticketLists.findIndex((t) => t.id === toListId);
 
-	workspace.boards[indexBoard].ticketLists[indexFromTicketList].tickets = [
+	workspace.boards[indexBoard].ticketLists[indexToTicketList].tickets = [
 		...workspace.boards[indexBoard].ticketLists[
-			indexFromTicketList
+			indexToTicketList
 		].tickets.slice(0, toTicketPosition),
 		// insert
 		...tickets,
@@ -48,4 +48,37 @@ const moveTicketTo = ({
 	return workspace;
 };
 
-export { moveTicketTo, getNewTicketId };
+/**
+ * Return the updated workspace
+ */
+const moveTicketToListEnd = ({
+	workspace,
+	indexBoard,
+	fromListId,
+	fromTicketPosition,
+	toListId,
+}) => {
+	const indexFromTicketList = workspace.boards[
+		indexBoard
+	].ticketLists.findIndex((t) => t.id === fromListId);
+
+	// splice returns an array
+	const tickets = workspace.boards[indexBoard].ticketLists[
+		indexFromTicketList
+	].tickets.splice(fromTicketPosition, 1);
+
+	const indexToTicketList = workspace.boards[
+		indexBoard
+	].ticketLists.findIndex((t) => t.id === toListId);
+
+	workspace.boards[indexBoard].ticketLists[indexToTicketList].tickets = [
+		...workspace.boards[indexBoard].ticketLists[indexToTicketList]
+			.tickets,
+		// insert
+		...tickets,
+	];
+
+	return workspace;
+};
+
+export { moveTicketTo, moveTicketToListEnd, getNewTicketId };

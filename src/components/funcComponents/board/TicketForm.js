@@ -1,13 +1,14 @@
 import "./TicketForm.css";
 
 import React, { useEffect, useState } from "react";
+import { getNewTicketId, moveTicketToListEnd } from "../../../utils/workspace";
+
 import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
-import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import workspacesApi from "../../../services/workspacesApi";
 import { toast } from "react-toastify";
-import { getNewTicketId } from "../../../utils/workspace";
+import { useParams } from "react-router-dom";
+import workspacesApi from "../../../services/workspacesApi";
 
 const mapStateToProps = (state) => ({
 	workspaces: state.workspacesDuck.workspaces,
@@ -62,7 +63,55 @@ const TicketForm = (props) => {
 		});
 	};
 
-	const onChangeTicketList = () => {};
+	const onChangeTicketList = (e) => {
+		const toListId = parseInt(e.target.value);
+
+		let workspace = props.workspaces.find(
+			(w) => w.id === parseInt(params.workspaceId)
+		);
+
+		const indexBoard = workspace.boards.findIndex(
+			(b) => b.id === parseInt(params.boardId)
+		);
+
+		const indexTicketList = workspace.boards[
+			indexBoard
+		].ticketLists.findIndex((t) => t.id === state.listId);
+
+		const ticketPosition = workspace.boards[indexBoard].ticketLists[
+			indexTicketList
+		].tickets.findIndex((t) => t.id === state.ticket.id);
+
+		workspace = moveTicketToListEnd({
+			workspace,
+			indexBoard,
+			fromListId: state.listId,
+			fromTicketPosition: ticketPosition,
+			toListId,
+		});
+
+		workspacesApi
+			.update(workspace, props.userId, props.dispatch)
+			.then(() => {
+				setState({
+					...state,
+					listId: toListId,
+				});
+			})
+			.catch((err) => {
+				toast.error(err.message, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+
+				props.onClickCancel();
+			});
+	};
 
 	/** props callbacks handlers */
 	const onClickCancel = (e) => {
@@ -91,7 +140,7 @@ const TicketForm = (props) => {
 
 		const indexTicketList = workspace.boards[
 			indexBoard
-		].ticketLists.findIndex((t) => t.id === props.ticketListId);
+		].ticketLists.findIndex((t) => t.id === state.listId);
 
 		if (!state.ticket.id) {
 			// new ticket
@@ -182,7 +231,7 @@ const TicketForm = (props) => {
 				<label>Move to other list </label>
 				{
 					<select
-						defaultValue={state.listId}
+						value={state.listId}
 						onChange={onChangeTicketList}
 					>
 						{!!state.lists &&
