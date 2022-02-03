@@ -17,6 +17,7 @@ function Button(props) {
             onClick={handleClick}
         >
             {props.label}
+            {props.children}
         </button>
     )
 }
