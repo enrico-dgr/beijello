@@ -9,6 +9,7 @@
    border: 2px solid red;
 }
 
-.ticketBtn-remove-ticket {
+.ticketBtn {
     padding: 5px 11px;
+    background-color: white;
 }

@@ -129,7 +129,7 @@ const NewTicketModal = (props) => {
 						className="newTicketModal-btn"
 					/>
 					<SubmitButton
-						label="Annulla"
+						label="Cancel"
 						onClick={props.onClickButton}
 						className="newTicketModal-btn"
 					/>
