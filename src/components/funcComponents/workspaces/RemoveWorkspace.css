@@ -1,0 +1,72 @@
+.workspace-delete svg {
+	height: 25px;
+	transition: all ease 0.3s;
+	width: 25px;
+}
+
+.workspace-delete svg path {
+	fill: rgb(165, 37, 37);
+}
+
+.workspace-delete svg:hover {
+	-webkit-filter: drop-shadow(1px 1px 8px rgba(204, 26, 26, 0.9));
+	filter: drop-shadow(1px 1px 8px rgba(204, 26, 26, 0.9));
+}
+
+.workspace-delete svg:active {
+	transform: translateY(3px);
+}
+
+.workspace-confirm-delete-modal {
+	align-items: center;
+	background-color: rgba(8, 25, 119, 0.863);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 300px;
+	padding: 20px 15px 5px 15px;
+}
+
+.workspace-confirm-delete-modal p {
+	font-size: 20px;
+	font-weight: 500;
+	margin: 5px;
+}
+
+.workspace-confirm-delete-modal p:first-of-type {
+	color: rgb(230, 203, 203);
+}
+
+.workspace-confirm-delete-modal p:nth-of-type(2) {
+	color: rgb(255, 108, 108);
+	font-weight: 700;
+}
+
+.workspace-confirm-delete-modal div {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	margin: 8px 0 0 0;
+}
+
+.workspace-confirm-delete-modal button {
+	background-color: rgba(223, 218, 236, 0.8);
+	border-radius: 35px;
+	box-shadow: 2px 4px 16px rgb(85, 104, 212);
+	font-size: 20px;
+	font-weight: 600;
+	padding: 10px;
+	margin: 8px 4px;
+	transition: all ease 0.3s;
+	width: 80px;
+}
+
+.workspace-confirm-delete-modal button:hover {
+	background-color: rgb(85, 104, 212);
+	box-shadow: 2px 2px 15px rgba(255, 255, 255, 0.8);
+}
+
+.workspace-confirm-delete-modal button:nth-of-type(2) {
+	color: red;
+}
