@@ -63,7 +63,7 @@ const Home = (props) => {
 			workspaces
 				.getByUserId(props.user.id, props.dispatch)
 				.catch((err) => {
-					toast.error(err, {
+					toast.error(err.message, {
 						position: "top-center",
 						autoClose: 5000,
 						hideProgressBar: false,

@@ -42,40 +42,22 @@
       "role": "admin"
     },
     {
-      "userId": 1,
-      "workspaceId": 2,
-      "role": "admin",
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "workspaceId": 3,
-      "role": "admin",
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "workspaceId": 4,
-      "role": "admin",
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "workspaceId": 5,
-      "role": "admin",
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "workspaceId": 6,
-      "role": "admin",
-      "id": 6
-    },
-    {
       "userId": 3,
       "workspaceId": 7,
       "role": "admin",
       "id": 7
+    },
+    {
+      "userId": 1,
+      "workspaceId": 8,
+      "role": "admin",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "workspaceId": 9,
+      "role": "admin",
+      "id": 9
     }
   ],
   "workspaces": [
@@ -117,71 +99,6 @@
       ]
     },
     {
-      "name": "Second Workspace",
-      "boards": [
-        {
-          "name": "New board",
-          "layout": "",
-          "ticketLists": []
-        }
-      ],
-      "id": 2
-    },
-    {
-      "name": "Third Workspace",
-      "boards": [
-        {
-          "name": "New board here",
-          "layout": "",
-          "ticketLists": []
-        }
-      ],
-      "id": 3
-    },
-    {
-      "name": "New title 4",
-      "boards": [
-        {
-          "name": "Bacheca per angelo",
-          "layout": "",
-          "ticketLists": [
-            {
-              "name": "ticket list molto bella",
-              "tickets": [
-                {
-                  "title": "ticketasdasda",
-                  "description": "",
-                  "ticketFlag": "red",
-                  "errorFlag": false
-                }
-              ]
-            },
-            {
-              "name": "iblhuhn;",
-              "tickets": []
-            }
-          ]
-        }
-      ],
-      "id": 4
-    },
-    {
-      "name": "Awesome merge",
-      "boards": [
-        {
-          "name": "awesome board",
-          "layout": "",
-          "ticketLists": []
-        }
-      ],
-      "id": 5
-    },
-    {
-      "name": "new awesome workspace",
-      "boards": [],
-      "id": 6
-    },
-    {
       "name": "workspace 1",
       "boards": [
         {
@@ -203,6 +120,16 @@
         }
       ],
       "id": 7
+    },
+    {
+      "name": "asdasd",
+      "boards": [],
+      "id": 8
+    },
+    {
+      "name": "asddssaaa",
+      "boards": [],
+      "id": 9
     }
   ]
 }

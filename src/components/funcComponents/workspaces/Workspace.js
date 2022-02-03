@@ -1,27 +1,28 @@
 import "./Workspace.css";
 
 import BoardPreview from "./BoardPreview";
-/* fontawesome */
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NewBoard from "./NewBoard";
 import PropTypes from "prop-types";
 import React from "react";
+/* fontawesome */
+import RemoveWorkspace from "./RemoveWorkspace";
 import { connect } from "react-redux";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+const mapStateToProps = (state) => ({
+	workspaces: state.workspacesDuck.workspaces,
+});
 
 const Workspace = (props) => {
 	return (
-		<div className={"workspace"} key={props.customKey}>
+		<div className={"workspace"}>
 			<span>Workspace:</span>
-			<h2 className="title-workspace">{props.name}</h2>
-			<div className="workspace-delete">
-				<FontAwesomeIcon icon={faTrash} />
-			</div>
+			<h2 className="title-workspace">{props.workspace.name}</h2>
+			<RemoveWorkspace workspaceId={props.workspace.id} />
 			<div className={"workspace__board-preview-list"}>
-				<NewBoard workspaceName={props.name} />
-				{props.workspaces
-					.find((w) => w.name === props.name)
-					?.boards.map(MapPreview(props.name))}
+				<NewBoard workspaceName={props.workspace.name} />
+				{props.workspace?.boards.map(
+					MapPreview(props.workspace.name)
+				)}
 			</div>
 		</div>
 	);
@@ -41,14 +42,7 @@ const MapPreview = (workspaceName) => (board, i) =>
 	);
 
 Workspace.propTypes = {
-	name: PropTypes.string,
-	// each containing `name` and `layout`
-	boards: PropTypes.array,
-	customKey: PropTypes.string,
+	workspace: PropTypes.object,
 };
-
-const mapStateToProps = (state) => ({
-	workspaces: state.workspacesDuck.workspaces,
-});
 
 export default connect(mapStateToProps)(Workspace);

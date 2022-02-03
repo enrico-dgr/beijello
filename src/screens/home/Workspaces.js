@@ -65,11 +65,7 @@ class Workspaces extends Component {
 
 	RenderWorkspaces = (w, i) => (
 		<div className="workspace-container" key={i + "workspace-ma"}>
-			<Workspace
-				boards={w.boards}
-				customKey={i + "workspace-map"}
-				name={w.name}
-			/>
+			<Workspace workspace={w} />
 		</div>
 	);
 }

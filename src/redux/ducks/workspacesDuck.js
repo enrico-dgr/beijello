@@ -5,6 +5,7 @@ const LOADING = "web/workspaces/" + STATUS.LOADING;
 const FAILURE = "web/workspaces/" + STATUS.FAILURE;
 const SUCCESS = "web/workspaces/" + STATUS.SUCCESS;
 const UPDATE_SUCCESS = "web/workspaces/update/" + STATUS.SUCCESS;
+const DELETE_SUCCESS = "web/workspaces/delete/" + STATUS.SUCCESS;
 
 export const setIdle = () => ({
 	type: IDLE,
@@ -45,8 +46,14 @@ export const setSuccess = (workspaces) => ({
 export const setSuccessUpdate = (workspace) => ({
 	type: UPDATE_SUCCESS,
 	payload: {
-		status: STATUS.SUCCESS,
 		workspace,
+	},
+});
+
+export const setSuccessDelete = (workspaceId) => ({
+	type: DELETE_SUCCESS,
+	payload: {
+		workspaceId,
 	},
 });
 
@@ -89,6 +96,15 @@ export default function workspaceDuck(state = INIT_STATE, action) {
 					action.payload.workspace,
 					...state.workspaces.slice(workspaceIndex + 1),
 				],
+			};
+
+		case DELETE_SUCCESS:
+			return {
+				...state,
+				status: SUCCESS,
+				workspaces: state.workspaces.filter(
+					(w) => w.id !== action.payload.workspaceId
+				),
 			};
 		default:
 			return state;

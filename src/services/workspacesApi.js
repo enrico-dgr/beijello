@@ -2,6 +2,7 @@ import {
 	setFailure,
 	setLoading,
 	setSuccess,
+	setSuccessDelete,
 	setSuccessUpdate,
 } from "../redux/ducks/workspacesDuck";
 
@@ -131,8 +132,15 @@ const update = async (workspace, userId, dispatch) => {
 // **DELETE**
 // -----------
 
-const deleteById = (workspaceId) =>
-	workspaces.delete(`/workspaces/${workspaceId}`);
+const deleteById = async (workspaceId, dispatch) => {
+	const res = await workspaces.delete(`/workspaces/${workspaceId}`);
+
+	if (res.status !== 200) {
+		throw new Error("Error while deleting workspace");
+	}
+
+	dispatch(setSuccessDelete(workspaceId));
+};
 
 const toExport = {
 	create,
