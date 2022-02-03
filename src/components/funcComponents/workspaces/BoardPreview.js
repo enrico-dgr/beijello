@@ -1,11 +1,12 @@
 import "./BoardPreview.css";
-import React from "react";
-import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 
 /* fontawesome */
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
+import React from "react";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+
 /*  */
 
 const BoardPreview = (props) => {
@@ -21,8 +22,11 @@ const BoardPreview = (props) => {
 			key={props.customKey}
 			onClick={navigateToBoard}
 		>
-			<span className="delete-board"> <FontAwesomeIcon icon={faTrash} /></span>
-			<h1>{props.boardName}</h1>
+			<span className="delete-board">
+				{" "}
+				<FontAwesomeIcon icon={faTrash} />
+			</span>
+			<p>{props.boardName}</p>
 		</div>
 	);
 };
