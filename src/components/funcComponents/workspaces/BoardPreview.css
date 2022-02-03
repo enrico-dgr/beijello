@@ -57,3 +57,16 @@
 .board-preview:hover::after {
 	background-color: rgba(255, 255, 255, 0.487);
 }
+.board-preview:hover .delete-board{
+	display: inline-block;
+}
+.delete-board{
+	display: none;
+	transition: all 1s linear 0s;
+	padding: 5px 9px;
+	border-radius: 15px;
+	background-color: white;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}

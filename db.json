@@ -1,168 +1,247 @@
 {
-	"users": [
-		{
-			"name": "Enrico",
-			"surname": "Di Grazia",
-			"date": "1998-04-05",
-			"gender": "Male",
-			"phone": "3922958942",
-			"email": "enrico.digrazia98@gmail.com",
-			"password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
-			"maritalStatus": "single",
-			"id": 1
-		},
-		{
-			"name": "Armando",
-			"surname": "Trallallero Di Cognome",
-			"date": "1998-03-02",
-			"gender": "Male",
-			"phone": "3762959943",
-			"email": "armando.trallallerodicognome98@gmail.com",
-			"password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
-			"maritalStatus": "single",
-			"id": 2
-		}
-	],
-	"workspaceUsers": [
-		{
-			"id": 1,
-			"userId": 1,
-			"workspaceId": 1,
-			"role": "admin"
-		},
-		{
-			"userId": 1,
-			"workspaceId": 2,
-			"role": "admin",
-			"id": 2
-		},
-		{
-			"userId": 1,
-			"workspaceId": 3,
-			"role": "admin",
-			"id": 3
-		},
-		{
-			"userId": 1,
-			"workspaceId": 4,
-			"role": "admin",
-			"id": 4
-		},
-		{
-			"userId": 1,
-			"workspaceId": 5,
-			"role": "admin",
-			"id": 5
-		},
-		{
-			"userId": 1,
-			"workspaceId": 6,
-			"role": "admin",
-			"id": 6
-		}
-	],
-	"workspaces": [
-		{
-			"id": 1,
-			"name": "First Workspace",
-			"boards": [
-				{
-					"id": 1,
-					"name": "First board, First Workspace",
-					"layout": "normal",
-					"ticketLists": [
-						{
-							"id": 1,
-							"name": "To do",
-							"tickets": [
-								{
-									"id": 1,
-									"title": "Creation DB",
-									"description": "I'm creating a DB with json-server",
-									"comments": [
-										{
-											"id": 1,
-											"text": "Good luck with this. Call me if u need help.",
-											"userId": 2
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					"id": 2,
-					"name": "Second board, First Workspace",
-					"layout": "normal",
-					"ticketLists": []
-				}
-			]
-		},
-		{
-			"name": "Second Workspace",
-			"boards": [
-				{
-					"name": "New board",
-					"layout": "",
-					"ticketLists": []
-				}
-			],
-			"id": 2
-		},
-		{
-			"name": "Third Workspace",
-			"boards": [
-				{
-					"name": "New board here",
-					"layout": "",
-					"ticketLists": []
-				}
-			],
-			"id": 3
-		},
-		{
-			"name": "New title 4",
-			"boards": [
-				{
-					"name": "Bacheca per angelo",
-					"layout": "",
-					"ticketLists": [
-						{
-							"name": "ticket list molto bella",
-							"tickets": [
-								{
-									"title": "ticketasdasda",
-									"description": "",
-									"ticketFlag": "red",
-									"errorFlag": false
-								}
-							]
-						},
-						{
-							"name": "iblhuhn;",
-							"tickets": []
-						}
-					]
-				}
-			],
-			"id": 4
-		},
-		{
-			"name": "Awesome merge",
-			"boards": [
-				{
-					"name": "awesome board",
-					"layout": "",
-					"ticketLists": []
-				}
-			],
-			"id": 5
-		},
-		{
-			"name": "new awesome workspace",
-			"boards": [],
-			"id": 6
-		}
-	]
+  "users": [
+    {
+      "name": "Enrico",
+      "surname": "Di Grazia",
+      "date": "1998-04-05",
+      "gender": "Male",
+      "phone": "3922958942",
+      "email": "enrico.digrazia98@gmail.com",
+      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+      "maritalStatus": "single",
+      "id": 1
+    },
+    {
+      "name": "Armando",
+      "surname": "Trallallero Di Cognome",
+      "date": "1998-03-02",
+      "gender": "Male",
+      "phone": "3762959943",
+      "email": "armando.trallallerodicognome98@gmail.com",
+      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+      "maritalStatus": "single",
+      "id": 2
+    },
+    {
+      "name": "eccolo",
+      "surname": "pio",
+      "date": "5682-08-07",
+      "gender": "Male",
+      "phone": "1234567890",
+      "email": "admin@dev.it",
+      "password": "U2FsdGVkX19nwaVThPrBoJ2568qJIWtF/hgSpAUzPXg=",
+      "maritalStatus": "single",
+      "id": 3
+    }
+  ],
+  "workspaceUsers": [
+    {
+      "id": 1,
+      "userId": 1,
+      "workspaceId": 1,
+      "role": "admin"
+    },
+    {
+      "userId": 1,
+      "workspaceId": 2,
+      "role": "admin",
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "workspaceId": 3,
+      "role": "admin",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "workspaceId": 4,
+      "role": "admin",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "workspaceId": 5,
+      "role": "admin",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "workspaceId": 6,
+      "role": "admin",
+      "id": 6
+    },
+    {
+      "userId": 3,
+      "workspaceId": 7,
+      "role": "admin",
+      "id": 7
+    },
+    {
+      "userId": 3,
+      "workspaceId": 8,
+      "role": "admin",
+      "id": 8
+    },
+    {
+      "userId": 3,
+      "workspaceId": 9,
+      "role": "admin",
+      "id": 9
+    },
+    {
+      "userId": 3,
+      "workspaceId": 10,
+      "role": "admin",
+      "id": 10
+    }
+  ],
+  "workspaces": [
+    {
+      "id": 1,
+      "name": "First Workspace",
+      "boards": [
+        {
+          "id": 1,
+          "name": "First board, First Workspace",
+          "layout": "normal",
+          "ticketLists": [
+            {
+              "id": 1,
+              "name": "To do",
+              "tickets": [
+                {
+                  "id": 1,
+                  "title": "Creation DB",
+                  "description": "I'm creating a DB with json-server",
+                  "comments": [
+                    {
+                      "id": 1,
+                      "text": "Good luck with this. Call me if u need help.",
+                      "userId": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Second board, First Workspace",
+          "layout": "normal",
+          "ticketLists": []
+        }
+      ]
+    },
+    {
+      "name": "Second Workspace",
+      "boards": [
+        {
+          "name": "New board",
+          "layout": "",
+          "ticketLists": []
+        }
+      ],
+      "id": 2
+    },
+    {
+      "name": "Third Workspace",
+      "boards": [
+        {
+          "name": "New board here",
+          "layout": "",
+          "ticketLists": []
+        }
+      ],
+      "id": 3
+    },
+    {
+      "name": "New title 4",
+      "boards": [
+        {
+          "name": "Bacheca per angelo",
+          "layout": "",
+          "ticketLists": [
+            {
+              "name": "ticket list molto bella",
+              "tickets": [
+                {
+                  "title": "ticketasdasda",
+                  "description": "",
+                  "ticketFlag": "red",
+                  "errorFlag": false
+                }
+              ]
+            },
+            {
+              "name": "iblhuhn;",
+              "tickets": []
+            }
+          ]
+        }
+      ],
+      "id": 4
+    },
+    {
+      "name": "Awesome merge",
+      "boards": [
+        {
+          "name": "awesome board",
+          "layout": "",
+          "ticketLists": []
+        }
+      ],
+      "id": 5
+    },
+    {
+      "name": "new awesome workspace",
+      "boards": [],
+      "id": 6
+    },
+    {
+      "name": "sssssssssssssssssssssssss",
+      "boards": [
+        {
+          "name": "bacheca mia",
+          "layout": "",
+          "ticketLists": [
+            {
+              "name": "to do",
+              "tickets": [
+                {
+                  "title": "eccomi",
+                  "description": "ciao",
+                  "ticketFlag": "green",
+                  "errorFlag": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "id": 7
+    },
+    {
+      "name": "sssssssssssss",
+      "boards": [
+        {
+          "name": "eccolo",
+          "layout": "",
+          "ticketLists": []
+        }
+      ],
+      "id": 8
+    },
+    {
+      "name": "MY board",
+      "boards": [],
+      "id": 9
+    },
+    {
+      "name": "My Workspace",
+      "boards": [],
+      "id": 10
+    }
+  ]
 }

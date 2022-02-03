@@ -5,11 +5,17 @@ import NewBoard from "./NewBoard";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
+/* fontawesome */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const Workspace = (props) => {
 	return (
 		<div className={"workspace"} key={props.customKey}>
 			<h1 className="title-workspace">{props.name}</h1>
+			<div className="workspace-delete">
+				<FontAwesomeIcon icon={faTrash} />
+			</div>
 			<div className={"workspace__board-preview-list"}>
 				<NewBoard workspaceName={props.name} />
 				{
