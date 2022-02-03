@@ -2,11 +2,6 @@
 import "./Login.css";
 
 import React, { Component } from "react";
-import {
-	applyFixture,
-	tryLastSession,
-	tryLocalSession,
-} from "../../services/fakeApi";
 
 import Checkbox from "../../components/funcComponents/UI/checkbox/Checkbox";
 import CircleButton from "../../components/funcComponents/CircleButton";
@@ -18,6 +13,7 @@ import { checkEmail } from "../../utils/utils";
 import { connect } from "react-redux";
 // IMAGES
 import facebook from "../../assets/images/facebook-to-zindex.png";
+import { getRemember } from "../../utils/localStorage";
 import { toast } from "react-toastify";
 import twitter from "../../assets/images/twitter-to-zindex.png";
 import users from "../../services/usersApi";
@@ -38,18 +34,12 @@ class Login extends Component {
 	}
 
 	componentDidMount() {
-		//
-		applyFixture();
+		const remember = getRemember();
 
-		let session = tryLocalSession();
-		let lastSession = tryLastSession();
-
-		if (session) {
+		if (!!this.props.user?.email) {
 			this.setState({ path: "/" });
-		}
-
-		if (lastSession) {
-			this.setState({ email: lastSession.email });
+		} else if (remember) {
+			this.setState({ email: remember.email });
 		}
 	}
 
@@ -199,4 +189,8 @@ class Login extends Component {
 	}
 }
 
-export default connect()(withTranslation()(Login));
+const mapStateToProps = (state) => ({
+	user: state.userMeDuck.user,
+});
+
+export default connect(mapStateToProps)(withTranslation()(Login));

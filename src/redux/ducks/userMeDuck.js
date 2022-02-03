@@ -5,6 +5,9 @@ const LOADING = "web/userMe/" + STATUS.LOADING;
 const FAILURE = "web/userMe/" + STATUS.FAILURE;
 const SUCCESS = "web/userMe/" + STATUS.SUCCESS;
 
+/**
+ * Reset all data to default
+ */
 export const setIdle = () => ({
 	type: IDLE,
 	payload: {
@@ -14,6 +17,9 @@ export const setIdle = () => ({
 	},
 });
 
+/**
+ * Only update status
+ */
 export const setLoading = () => ({
 	type: LOADING,
 	payload: {
@@ -22,7 +28,7 @@ export const setLoading = () => ({
 });
 
 /**
- *
+ * Update status and add an error message
  * @param {string} errorMessage
  */
 export const setFailure = (errorMessage) => ({
@@ -34,12 +40,18 @@ export const setFailure = (errorMessage) => ({
 });
 
 /**
- *
+ * Set user data, update status and reset error
  * @param { {
  *  id: number;
  *  email: string;
- * } } user
- * @returns
+ *  name: string;
+ *  surname: string;
+ *  date: string;
+ *  gender: string;
+ *  phone: number;
+ *  email: string;
+ *  maritalStatus: string;
+ * } } user id and email at the moment
  */
 export const setSuccess = (user) => ({
 	type: SUCCESS,
