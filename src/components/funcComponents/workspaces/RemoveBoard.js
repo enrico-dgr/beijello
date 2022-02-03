@@ -52,6 +52,8 @@ const RemoveBoard = (props) => {
 					progress: undefined,
 				})
 			);
+
+		hideModal();
 	};
 
 	return (

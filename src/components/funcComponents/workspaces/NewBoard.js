@@ -52,9 +52,15 @@ const NewBoard = (props) => {
 		let workspace = props.workspaces.find(
 			(w) => w.name === props.workspaceName
 		);
+
+		const newId =
+			workspace.boards.length === 0
+				? 1
+				: workspace.boards[workspace.boards.length - 1].id + 1;
+
 		workspace.boards.push({
 			...state.boardData,
-			id: workspace.boards.length,
+			id: newId,
 			ticketLists: [],
 		});
 

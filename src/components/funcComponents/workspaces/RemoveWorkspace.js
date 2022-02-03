@@ -37,7 +37,7 @@ const RemoveWorkspace = (props) => {
 				})
 			);
 
-		showModal();
+		hideModal();
 	};
 
 	return (

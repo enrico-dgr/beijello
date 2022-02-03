@@ -36,61 +36,31 @@
   ],
   "workspaceUsers": [
     {
-      "id": 1,
-      "userId": 1,
-      "workspaceId": 1,
-      "role": "admin"
-    },
-    {
       "userId": 1,
       "workspaceId": 8,
       "role": "admin",
       "id": 2
+    },
+    {
+      "userId": 1,
+      "workspaceId": 11,
+      "role": "admin",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "workspaceId": 12,
+      "role": "admin",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "workspaceId": 13,
+      "role": "admin",
+      "id": 7
     }
   ],
   "workspaces": [
-    {
-      "id": 1,
-      "name": "First Workspace",
-      "boards": [
-        {
-          "id": 1,
-          "name": "First board, First Workspace",
-          "layout": "normal",
-          "ticketLists": [
-            {
-              "id": 1,
-              "name": "To do",
-              "tickets": [
-                {
-                  "id": 1,
-                  "title": "Creation DB",
-                  "description": "I'm creating a DB with json-server",
-                  "comments": [
-                    {
-                      "id": 1,
-                      "text": "Good luck with this. Call me if u need help.",
-                      "userId": 2
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Second board, First Workspace",
-          "layout": "normal",
-          "ticketLists": []
-        },
-        {
-          "name": "dasdasaa",
-          "layout": "",
-          "ticketLists": []
-        }
-      ]
-    },
     {
       "name": "workspace 1",
       "boards": [
@@ -136,9 +106,68 @@
           "name": "dasdaa",
           "layout": "",
           "ticketLists": []
+        },
+        {
+          "name": "Perfect",
+          "layout": "",
+          "id": 3,
+          "ticketLists": []
+        },
+        {
+          "name": "mlnmlkn",
+          "layout": "",
+          "id": 4,
+          "ticketLists": []
         }
       ],
       "id": 8
+    },
+    {
+      "name": "asdasdas",
+      "boards": [
+        {
+          "name": "2",
+          "layout": "",
+          "id": 2,
+          "ticketLists": []
+        },
+        {
+          "name": "4",
+          "layout": "",
+          "id": 4,
+          "ticketLists": []
+        },
+        {
+          "name": "5",
+          "layout": "",
+          "id": 5,
+          "ticketLists": []
+        },
+        {
+          "name": "6",
+          "layout": "",
+          "id": 6,
+          "ticketLists": []
+        }
+      ],
+      "id": 11
+    },
+    {
+      "name": "3",
+      "boards": [
+        {
+          "name": "adaSA",
+          "layout": "",
+          "id": 1,
+          "ticketLists": []
+        }
+      ],
+      "id": 12
+    },
+    {
+      "name": "dsasdasdas",
+      "boards": [],
+      "id": 13
     }
   ]
 }
