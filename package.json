@@ -28,7 +28,7 @@
 	},
 	"scripts": {
 		"start:prod": "react-scripts start",
-		"prestart:prod": "json-server  db.json --config json-server.prod.json",
+		"prestart:prod": "json-server  db.json --config json-server.prod.json &",
 		"start": "react-scripts start",
 		"db": "json-server  db.json --config json-server.json",
 		"build": "react-scripts build",

@@ -74,7 +74,7 @@ const Home = (props) => {
 					});
 				});
 		}
-	}, [props, navigate]);
+	}, [props.user, props.dispatch, navigate]);
 
 	return (
 		<div className="home-container">
