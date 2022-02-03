@@ -1,6 +1,9 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import NewTicketModal from "../funcComponents/board/NewTicketModal";
 import Button from "./UI/button/Button";
+/* fontawesome */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import './Ticket.css';
 
 const Ticket = (props) => {
@@ -19,7 +22,7 @@ const Ticket = (props) => {
     };
     return (
         <>
-            <div className="ticketContainer" key={ticket.title} onClick={openModal}>
+            <div className="ticketContainer" key={ticket.title}>
                 {modalFlag && (
                     <NewTicketModal
                         onClickButton={closeModal}
@@ -27,7 +30,13 @@ const Ticket = (props) => {
                 )}
                 <p >{ticket.title}</p>
                 <div style={{ backgroundColor: ticket.ticketFlag, height: 10, width: 100, borderRadius: 5 }}></div>
-                <Button label='-' className={'ticketBtn-remove-ticket'} onClick={removeTicket} />
+
+                <Button className={'ticketBtn'} onClick={removeTicket}>
+                    <FontAwesomeIcon icon={faTrash} />
+                </Button>
+                <Button className={'ticketBtn'} onClick={openModal}>
+                    <FontAwesomeIcon icon={faEdit} />
+                </Button>
             </div>
         </>
     )
