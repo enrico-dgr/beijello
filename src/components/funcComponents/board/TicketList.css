@@ -12,18 +12,28 @@
 	padding: 10px;
 }
 
+.ticketList-header {
+	align-items: flex-start;
+	display: flex;
+	height: fit-content;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.ticketList-header-left {
+	height: 100%;
+}
+
+.ticketList-header-left p {
+	height: fit-content;
+	width: fit-content;
+}
+
 .ticketList-title {
 	font-weight: bold;
 	font-size: 15px;
 	padding: 8px 4px;
 	text-align: left;
-}
-
-.ticketList-btns {
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
 }
 
 .ticketList-new-ticket-btn {

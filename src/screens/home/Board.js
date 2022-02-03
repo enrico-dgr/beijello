@@ -54,7 +54,7 @@ const Board = (props) => {
 	};
 	return (
 		<div className="board-wrapper">
-			<div className="board-title">
+			<header className="board-header">
 				<h3>
 					<span>Board:</span> {!!board && board.name}
 				</h3>
@@ -63,7 +63,7 @@ const Board = (props) => {
 					onClick={openModal}
 					className={"board-btn-add-list"}
 				/>
-			</div>
+			</header>
 			<div className="board-ticketLists">
 				{!!board && board.ticketLists.map(renderTicketList)}
 			</div>

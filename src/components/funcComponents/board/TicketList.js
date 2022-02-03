@@ -41,23 +41,26 @@ const TicketList = (props) => {
 
 	return (
 		<div className="ticketList-container">
-			<div className="ticketList-title">
-				<p>{ticketList.name}</p>
-			</div>
-			{/* List's buttons */}
-			<div className="ticketList-btns">
-				<SubmitButton
-					className={"ticketList-new-ticket-btn"}
-					label={
-						<>
-							<FontAwesomeIcon icon={faPlus} />{" "}
-							Aggiungi ticket
-						</>
-					}
-					onClick={onClickAdd}
-				/>
-				<RemoveTicketList ticketListId={ticketList.id} />
-			</div>
+			<header className="ticketList-header">
+				<div className="ticketList-header-left">
+					<p>{ticketList.name}</p>
+					<SubmitButton
+						className={"ticketList-new-ticket-btn"}
+						label={
+							<>
+								<FontAwesomeIcon
+									icon={faPlus}
+								/>{" "}
+								Aggiungi ticket
+							</>
+						}
+						onClick={onClickAdd}
+					/>
+				</div>
+				<div>
+					<RemoveTicketList ticketListId={ticketList.id} />
+				</div>
+			</header>
 			{/* Tickes */}
 			<div className="ticketList-tickets-container">
 				{ticketList.tickets.map(

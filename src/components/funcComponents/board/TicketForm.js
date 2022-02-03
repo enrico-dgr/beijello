@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import workspacesApi from "../../../services/workspacesApi";
 import { toast } from "react-toastify";
+import { getNewTicketId } from "../../../utils/workspace";
 
 const mapStateToProps = (state) => ({
 	workspaces: state.workspacesDuck.workspaces,
@@ -71,19 +72,6 @@ const TicketForm = (props) => {
 
 	const areDataValid = () => state.ticket.title !== "";
 
-	const getNewId = (workspace, indexBoard, indexTicketList) =>
-		workspace.boards[indexBoard].ticketLists[indexTicketList].tickets
-			.length === 0
-			? // if no ticket exists in list
-			  1
-			: // add with greatest id
-			  workspace.boards[indexBoard].ticketLists[indexTicketList]
-					.tickets[
-					workspace.boards[indexBoard].ticketLists[
-						indexTicketList
-					].tickets.length - 1
-			  ].id + 1;
-
 	const onClickSave = (e) => {
 		e.preventDefault();
 
@@ -111,7 +99,11 @@ const TicketForm = (props) => {
 				indexTicketList
 			].tickets.push({
 				...state.ticket,
-				id: getNewId(workspace, indexBoard, indexTicketList),
+				id: getNewTicketId(
+					workspace,
+					indexBoard,
+					indexTicketList
+				),
 			});
 		} else {
 			// edit existing ticket
