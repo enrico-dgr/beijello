@@ -9,8 +9,11 @@
 }
 
 .title-workspace {
+	height: 90px;
 	max-width: 200px;
+	margin: 0 0 10px 0;
 	padding: 8px 4px;
+	text-align: left;
 }
 
 .workspace__board-preview-list {
@@ -18,14 +21,12 @@
 	flex-wrap: wrap;
 	margin: 10px;
 }
-.title-workspace{
-	height: 120px;
-}
-.workspace-delete svg{
+
+.workspace-delete svg {
 	height: 25px;
 	width: 25px;
 }
-.workspace-delete svg path{
 
+.workspace-delete svg path {
 	fill: rgb(165, 37, 37);
 }

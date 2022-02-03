@@ -8,7 +8,7 @@
 	justify-content: flex-start;
 	margin: 4px 0;
 	position: relative;
-	height: 200px;
+	height: 140px;
 	transition: box-shadow ease 0.3s;
 	width: 200px;
 }
@@ -44,13 +44,14 @@
 .board-preview:hover .delete-board {
 	display: inline-block;
 }
+
 .delete-board {
-	display: none;
-	transition: all 1s linear 0s;
-	padding: 5px 9px;
-	border-radius: 15px;
 	background-color: white;
+	border-radius: 15px;
+	display: none;
+	bottom: 5px;
+	padding: 5px 9px;
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	right: 0px;
+	transition: all 1s linear 0s;
 }

@@ -23,7 +23,6 @@ const BoardPreview = (props) => {
 			onClick={navigateToBoard}
 		>
 			<span className="delete-board">
-				{" "}
 				<FontAwesomeIcon icon={faTrash} />
 			</span>
 			<p>{props.boardName}</p>
