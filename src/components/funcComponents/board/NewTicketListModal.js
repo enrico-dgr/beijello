@@ -6,10 +6,11 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import workspacesApi from "../../../services/workspacesApi";
+import { useTranslation } from "react-i18next";
 
 const NewTicketListModal = (props) => {
 	const params = useParams();
-
+	const { t } = useTranslation();
 	const [state, setState] = useState({
 		ticketListTitle: null,
 	});
@@ -49,12 +50,12 @@ const NewTicketListModal = (props) => {
 		<Modal>
 			<div className="NewTicketListModal-container">
 				<div className="newTicketListModal-title">
-					<label>Insert list title</label>
+					<label>{t("NewTicketListModal.NewTitle")}</label>
 					<input type={"text"} onChange={takeinput} />
 				</div>
 				<div className="newTicketListModal-buttons">
-					<SubmitButton onClick={addTicketList} className="newTicketListModal-btn" label="Create" />
-					<SubmitButton label="Cancel" className="newTicketListModal-btn" onClick={props.onClickButton} />
+					<SubmitButton onClick={addTicketList} className="newTicketListModal-btn" label={t("NewTicketListModal.BtnCreate")} />
+					<SubmitButton label={t("NewTicketListModal.BtnCancel")} className="newTicketListModal-btn" onClick={props.onClickButton} />
 				</div>
 			</div>
 		</Modal>

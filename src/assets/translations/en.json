@@ -82,5 +82,10 @@
 	},
 	"Board": {
 		"NewList": "New list"
+	},
+	"NewTicketListModal": {
+		"NewTitle": "Insert list title",
+		"BtnCreate": "Create",
+		"BtnCancel": "Cancel"
 	}
 }
