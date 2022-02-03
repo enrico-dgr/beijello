@@ -28,7 +28,9 @@ const Ticket = (props) => {
                         onClickButton={closeModal}
                     />
                 )}
-                <p >{ticket.title}</p>
+
+                <p className="ticketTitle">{ticket.title}</p>
+
                 <div style={{ backgroundColor: ticket.ticketFlag, height: 10, width: 100, borderRadius: 5 }}></div>
 
                 <Button className={'ticketBtn'} onClick={removeTicket}>

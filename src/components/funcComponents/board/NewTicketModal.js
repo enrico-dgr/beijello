@@ -15,7 +15,7 @@ const NewTicketModal = (props) => {
 	const [state, setState] = useState({
 		title: "",
 		description: "",
-		ticketFlag: "green",
+		ticketFlag: "",
 		errorFlag: false,
 	});
 
