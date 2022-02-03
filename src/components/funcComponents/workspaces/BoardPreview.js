@@ -1,8 +1,13 @@
 import "./BoardPreview.css";
 
+/* fontawesome */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import React from "react";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+
+/*  */
 
 const BoardPreview = (props) => {
 	const navigate = useNavigate();
@@ -17,7 +22,10 @@ const BoardPreview = (props) => {
 			key={props.customKey}
 			onClick={navigateToBoard}
 		>
-			<h1>{props.boardName}</h1>
+			<span className="delete-board">
+				<FontAwesomeIcon icon={faTrash} />
+			</span>
+			<p>{props.boardName}</p>
 		</div>
 	);
 };

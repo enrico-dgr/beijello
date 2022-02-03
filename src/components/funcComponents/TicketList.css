@@ -1,14 +1,22 @@
+/* smartphone */
 .ticketList-container{
     margin: 7.5px;
     background-color: #ebecf0;
     padding: 10px;
     border-radius: 7px;
     border: 2px solid black;
-    min-width: 400px;
+    min-width: 200px;
 }
 
 .ticketList-title {
     font-weight: bold;
     font-size: 20px;
     text-align: center;
+}
+/* tablet^  */
+@media only screen and (min-width: 600px) {
+    .ticketList-container{
+        padding-left: 15px;
+        min-width: 400px;
+    }
 }

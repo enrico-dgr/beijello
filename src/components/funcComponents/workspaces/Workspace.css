@@ -1,4 +1,32 @@
+.workspace {
+	display: flex;
+	flex-direction: column;
+}
+
+.workspace span {
+	align-self: flex-start;
+	margin: 4px 8px 0 8px;
+}
+
+.title-workspace {
+	height: 90px;
+	max-width: 200px;
+	margin: 0 0 10px 0;
+	padding: 8px 4px;
+	text-align: left;
+}
+
 .workspace__board-preview-list {
 	display: flex;
 	flex-wrap: wrap;
+	margin: 10px;
+}
+
+.workspace-delete svg {
+	height: 25px;
+	width: 25px;
+}
+
+.workspace-delete svg path {
+	fill: rgb(165, 37, 37);
 }
