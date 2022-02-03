@@ -21,7 +21,7 @@ const Workspace = (props) => {
 			<div className={"workspace__board-preview-list"}>
 				<NewBoard workspaceName={props.workspace.name} />
 				{props.workspace?.boards.map(
-					MapPreview(props.workspace.name)
+					MapPreview(props.workspace)
 				)}
 			</div>
 		</div>
@@ -29,14 +29,15 @@ const Workspace = (props) => {
 };
 
 // assign keys to each BoardPreview
-const MapPreview = (workspaceName) => (board, i) =>
-	(
+const MapPreview = (workspace) => (board, i) =>
+	!!board.id && (
 		<div key={i + "board-preview-ke"}>
 			<BoardPreview
-				customKey={i + "board-preview-key"}
 				layout={board.layout}
+				boardId={board.id}
 				boardName={board.name}
-				workspaceName={workspaceName}
+				workspaceId={workspace.id}
+				workspaceName={workspace.name}
 			/>
 		</div>
 	);

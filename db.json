@@ -83,6 +83,11 @@
           "name": "Second board, First Workspace",
           "layout": "normal",
           "ticketLists": []
+        },
+        {
+          "name": "dasdasaa",
+          "layout": "",
+          "ticketLists": []
         }
       ]
     },
@@ -115,10 +120,20 @@
       "id": 7
     },
     {
-      "name": "Beijello workspace",
+      "name": "Beijello",
       "boards": [
         {
-          "name": "New board",
+          "name": "FE",
+          "layout": "",
+          "ticketLists": []
+        },
+        {
+          "name": "asdasd",
+          "layout": "",
+          "ticketLists": []
+        },
+        {
+          "name": "dasdaa",
           "layout": "",
           "ticketLists": []
         }

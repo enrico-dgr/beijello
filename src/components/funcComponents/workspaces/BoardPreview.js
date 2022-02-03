@@ -1,40 +1,37 @@
 import "./BoardPreview.css";
 
-/* fontawesome */
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import React from "react";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import RemoveBoard from "./RemoveBoard";
 import { useNavigate } from "react-router-dom";
-
-/*  */
 
 const BoardPreview = (props) => {
 	const navigate = useNavigate();
 
-	const navigateToBoard = () => {
+	const navigateToBoard = (e) => {
 		navigate(`/board/${props.workspaceName}/${props.boardName}`);
 	};
 
 	return (
-		<div
-			className={"board-preview"}
-			key={props.customKey}
-			onClick={navigateToBoard}
-		>
-			<span className="delete-board">
-				<FontAwesomeIcon icon={faTrash} />
-			</span>
-			<p>{props.boardName}</p>
+		<div className={"board-preview-container"}>
+			<div className={"board-preview"} onClick={navigateToBoard}>
+				<p>{props.boardName}</p>
+			</div>
+			<RemoveBoard
+				boardId={props.boardId}
+				classNameContainer="delete-board"
+				workspaceId={props.workspaceId}
+			/>
 		</div>
 	);
 };
 
 BoardPreview.propTypes = {
-	boardName: PropTypes.string,
-	customKey: PropTypes.string,
-	layout: PropTypes.string,
-	workspaceName: PropTypes.string,
+	boardId: PropTypes.number.isRequired,
+	boardName: PropTypes.string.isRequired,
+	layout: PropTypes.string.isRequired,
+	workspaceId: PropTypes.number.isRequired,
+	workspaceName: PropTypes.string.isRequired,
 };
 
 export default BoardPreview;

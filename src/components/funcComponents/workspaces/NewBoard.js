@@ -54,6 +54,7 @@ const NewBoard = (props) => {
 		);
 		workspace.boards.push({
 			...state.boardData,
+			id: workspace.boards.length,
 			ticketLists: [],
 		});
 

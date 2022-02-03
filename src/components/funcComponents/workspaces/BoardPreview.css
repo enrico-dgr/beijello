@@ -7,13 +7,12 @@
 	display: flex;
 	justify-content: flex-start;
 	margin: 4px 0;
-	position: relative;
 	height: 140px;
 	transition: box-shadow ease 0.3s;
 	width: 200px;
 }
 
-.board-preview::after {
+.board-preview::before {
 	border-radius: 15px;
 	background-color: rgba(255, 255, 255, 0);
 	content: "";
@@ -30,7 +29,7 @@
 	box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.411);
 }
 
-.board-preview:hover::after {
+.board-preview:hover::before {
 	background-color: rgba(255, 255, 255, 0.487);
 }
 
@@ -41,7 +40,11 @@
 	font-weight: 600;
 }
 
-.board-preview:hover .delete-board {
+.board-preview-container {
+	position: relative;
+}
+
+.board-preview-container:hover .delete-board {
 	display: inline-block;
 }
 
