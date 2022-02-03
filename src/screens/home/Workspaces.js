@@ -63,11 +63,12 @@ class Workspaces extends Component {
 		);
 	}
 
-	RenderWorkspaces = (w, i) => (
-		<div className="workspace-container" key={i + "workspace-ma"}>
-			<Workspace workspace={w} />
-		</div>
-	);
+	RenderWorkspaces = (w, i) =>
+		!!w && (
+			<div className="workspace-container" key={i + "workspace-ma"}>
+				<Workspace workspace={w} />
+			</div>
+		);
 }
 
 export default connect(mapStateToProps)(withTranslation()(Workspaces));
