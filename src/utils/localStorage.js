@@ -7,9 +7,12 @@ const KEYS = {
 
 /**
  *
- * @returns { { email: string; } }
+ * @returns { { email: string; } | null }
  */
-const getRemember = () =>
-	JSON.parse(decryptText(localStorage.getItem(KEYS.REMEMBER)));
-
+const getRemember = () => {
+	const encrypted = localStorage.getItem(KEYS.REMEMBER);
+	if (!!encrypted) {
+		return JSON.parse(decryptText(encrypted));
+	} else return null;
+};
 export { KEYS, getRemember };
