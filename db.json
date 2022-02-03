@@ -240,7 +240,13 @@
     },
     {
       "name": "My Workspace",
-      "boards": [],
+      "boards": [
+        {
+          "name": "lopo",
+          "layout": "",
+          "ticketLists": []
+        }
+      ],
       "id": 10
     }
   ]

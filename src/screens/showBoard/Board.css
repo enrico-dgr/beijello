@@ -1,3 +1,4 @@
+/* smartphone  */
 .board-wrapper {
     padding-top: 60px;
     height: 100vh;
@@ -16,11 +17,9 @@
     gap:10px;
 }
 .board-button-list{
-    padding-left: 15px;
-    width: 150px;
+    padding-left:0px;
 }
 .board-btn-add-list {
-   min-width: 120px;
    height: 48px;
 }
 .board-container-ticketList{
@@ -28,4 +27,11 @@
     flex: 1;
     height: 100%;
     display: flex;
+}
+/* tablet^  */
+@media only screen and (min-width: 600px) {
+    .board-button-list{
+        padding-left: 15px;
+        width: 150px;
+    }
 }

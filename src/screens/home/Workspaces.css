@@ -1,3 +1,4 @@
+/* smartphone */
 .workspaces-container {
 	height:100vh;
 	background-image:  url('../../assets/images/background_workspace.jpg');
@@ -10,7 +11,7 @@
 	height: 100%;
 	background-color: rgba(111, 111, 144, 0.3);
 	text-align: center;
-	padding: 60px 0 0 50px;
+	padding: 60px 0 0 0;
 }
 .workspace-button-create{
 	flex-shrink:0;
@@ -34,4 +35,9 @@
 	flex-direction: column;
 	margin: 15px;
 }
-
+/* tablet^ */
+@media only screen and (min-width: 600px) {
+	.cover-workspaces{
+		padding: 60px 0 0 50px;
+	}
+}
