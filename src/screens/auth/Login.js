@@ -38,7 +38,7 @@ class Login extends Component {
 
 		if (!!this.props.user?.email) {
 			this.setState({ path: "/" });
-		} else if (remember) {
+		} else if (!!remember) {
 			this.setState({ email: remember.email });
 		}
 	}
