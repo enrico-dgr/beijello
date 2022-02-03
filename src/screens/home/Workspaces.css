@@ -1,37 +1,70 @@
 .workspaces-container {
-	height:100vh;
-	background-image:  url('../../assets/images/background_workspace.jpg');
+	height: 100vh;
+	background-image: url("../../assets/images/background_workspace.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	overflow: hidden;
 }
-.cover-workspaces{
+.cover-workspaces {
 	display: flex;
 	height: 100%;
 	background-color: rgba(111, 111, 144, 0.3);
 	text-align: center;
 	padding: 60px 0 0 50px;
 }
-.workspace-button-create{
-	flex-shrink:0;
+.workspace-button-create {
+	flex-shrink: 0;
 	display: flex;
 	align-items: center;
 	width: 150px;
 }
-.workspace-button-create > button:hover{
-	transition: all linear .2s;
+.workspace-button-create > button:hover {
+	transition: all linear 0.2s;
 	background-color: rgba(42, 42, 46, 0.9);
 	color: white;
 }
-.workspaces-list{
-	flex: 1; 
+.workspaces-list {
+	flex: 1;
 	display: flex;
-	overflow:auto;
-}
-.workspace-container{
-	width: 200px;
-	display: flex;
-	flex-direction: column;
-	margin: 15px;
+	overflow: auto;
 }
 
+.workspaces-list::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+.workspaces-list::-webkit-scrollbar {
+	border-radius: 28px;
+	height: 16px;
+	width: 16px;
+}
+
+.workspaces-list::-webkit-scrollbar-track {
+	background-clip: content-box;
+	background-color: rgba(45, 68, 199, 0.281);
+	border-radius: 28px;
+	border: 1px solid transparent;
+	padding: 4px;
+}
+
+.workspaces-list::-webkit-scrollbar-thumb {
+	background-clip: content-box;
+	background-color: rgba(20, 149, 255, 0.705);
+	border-radius: 28px;
+	border: 5px solid transparent;
+	transition: background-color ease 0.7s;
+}
+
+.workspaces-list::-webkit-scrollbar-thumb:active {
+	background-color: rgb(28, 172, 255);
+}
+
+.workspace-container {
+	border: 1px solid rgba(0, 0, 0, 0.287);
+	border-radius: 10px;
+	display: flex;
+	height: max-content;
+	flex-direction: column;
+	margin: 15px;
+	width: fit-content;
+}

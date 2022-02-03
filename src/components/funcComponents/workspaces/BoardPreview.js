@@ -17,7 +17,7 @@ const BoardPreview = (props) => {
 			key={props.customKey}
 			onClick={navigateToBoard}
 		>
-			<h1>{props.boardName}</h1>
+			<p>{props.boardName}</p>
 		</div>
 	);
 };
