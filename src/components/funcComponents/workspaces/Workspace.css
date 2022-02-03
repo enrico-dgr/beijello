@@ -18,6 +18,7 @@
 
 .workspace__board-preview-list {
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
 	margin: 10px;
 }

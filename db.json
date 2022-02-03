@@ -76,6 +76,12 @@
       "workspaceId": 7,
       "role": "admin",
       "id": 7
+    },
+    {
+      "userId": 3,
+      "workspaceId": 8,
+      "role": "admin",
+      "id": 8
     }
   ],
   "workspaces": [
@@ -200,9 +206,30 @@
               ]
             }
           ]
+        },
+        {
+          "name": "ss",
+          "layout": "",
+          "ticketLists": []
         }
       ],
       "id": 7
+    },
+    {
+      "name": "occio",
+      "boards": [
+        {
+          "name": "sdawdasdas",
+          "layout": "",
+          "ticketLists": []
+        },
+        {
+          "name": "dsadwad",
+          "layout": "",
+          "ticketLists": []
+        }
+      ],
+      "id": 8
     }
   ]
 }
