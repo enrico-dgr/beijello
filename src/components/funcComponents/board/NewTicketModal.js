@@ -15,7 +15,7 @@ const NewTicketModal = (props) => {
 	const [state, setState] = useState({
 		title: "",
 		description: "",
-		ticketFlag: "red",
+		ticketFlag: "green",
 		errorFlag: false,
 	});
 
@@ -34,6 +34,10 @@ const NewTicketModal = (props) => {
 		let ticketFlag = e.target.value;
 		setState({ ...state, ticketFlag: ticketFlag });
 	};
+
+	const handleMoveToOtherList = () => {
+
+	}
 
 	const saveComment = () => {
 		let newTicket = {
@@ -68,14 +72,12 @@ const NewTicketModal = (props) => {
 			newTicket.errorFlag = true;
 			setState({ ...state, errorFlag: newTicket.errorFlag });
 		}
-
-		console.log(state, newTicket);
 	};
 	return (
 		<Modal>
 			<div className="newTicketModal-container">
 				<div className="newTicketModal-title">
-					<label>Titolo</label>
+					<label>Title</label>
 					<input
 						type="text"
 						onChange={getTitle}
@@ -87,7 +89,7 @@ const NewTicketModal = (props) => {
 					/>
 				</div>
 				<div className="newTicketModal-description">
-					<label>Descrizione</label>
+					<label>Description</label>
 					<input
 						type="text"
 						onChange={getDescription}
@@ -100,20 +102,29 @@ const NewTicketModal = (props) => {
 				</div>
 
 				<div className="newTicketModal-ticketFlag">
-					<label>
-						Scegli etichetta
+					<label>Choose ticket flag</label>
 						<select onChange={handleTicketFlag}>
-							<option value="red">rosso</option>
-							<option value="green">verde</option>
-							<option value="orange">arancione</option>
-							<option value="blue">blu</option>
+							<option value=""></option>
+							<option value="red">red</option>
+							<option value="green">green</option>
+							<option value="orange">orange</option>
+							<option value="blue">blue</option>
 						</select>
-					</label>
+
+				</div>
+
+				<div className="newTicketModal-moveToOtherList">
+					<label>Move to other list </label>
+						<select onChange={handleMoveToOtherList}>
+							<option value=""></option>
+
+						</select>
+
 				</div>
 
 				<div className="newTicketModal-buttons">
 					<SubmitButton
-						label="Salva"
+						label="Save"
 						onClick={saveComment}
 						className="newTicketModal-btn"
 					/>

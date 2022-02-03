@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    cursor: pointer;
     margin-top: 10px;
     border-radius: 7px;
    border: 2px solid red;

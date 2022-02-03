@@ -1,0 +1,36 @@
+.NewTicketListModal-container {
+    background-color: whitesmoke;
+    height: 200px;
+    width: 50vw;
+    position: relative;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.newTicketListModal-title label {
+    display: block;
+}
+
+.newTicketListModal-title input{
+    width: 150px;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+}
+
+.newTicketListModal-buttons{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+
+}
+
+.newTicketListModal-buttons .newTicketListModal-btn {
+    width: 100px;
+}
+
+@media (max-width: 375px) {
+    .newTicketListModal-container{
+        width: 70vw;
+    }
+}

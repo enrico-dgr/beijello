@@ -1,4 +1,5 @@
 import Modal from "../Modal";
+import './NewTicketListModal.css'
 import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
@@ -46,11 +47,16 @@ const NewTicketListModal = (props) => {
 
 	return (
 		<Modal>
-			<label>Inserisci titolo lista</label>
-			<input type={"text"} onChange={takeinput} />
-
-			<SubmitButton label="Annulla" onClick={props.onClickButton} />
-			<SubmitButton onClick={addTicketList} label="Crea" />
+			<div className="NewTicketListModal-container">
+				<div className="newTicketListModal-title">
+					<label>Insert list title</label>
+					<input type={"text"} onChange={takeinput} />
+				</div>
+				<div className="newTicketListModal-buttons">
+					<SubmitButton onClick={addTicketList} className="newTicketListModal-btn" label="Create" />
+					<SubmitButton label="Cancel" className="newTicketListModal-btn" onClick={props.onClickButton} />
+				</div>
+			</div>
 		</Modal>
 	);
 };

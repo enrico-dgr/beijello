@@ -23,7 +23,6 @@ const Ticket = (props) => {
                 {modalFlag && (
                     <NewTicketModal
                         onClickButton={closeModal}
-
                     />
                 )}
                 <p >{ticket.title}</p>
