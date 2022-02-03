@@ -37,137 +37,65 @@
   "workspaceUsers": [
     {
       "userId": 1,
-      "workspaceId": 8,
+      "workspaceId": 1,
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "workspaceId": 2,
       "role": "admin",
       "id": 2
-    },
-    {
-      "userId": 1,
-      "workspaceId": 11,
-      "role": "admin",
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "workspaceId": 12,
-      "role": "admin",
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "workspaceId": 13,
-      "role": "admin",
-      "id": 7
     }
   ],
   "workspaces": [
     {
-      "name": "workspace 1",
-      "boards": [
-        {
-          "name": "board 1",
-          "layout": "",
-          "ticketLists": [
-            {
-              "name": "titolo 1",
-              "tickets": [
-                {
-                  "title": "titolo ticket",
-                  "description": "desc ticket",
-                  "ticketFlag": "green",
-                  "errorFlag": false
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "ss",
-          "layout": "",
-          "ticketLists": []
-        }
-      ],
-      "id": 7
-    },
-    {
       "name": "Beijello",
       "boards": [
         {
-          "name": "FE",
-          "layout": "",
-          "ticketLists": []
-        },
-        {
-          "name": "asdasd",
-          "layout": "",
-          "ticketLists": []
-        },
-        {
-          "name": "dasdaa",
-          "layout": "",
-          "ticketLists": []
-        },
-        {
-          "name": "Perfect",
-          "layout": "",
-          "id": 3,
-          "ticketLists": []
-        },
-        {
-          "name": "mlnmlkn",
-          "layout": "",
-          "id": 4,
-          "ticketLists": []
-        }
-      ],
-      "id": 8
-    },
-    {
-      "name": "asdasdas",
-      "boards": [
-        {
-          "name": "2",
-          "layout": "",
-          "id": 2,
-          "ticketLists": []
-        },
-        {
-          "name": "4",
-          "layout": "",
-          "id": 4,
-          "ticketLists": []
-        },
-        {
-          "name": "5",
-          "layout": "",
-          "id": 5,
-          "ticketLists": []
-        },
-        {
-          "name": "6",
-          "layout": "",
-          "id": 6,
-          "ticketLists": []
-        }
-      ],
-      "id": 11
-    },
-    {
-      "name": "3",
-      "boards": [
-        {
-          "name": "adaSA",
+          "name": "This work",
           "layout": "",
           "id": 1,
-          "ticketLists": []
+          "ticketLists": [
+            {
+              "name": "To do",
+              "tickets": [
+                {
+                  "title": "asdasd",
+                  "description": "",
+                  "ticketFlag": "",
+                  "errorFlag": false,
+                  "id": 2
+                },
+                {
+                  "title": "ahhaha",
+                  "description": "",
+                  "ticketFlag": "",
+                  "errorFlag": false,
+                  "id": 4
+                }
+              ],
+              "id": 2
+            },
+            {
+              "name": "Done",
+              "tickets": [],
+              "id": 3
+            },
+            {
+              "name": "Bug",
+              "tickets": [],
+              "id": 4
+            }
+          ]
         }
       ],
-      "id": 12
+      "id": 1
     },
     {
-      "name": "dsasdasdas",
+      "name": "This project",
       "boards": [],
-      "id": 13
+      "id": 2
     }
   ]
 }

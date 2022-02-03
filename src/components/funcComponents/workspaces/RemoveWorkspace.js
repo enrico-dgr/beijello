@@ -42,8 +42,8 @@ const RemoveWorkspace = (props) => {
 
 	return (
 		<div>
-			<div className="workspace-delete" onClick={showModal}>
-				<FontAwesomeIcon icon={faTrash} />
+			<div className="workspace-delete">
+				<FontAwesomeIcon icon={faTrash} onClick={showModal} />
 			</div>
 			{state.showModal && (
 				<Modal className="workspace-confirm-delete-modal">

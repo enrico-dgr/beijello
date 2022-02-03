@@ -1,16 +1,15 @@
 import "./Board.css";
-import PropTypes from "prop-types";
+
 import React, { useEffect, useState } from "react";
 
 /* func Components */
 import Button from "../../components/funcComponents/UI/button/Button";
 import NewTicketListModal from "../../components/funcComponents/board/NewTicketListModal";
-import TicketList from "../../components/funcComponents/TicketList";
+import PropTypes from "prop-types";
+import TicketList from "../../components/funcComponents/board/TicketList";
 /*  */
 import { connect } from "react-redux";
-
 import { useParams } from "react-router-dom";
-
 import { useTranslation } from "react-i18next";
 
 const Board = (props) => {
@@ -32,7 +31,6 @@ const Board = (props) => {
 		}
 	}, [params, props.workspaces]);
 
-
 	/* manage modal */
 	const openModal = () => {
 		setModalFlag(true);
@@ -43,25 +41,33 @@ const Board = (props) => {
 	/*  */
 
 	const renderTicketList = (ticketList, i) => {
-		return <TicketList key={ticketList.name} ticketList={ticketList} />;
+		return (
+			!!ticketList.name && (
+				<TicketList
+					boardName={params.boardName}
+					key={ticketList.name + i}
+					ticketList={ticketList}
+					workspaceName={params.workspaceName}
+				/>
+			)
+		);
 	};
 	return (
 		<div className="board-wrapper">
 			<div className="board-title">
-				<h3>{!!board && board.name}</h3>
+				<h3>
+					<span>Board:</span> {!!board && board.name}
+				</h3>
+				<Button
+					label={`+ ${t("Board.NewList")}`}
+					onClick={openModal}
+					className={"board-btn-add-list"}
+				/>
 			</div>
-			<div className="board-container">
-				<div className="board-button-list ">
-					<Button
-						label={`+ ${t("Board.NewList")}`}
-						onClick={openModal}
-						className={"board-btn-add-list"}
-					/>
-				</div>
-				<div className="board-container-ticketList">
-					{!!board && board.ticketLists.map(renderTicketList)}
-				</div>
+			<div className="board-ticketLists">
+				{!!board && board.ticketLists.map(renderTicketList)}
 			</div>
+
 			{modalFlag && (
 				<NewTicketListModal onClickButton={closeModal} />
 			)}
@@ -72,10 +78,5 @@ const Board = (props) => {
 const mapStateToProps = (state) => ({
 	workspaces: state.workspacesDuck.workspaces,
 });
-
-Board.propTypes = {
-	name: PropTypes.string,
-	ticketList: PropTypes.array,
-};
 
 export default connect(mapStateToProps)(Board);

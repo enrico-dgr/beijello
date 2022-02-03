@@ -1,0 +1,45 @@
+/* smartphone */
+.ticketList-container {
+	align-items: flex-start;
+	background-color: #ebecf0;
+	box-shadow: -0.5px -0.5px 1px rgba(112, 112, 112, 0.267);
+	border-radius: 7px;
+	display: flex;
+	flex-direction: column;
+	height: fit-content;
+	margin: 7.5px;
+	min-width: 300px;
+	padding: 10px;
+}
+
+.ticketList-title {
+	font-weight: bold;
+	font-size: 15px;
+	padding: 8px 4px;
+	text-align: left;
+}
+
+.ticketList-btns {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.ticketList-new-ticket-btn {
+	font-size: 10px;
+	height: 35px;
+	width: 150px;
+}
+
+.ticketList-tickets-container {
+	width: 100%;
+}
+
+/* tablet^  */
+@media only screen and (min-width: 600px) {
+	.ticketList-container {
+		padding-left: 15px;
+		min-width: 300px;
+	}
+}

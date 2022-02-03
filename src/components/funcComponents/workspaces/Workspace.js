@@ -19,7 +19,7 @@ const Workspace = (props) => {
 			<h2 className="title-workspace">{props.workspace.name}</h2>
 			<RemoveWorkspace workspaceId={props.workspace.id} />
 			<div className={"workspace__board-preview-list"}>
-				<NewBoard workspaceName={props.workspace.name} />
+				<NewBoard workspaceId={props.workspace.id} />
 				{props.workspace?.boards.map(
 					MapPreview(props.workspace)
 				)}

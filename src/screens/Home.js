@@ -21,7 +21,6 @@ const Home = (props) => {
 	let navigate = useNavigate();
 	let location = useLocation();
 
-	console.log("location", location);
 	const { t } = useTranslation();
 
 	/* metodo di navigazione */
@@ -82,19 +81,13 @@ const Home = (props) => {
 				<div className="navbar-left-item">
 					<p
 						onClick={handleNavigate("/")}
-						className="navbar-logotype"
-					>
-						BEIJELLO
-					</p>
-					<p
-						onClick={handleNavigate("/")}
 						className={`navbar-direct-workspaces ${
 							location.pathname === "/"
 								? "navbar-direct-selected"
 								: "navbar-direct-unselected"
 						}`}
 					>
-						Workspaces
+						BEIJELLO
 					</p>
 				</div>
 				<div
