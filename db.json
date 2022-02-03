@@ -23,13 +23,13 @@
       "id": 2
     },
     {
-      "name": "eccolo",
-      "surname": "pio",
-      "date": "5682-08-07",
-      "gender": "Male",
-      "phone": "1234567890",
-      "email": "admin@dev.it",
-      "password": "U2FsdGVkX19nwaVThPrBoJ2568qJIWtF/hgSpAUzPXg=",
+      "name": "grace",
+      "surname": "dev",
+      "date": "1990-07-27",
+      "gender": "Female",
+      "phone": "3878237",
+      "email": "grace@dev.it",
+      "password": "U2FsdGVkX19zgqVyrZCm//5h8FRrr2K7q4HWnBkTEp0=",
       "maritalStatus": "single",
       "id": 3
     }
@@ -76,24 +76,6 @@
       "workspaceId": 7,
       "role": "admin",
       "id": 7
-    },
-    {
-      "userId": 3,
-      "workspaceId": 8,
-      "role": "admin",
-      "id": 8
-    },
-    {
-      "userId": 3,
-      "workspaceId": 9,
-      "role": "admin",
-      "id": 9
-    },
-    {
-      "userId": 3,
-      "workspaceId": 10,
-      "role": "admin",
-      "id": 10
     }
   ],
   "workspaces": [
@@ -200,18 +182,18 @@
       "id": 6
     },
     {
-      "name": "sssssssssssssssssssssssss",
+      "name": "workspace 1",
       "boards": [
         {
-          "name": "bacheca mia",
+          "name": "board 1",
           "layout": "",
           "ticketLists": [
             {
-              "name": "to do",
+              "name": "titolo 1",
               "tickets": [
                 {
-                  "title": "eccomi",
-                  "description": "ciao",
+                  "title": "titolo ticket",
+                  "description": "desc ticket",
                   "ticketFlag": "green",
                   "errorFlag": false
                 }
@@ -221,33 +203,6 @@
         }
       ],
       "id": 7
-    },
-    {
-      "name": "sssssssssssss",
-      "boards": [
-        {
-          "name": "eccolo",
-          "layout": "",
-          "ticketLists": []
-        }
-      ],
-      "id": 8
-    },
-    {
-      "name": "MY board",
-      "boards": [],
-      "id": 9
-    },
-    {
-      "name": "My Workspace",
-      "boards": [
-        {
-          "name": "lopo",
-          "layout": "",
-          "ticketLists": []
-        }
-      ],
-      "id": 10
     }
   ]
 }

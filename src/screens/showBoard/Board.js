@@ -33,7 +33,7 @@ const Board = (props) => {
 	}, [params, props.workspaces]);
 
 
-	/* menage modal */
+	/* manage modal */
 	const openModal = () => {
 		setModalFlag(true);
 	};
