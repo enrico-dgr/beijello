@@ -31,7 +31,7 @@ SubmitButton.defaultProps = {
 SubmitButton.propTypes = {
 	className: PropTypes.string,
 	disable: PropTypes.bool,
-	label: PropTypes.string,
+	label: PropTypes.node,
 	onClick: PropTypes.func,
 };
 

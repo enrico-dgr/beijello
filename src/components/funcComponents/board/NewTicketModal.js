@@ -148,7 +148,6 @@ const NewTicketModal = (props) => {
 
 const mapStateToProps = (state) => ({
 	workspaces: state.workspacesDuck.workspaces,
-	email: state.userMeDuck.user?.email,
 	userId: state.userMeDuck.user?.id,
 });
 

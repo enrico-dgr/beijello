@@ -70,7 +70,7 @@ const RemoveTicket = (props) => {
 
 	return (
 		<div className={props.classNameContainer}>
-			<span onClick={showModal}>
+			<span onClick={showModal} style={{ cursor: "pointer" }}>
 				<FontAwesomeIcon icon={faTrash} />
 			</span>
 			{state.showModal && (

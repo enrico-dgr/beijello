@@ -5,20 +5,21 @@ import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import workspacesApi from "../../../services/workspacesApi";
+import { toast } from "react-toastify";
 
 const mapStateToProps = (state) => ({
 	workspaces: state.workspacesDuck.workspaces,
+	userId: state.userMeDuck.user.id,
 });
 
-/**
- * - `onClickSave` property takes the edited ticket as parameter
- */
 const TicketForm = (props) => {
 	const params = useParams();
 
 	const [state, setState] = useState({
 		ticket: props.ticket,
 		lists: undefined,
+		listId: props.ticketListId,
 	});
 
 	useEffect(() => {
@@ -37,38 +38,109 @@ const TicketForm = (props) => {
 		}));
 	}, [props.workspaces, params]);
 
+	/** state handlers */
 	const onChangeTitle = (e) => {
 		let title = e.target.value;
 
-		setState({ ...state, ticket: { ...state.ticket, title: title } });
+		setState({ ...state, ticket: { ...state.ticket, title } });
 	};
 	const onChangeDescription = (e) => {
 		let description = e.target.value;
 
 		setState({
 			...state,
-			ticket: { ...state.ticket, description: description },
+			ticket: { ...state.ticket, description },
 		});
 	};
 
 	const onChangeTicketFlag = (e) => {
-		let ticketFlag = e.target.value;
+		let tag = e.target.value;
 		setState({
 			...state,
-			ticket: { ...state.ticket, ticketFlag: ticketFlag },
+			ticket: { ...state.ticket, tag },
 		});
 	};
 
 	const onChangeTicketList = () => {};
 
+	/** props callbacks handlers */
 	const onClickCancel = (e) => {
 		e.preventDefault();
 		props.onClickCancel();
 	};
 
+	const areDataValid = () => state.ticket.title !== "";
+
+	const getNewId = (workspace, indexBoard, indexTicketList) =>
+		workspace.boards[indexBoard].ticketLists[indexTicketList].tickets
+			.length === 0
+			? // if no ticket exists in list
+			  1
+			: // add with greatest id
+			  workspace.boards[indexBoard].ticketLists[indexTicketList]
+					.tickets[
+					workspace.boards[indexBoard].ticketLists[
+						indexTicketList
+					].tickets.length - 1
+			  ].id + 1;
+
 	const onClickSave = (e) => {
 		e.preventDefault();
-		props.onClickSave(state.ticket);
+
+		if (!areDataValid()) {
+			// TODO: show errors to user
+			return;
+		}
+
+		// get position
+		let workspace = props.workspaces.find(
+			(w) => w.id === parseInt(params.workspaceId)
+		);
+
+		const indexBoard = workspace.boards.findIndex(
+			(b) => b.id === parseInt(params.boardId)
+		);
+
+		const indexTicketList = workspace.boards[
+			indexBoard
+		].ticketLists.findIndex((t) => t.id === props.ticketListId);
+
+		if (!state.ticket.id) {
+			// new ticket
+			workspace.boards[indexBoard].ticketLists[
+				indexTicketList
+			].tickets.push({
+				...state.ticket,
+				id: getNewId(workspace, indexBoard, indexTicketList),
+			});
+		} else {
+			// edit existing ticket
+			workspace.boards[indexBoard].ticketLists[
+				indexTicketList
+			].tickets = workspace.boards[indexBoard].ticketLists[
+				indexTicketList
+			].tickets.map((t) => {
+				if (t.id === state.ticket.id) {
+					return state.ticket;
+				}
+				return t;
+			});
+		}
+
+		workspacesApi
+			.update(workspace, props.userId, props.dispatch)
+			.then(() => props.onSave())
+			.catch((err) =>
+				toast.error(err.message, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				})
+			);
 	};
 
 	return (
@@ -77,6 +149,7 @@ const TicketForm = (props) => {
 				<label>Title</label>
 				<input
 					type="text"
+					value={state.ticket.title}
 					onChange={onChangeTitle}
 					placeholder={
 						state.errorFlag
@@ -90,6 +163,7 @@ const TicketForm = (props) => {
 				<input
 					type="text"
 					onChange={onChangeDescription}
+					value={state.ticket.description}
 					placeholder={
 						state.errorFlag
 							? "description is missing"
@@ -100,12 +174,15 @@ const TicketForm = (props) => {
 
 			<div className="ticket-form-field">
 				<label>Choose ticket flag</label>
-				<select onChange={onChangeTicketFlag}>
+				<select
+					defaultValue={state.ticket.tag}
+					onChange={onChangeTicketFlag}
+				>
 					<option value=""></option>
-					<option value="red">red</option>
 					<option value="green">green</option>
-					<option value="orange">orange</option>
 					<option value="blue">blue</option>
+					<option value="orange">orange</option>
+					<option value="red">red</option>
 				</select>
 			</div>
 
@@ -113,7 +190,7 @@ const TicketForm = (props) => {
 				<label>Move to other list </label>
 				{
 					<select
-						defaultValue={props.ticketListId}
+						defaultValue={state.listId}
 						onChange={onChangeTicketList}
 					>
 						{!!state.lists &&
@@ -146,19 +223,14 @@ const MapListOptions = (list, i) => (
 
 TicketForm.propTypes = {
 	onClickCancel: PropTypes.func,
-	onClickSave: PropTypes.func,
-	ticket: PropTypes.object,
+	onSave: PropTypes.func,
+	ticket: PropTypes.object.isRequired,
 	ticketListId: PropTypes.number.isRequired,
 };
 
 TicketForm.defaultProps = {
 	onClickCancel: () => undefined,
-	onClickSave: () => undefined,
-	ticket: {
-		title: "",
-		description: "",
-		ticketFlag: "",
-	},
+	onSave: () => undefined,
 };
 
 export default connect(mapStateToProps)(TicketForm);

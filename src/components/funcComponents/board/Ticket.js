@@ -1,53 +1,37 @@
 import "./Ticket.css";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "../UI/button/Button";
 /* fontawesome */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RemoveTicket from "./RemoveTicket";
-import Modal from "../Modal";
-import TicketForm from "./TicketForm";
 
 const Ticket = (props) => {
 	const { ticket } = props;
-	const [modalFlag, setModalFlag] = useState(false);
 
-	const openModal = () => {
-		setModalFlag(true);
-	};
+	const onClickEdit = () => props.onClickEdit(ticket);
 
-	const closeModal = () => {
-		setModalFlag(false);
-	};
 	return (
-		<div className="ticketContainer">
-			{modalFlag && (
-				<Modal>
-					<TicketForm
-						ticketListId={props.ticketListId}
-						onClickCancel={closeModal}
-						onClickSave={closeModal}
-					/>
-				</Modal>
-			)}
-
+		<div className="ticket-container">
 			<div className={"ticket-content-preview"}>
 				<div
 					className={"ticket-flag"}
 					style={{
-						backgroundColor: ticket.ticketFlag,
+						backgroundColor: ticket.tag,
 					}}
 				></div>
-				<p className="ticket-title">{ticket.title}</p>
+				<p className="ticket-title" onClick={onClickEdit}>
+					{ticket.title}
+				</p>
 			</div>
 			<div className={"ticket-btns"}>
 				<RemoveTicket
 					ticketId={props.ticket.id}
 					ticketListId={props.ticketListId}
 				/>
-				<Button className={"ticketBtn"} onClick={openModal}>
+				<Button className={"ticketBtn"} onClick={onClickEdit}>
 					<FontAwesomeIcon icon={faEdit} />
 				</Button>
 			</div>
@@ -56,6 +40,7 @@ const Ticket = (props) => {
 };
 
 Ticket.propTypes = {
+	onClickEdit: PropTypes.func.isRequired,
 	ticket: PropTypes.object.isRequired,
 	ticketListId: PropTypes.number.isRequired,
 };

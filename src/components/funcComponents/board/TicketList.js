@@ -1,34 +1,42 @@
 import "./TicketList.css";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-
-import NewTicketModal from "./NewTicketModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SubmitButton from "../SubmitButton";
 import Ticket from "./Ticket.js";
 import RemoveTicketList from "./RemoveTicketList";
+import TicketForm from "./TicketForm";
+import Modal from "../Modal";
 
 const TicketList = (props) => {
 	const { ticketList } = props;
-	const [modalFlag, setModalFlag] = useState(false);
-
-	const renderTicket = (ticket, i) => {
-		return (
-			!!ticket.title && (
-				<Ticket
-					ticket={ticket}
-					ticketListId={props.ticketList.id}
-					key={ticket.title + i}
-				/>
-			)
-		);
-	};
-
-	const openModal = () => {
-		setModalFlag(true);
-	};
+	const [state, setState] = useState({
+		showTicketForm: false,
+		ticketToEdit: {},
+	});
 
 	const closeModal = () => {
-		setModalFlag(false);
+		setState({
+			...state,
+			showTicketForm: false,
+		});
+	};
+
+	const onClickEdit = (ticket) => {
+		setState({ ...state, showTicketForm: true, ticketToEdit: ticket });
+	};
+
+	const onClickAdd = () => {
+		setState({
+			...state,
+			showTicketForm: true,
+			ticketToEdit: {
+				title: "",
+				description: "",
+				tag: "",
+			},
+		});
 	};
 
 	return (
@@ -40,23 +48,47 @@ const TicketList = (props) => {
 			<div className="ticketList-btns">
 				<SubmitButton
 					className={"ticketList-new-ticket-btn"}
-					label="+ Aggiungi ticket"
-					onClick={openModal}
+					label={
+						<>
+							<FontAwesomeIcon icon={faPlus} />{" "}
+							Aggiungi ticket
+						</>
+					}
+					onClick={onClickAdd}
 				/>
 				<RemoveTicketList ticketListId={ticketList.id} />
 			</div>
 			{/* Tickes */}
 			<div className="ticketList-tickets-container">
-				{ticketList.tickets.map(renderTicket)}
+				{ticketList.tickets.map(
+					RenderTicket(onClickEdit, props.ticketList.id)
+				)}
 			</div>
 			{/* Modals */}
-			{modalFlag && (
-				<NewTicketModal
-					onClickButton={closeModal}
-					ticketListId={ticketList.id}
-				/>
+			{state.showTicketForm && (
+				<Modal>
+					<TicketForm
+						ticket={state.ticketToEdit}
+						ticketListId={ticketList.id}
+						onClickCancel={closeModal}
+						onSave={closeModal}
+					/>
+				</Modal>
 			)}
 		</div>
+	);
+};
+
+const RenderTicket = (onClickEdit, ticketListId) => (ticket, i) => {
+	return (
+		!!ticket.title && (
+			<Ticket
+				key={ticket.title + i}
+				onClickEdit={onClickEdit}
+				ticket={ticket}
+				ticketListId={ticketListId}
+			/>
+		)
 	);
 };
 

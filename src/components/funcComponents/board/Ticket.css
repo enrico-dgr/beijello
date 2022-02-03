@@ -1,9 +1,9 @@
-.ticketContainer {
+.ticket-container {
 	align-items: center;
 	background-color: white;
 	border-radius: 7px;
 	box-shadow: 1px 1px 1px rgba(83, 83, 83, 0.746);
-	cursor: pointer;
+
 	display: flex;
 	justify-content: space-between;
 	margin-top: 10px;
@@ -15,10 +15,12 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+	width: 100%;
 }
 
 .ticket-title {
-	max-width: 140px;
+	cursor: pointer;
+	padding: 2px 0;
 	word-break: break-word;
 }
 
