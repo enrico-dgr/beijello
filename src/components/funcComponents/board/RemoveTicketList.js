@@ -73,7 +73,7 @@ const RemoveTicket = (props) => {
 			</span>
 			{state.showModal && (
 				<Modal className="tickeList-confirm-delete-modal">
-					<p>Are you sure you want to delete this board?</p>
+					<p>Are you sure you want to delete this list?</p>
 					<p>This action will be irreversible.</p>
 					<div>
 						<button onClick={hideModal}>No</button>

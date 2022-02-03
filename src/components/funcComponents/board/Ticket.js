@@ -6,8 +6,9 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import Button from "../UI/button/Button";
 /* fontawesome */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NewTicketModal from "./NewTicketModal";
 import RemoveTicket from "./RemoveTicket";
+import Modal from "../Modal";
+import TicketForm from "./TicketForm";
 
 const Ticket = (props) => {
 	const { ticket } = props;
@@ -22,7 +23,15 @@ const Ticket = (props) => {
 	};
 	return (
 		<div className="ticketContainer">
-			{modalFlag && <NewTicketModal onClickButton={closeModal} />}
+			{modalFlag && (
+				<Modal>
+					<TicketForm
+						ticketListId={props.ticketListId}
+						onClickCancel={closeModal}
+						onClickSave={closeModal}
+					/>
+				</Modal>
+			)}
 
 			<div className={"ticket-content-preview"}>
 				<div
