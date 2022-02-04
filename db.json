@@ -61,21 +61,6 @@
               "name": "To do",
               "tickets": [
                 {
-                  "title": "db",
-                  "description": "",
-                  "ticketFlag": "",
-                  "errorFlag": false,
-                  "id": 1
-                },
-                {
-                  "title": "asdsaddsa",
-                  "description": "lofol",
-                  "ticketFlag": "",
-                  "errorFlag": false,
-                  "id": 2,
-                  "tag": "green"
-                },
-                {
                   "title": "Changing data again with infinite title",
                   "description": "asd",
                   "ticketFlag": "",
@@ -88,7 +73,16 @@
             },
             {
               "name": "Done",
-              "tickets": [],
+              "tickets": [
+                {
+                  "title": "asdsaddsa",
+                  "description": "lofol",
+                  "ticketFlag": "",
+                  "errorFlag": false,
+                  "id": 2,
+                  "tag": "green"
+                }
+              ],
               "id": 3
             },
             {

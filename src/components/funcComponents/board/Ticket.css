@@ -18,16 +18,16 @@
 	width: 100%;
 }
 
-.ticket-title {
-	cursor: pointer;
-	padding: 2px 0;
-	word-break: break-word;
+.ticket-flag {
+	border-radius: 5px;
+	height: 8px;
+	width: 50px;
 }
 
-.ticket-flag {
-	height: 8px;
-	width: 60px;
-	border-radius: 5px;
+.ticket-title {
+	cursor: pointer;
+	padding: 4px 0;
+	word-break: break-word;
 }
 
 .ticket-btns {
