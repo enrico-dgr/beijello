@@ -1,77 +1,83 @@
 {
-  "users": [
-    {
-      "name": "Enrico",
-      "surname": "Di Grazia",
-      "date": "1998-04-05",
-      "gender": "Male",
-      "phone": "3922958942",
-      "email": "enrico.digrazia98@gmail.com",
-      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
-      "maritalStatus": "single",
-      "id": 1
-    },
-    {
-      "name": "Armando",
-      "surname": "Trallallero Di Cognome",
-      "date": "1998-03-02",
-      "gender": "Male",
-      "phone": "3762959943",
-      "email": "armando.trallallerodicognome98@gmail.com",
-      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
-      "maritalStatus": "single",
-      "id": 2
-    },
-    {
-      "name": "grace",
-      "surname": "dev",
-      "date": "1990-07-27",
-      "gender": "Female",
-      "phone": "3878237",
-      "email": "grace@dev.it",
-      "password": "U2FsdGVkX19zgqVyrZCm//5h8FRrr2K7q4HWnBkTEp0=",
-      "maritalStatus": "single",
-      "id": 3
-    }
-  ],
-  "workspaceUsers": [
-    {
-      "userId": 1,
-      "workspaceId": 1,
-      "role": "admin",
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "workspaceId": 2,
-      "role": "admin",
-      "id": 2
-    }
-  ],
-  "workspaces": [
-    {
-      "name": "Beijello",
-      "boards": [
-        {
-          "name": "asdasd",
-          "layout": "",
-          "id": 1,
-          "ticketLists": []
-        }
-      ],
-      "id": 1
-    },
-    {
-      "name": "This project",
-      "boards": [
-        {
-          "name": "asdsad",
-          "layout": "",
-          "id": 2,
-          "ticketLists": []
-        }
-      ],
-      "id": 2
-    }
-  ]
+	"users": [
+		{
+			"name": "Enrico",
+			"surname": "Di Grazia",
+			"date": "1998-04-05",
+			"gender": "Male",
+			"phone": "3922958942",
+			"email": "enrico.digrazia98@gmail.com",
+			"password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+			"maritalStatus": "single",
+			"id": 1
+		},
+		{
+			"name": "Armando",
+			"surname": "Trallallero Di Cognome",
+			"date": "1998-03-02",
+			"gender": "Male",
+			"phone": "3762959943",
+			"email": "armando.trallallerodicognome98@gmail.com",
+			"password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+			"maritalStatus": "single",
+			"id": 2
+		},
+		{
+			"name": "grace",
+			"surname": "dev",
+			"date": "1990-07-27",
+			"gender": "Female",
+			"phone": "3878237",
+			"email": "grace@dev.it",
+			"password": "U2FsdGVkX19zgqVyrZCm//5h8FRrr2K7q4HWnBkTEp0=",
+			"maritalStatus": "single",
+			"id": 3
+		}
+	],
+	"workspaceUsers": [
+		{
+			"userId": 1,
+			"workspaceId": 1,
+			"role": "admin",
+			"id": 1
+		},
+		{
+			"userId": 1,
+			"workspaceId": 2,
+			"role": "admin",
+			"id": 2
+		}
+	],
+	"workspaces": [
+		{
+			"name": "Beijello",
+			"boards": [
+				{
+					"name": "My board",
+					"layout": "normal",
+					"id": 2,
+					"ticketLists": []
+				},
+				{
+					"name": "New board styled",
+					"layout": "normal",
+					"id": 3,
+					"ticketLists": []
+				}
+			],
+			"id": 1
+		},
+		{
+			"name": "This project",
+			"boards": [
+				{
+					"name": "asdsad",
+					"layout": "normal",
+					"id": 2,
+					"ticketLists": []
+				}
+			],
+			"id": 2
+		}
+	]
 }

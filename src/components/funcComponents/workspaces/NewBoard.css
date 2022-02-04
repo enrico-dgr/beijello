@@ -29,13 +29,31 @@
 }
 
 .board-preview-modal {
-	background-color: rgb(221, 207, 182);
+	background-color: whitesmoke;
 	border-radius: 20px;
 	padding: 20px;
 	box-shadow: 2px 2px 10px rgba(173, 162, 143, 0.459);
 }
 
+.select-layout {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 0 10px 0;
+	width: 100%;
+}
+
+.select-layout select {
+	border: 1px solid rgba(0, 0, 0, 0.123);
+	padding: 8px;
+	width: 120px;
+}
+
 .board-preview-modal__btns-container {
 	display: flex;
 	margin: 10px 0 0 0;
+}
+
+.board-preview-modal__btns-container button {
+	margin: 0 5px;
 }
