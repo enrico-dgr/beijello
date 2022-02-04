@@ -9,6 +9,7 @@ import TicketList from "../../components/funcComponents/board/TicketList";
 /*  */
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+/* i18n */
 import { useTranslation } from "react-i18next";
 
 const Board = (props) => {
@@ -45,7 +46,7 @@ const Board = (props) => {
 			<header className="board-header">
 				<div className="board-header-top">
 					<h3>
-						<span>Board:</span> {!!board && board.name}
+						<span>{t("Board.LabelBoard")}:</span> {!!board && board.name}
 					</h3>
 				</div>
 				<div className="board-header-bottom">
