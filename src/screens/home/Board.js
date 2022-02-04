@@ -71,7 +71,7 @@ const Board = (props) => {
 
 const RenderTicketList = (ticketList, i) => {
 	return (
-		!!ticketList.name && (
+		!!ticketList.id && (
 			<TicketList
 				key={ticketList.name + i}
 				ticketList={ticketList}

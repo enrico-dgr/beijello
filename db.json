@@ -23,15 +23,15 @@
       "id": 2
     },
     {
-      "name": "grace",
+      "name": "grace2",
       "surname": "dev",
       "date": "1990-07-27",
       "gender": "Female",
-      "phone": "3878237",
-      "email": "grace@dev.it",
-      "password": "U2FsdGVkX19zgqVyrZCm//5h8FRrr2K7q4HWnBkTEp0=",
+      "phone": "892374982",
+      "email": "grace2@dev.it",
+      "password": "U2FsdGVkX19IY3/CN43dNOShBBvb3KobeNPTotA6oBg=",
       "maritalStatus": "single",
-      "id": 3
+      "id": 4
     },
     {
       "name": "a",
@@ -87,73 +87,26 @@
           "id": 4,
           "ticketLists": [
             {
-              "name": null,
+              "name": "To do",
               "tickets": [],
               "id": 1
             },
             {
-              "name": null,
-              "tickets": [],
+              "name": "Done",
+              "tickets": [
+                {
+                  "title": "DB refactoring",
+                  "description": "",
+                  "tag": "red",
+                  "id": 1
+                }
+              ],
               "id": 2
             },
             {
-              "name": "Awesome list",
-              "tickets": [
-                {
-                  "title": "asdasd",
-                  "description": "",
-                  "tag": "",
-                  "id": 1
-                },
-                {
-                  "title": "sssss",
-                  "description": "",
-                  "tag": "",
-                  "id": 2
-                },
-                {
-                  "title": "aaaa",
-                  "description": "",
-                  "tag": "",
-                  "id": 3
-                },
-                {
-                  "title": "asdasd",
-                  "description": "",
-                  "tag": "",
-                  "id": 4
-                },
-                {
-                  "title": "sssss",
-                  "description": "",
-                  "tag": "",
-                  "id": 5
-                },
-                {
-                  "title": "dasdasdasd",
-                  "description": "",
-                  "tag": "",
-                  "id": 6
-                },
-                {
-                  "title": "asdasd",
-                  "description": "",
-                  "tag": "",
-                  "id": 7
-                },
-                {
-                  "title": "asdasd",
-                  "description": "",
-                  "tag": "",
-                  "id": 8
-                }
-              ],
-              "id": 3
-            },
-            {
-              "name": "second list",
+              "name": "Bug",
               "tickets": [],
-              "id": 4
+              "id": 3
             }
           ]
         }

@@ -1,17 +1,21 @@
 .ticket-form-container {
 	background-color: whitesmoke;
-
 	height: 400px;
 	width: 60vw;
 	position: relative;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 40px 80px 40px 80px;
+}
+
+.layout-dark .ticket-form-container {
+	background-color: rgb(54, 52, 52);
+	color: whitesmoke;
 }
 
 .ticket-form-field {
 	align-items: center;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 }
 
 .ticket-form-field input {
@@ -20,17 +24,28 @@
 	margin: 10px 0 10px 0;
 }
 
+.layout-dark .ticket-form-field input {
+	background-color: rgba(12, 12, 12, 0.76);
+	color: whitesmoke;
+}
+
 .ticket-form-field select {
 	width: 150px;
 	padding: 10px;
 	margin: 10px 0 10px 0;
 }
 
+.layout-dark .ticket-form-field select {
+	background-color: rgba(12, 12, 12, 0.76);
+	color: whitesmoke;
+}
+
 .ticket-form-btns {
-	position: absolute;
-	bottom: 5px;
-	gap: 5px;
+	margin-top: 30px;
+	gap: 50px;
 	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .ticket-form-btn {

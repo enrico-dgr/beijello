@@ -96,8 +96,8 @@
 		"InsertDescription": "Inserisci descrizione",
 		"ChooseTicketFlag": "Scegli etichetta",
 		"MoveToOtherList": "Sposta in altra lista",
-		"BtnCreate": "Crea",
-		"BtnCancel": "Cancella"
+		"BtnCreate": "Salva",
+		"BtnCancel": "Annulla"
 	},
 	"TicketList": {
 		"AddTicket": "Aggiungi ticket"

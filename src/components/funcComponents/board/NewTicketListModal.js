@@ -71,14 +71,14 @@ const NewTicketListModal = (props) => {
 				</div>
 				<div className="newTicketListModal-buttons">
 					<SubmitButton
-						onClick={addTicketList}
-						className="newTicketListModal-btn"
-						label={t("NewTicketListModal.BtnCreate")}
-					/>
-					<SubmitButton
 						label={t("NewTicketListModal.BtnCancel")}
 						className="newTicketListModal-btn"
 						onClick={props.onClickButton}
+					/>
+					<SubmitButton
+						onClick={addTicketList}
+						className="newTicketListModal-btn"
+						label={t("NewTicketListModal.BtnCreate")}
 					/>
 				</div>
 			</div>

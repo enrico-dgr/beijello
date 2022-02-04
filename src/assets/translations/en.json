@@ -99,7 +99,7 @@
 		"InsertDescription": "Insert description",
 		"ChooseTicketFlag": "Choose ticket flag",
 		"MoveToOtherList": "Move to other list",
-		"BtnCreate": "Create",
+		"BtnCreate": "Save",
 		"BtnCancel": "Cancel"
 	},
 	"TicketList": {

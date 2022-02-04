@@ -18,11 +18,14 @@ const mapStateToProps = (state) => ({
 
 const TicketForm = (props) => {
 	const params = useParams();
+
 	const { t } = useTranslation();
+
 	const [state, setState] = useState({
 		ticket: props.ticket,
 		lists: undefined,
 		listId: props.ticketListId,
+		errorFlag: false,
 	});
 
 	useEffect(() => {
@@ -127,6 +130,8 @@ const TicketForm = (props) => {
 
 		if (!areDataValid()) {
 			// TODO: show errors to user
+
+			setState({ ...state, errorFlag: true });
 			return;
 		}
 
@@ -195,8 +200,8 @@ const TicketForm = (props) => {
 					onChange={onChangeTitle}
 					placeholder={
 						state.errorFlag
-						? t("NewTicketModal.MissingTitle")
-						: t("NewTicketModal.InsertTitle")
+							? t("NewTicketModal.MissingTitle")
+							: t("NewTicketModal.InsertTitle")
 					}
 				/>
 			</div>
@@ -208,8 +213,12 @@ const TicketForm = (props) => {
 					value={state.ticket.description}
 					placeholder={
 						state.errorFlag
-						? t("NewTicketModal.MissingDescription")
-						: t("NewTicketModal.InsertDescription")
+							? t(
+									"NewTicketModal.MissingDescription"
+							  )
+							: t(
+									"NewTicketModal.InsertDescription"
+							  )
 					}
 				/>
 			</div>
@@ -220,11 +229,11 @@ const TicketForm = (props) => {
 					defaultValue={state.ticket.tag}
 					onChange={onChangeTicketFlag}
 				>
-					<option value=""></option>
-					<option value="green">green</option>
-					<option value="blue">blue</option>
-					<option value="orange">orange</option>
-					<option value="red">red</option>
+					<option value="">None</option>
+					<option value="green">Green</option>
+					<option value="blue">Blue</option>
+					<option value="orange">Orange</option>
+					<option value="red">Red</option>
 				</select>
 			</div>
 
