@@ -87,7 +87,7 @@
 		"BtnCreate": "Crea",
 		"BtnCancel": "Cancella"
 	},
-	"NewTicketModal": {
+	"TicketForm": {
 		"Title": "Titolo",
 		"Description": "Descrizione",
 		"MissingTitle": "Titolo mancante",
@@ -95,6 +95,10 @@
 		"MissingDescription": "Descrizione mancante",
 		"InsertDescription": "Inserisci descrizione",
 		"ChooseTicketFlag": "Scegli etichetta",
+		"ColorGreen": "verde",
+		"ColorBlue": "blu",
+		"ColorOrange": "arancione",
+		"ColorRed": "rosso",
 		"MoveToOtherList": "Sposta in altra lista",
 		"BtnCreate": "Crea",
 		"BtnCancel": "Cancella"

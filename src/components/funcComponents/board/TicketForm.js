@@ -194,48 +194,48 @@ const TicketForm = (props) => {
 	return (
 		<form className="ticket-form-container">
 			<div className="ticket-form-field">
-				<label>{t("NewTicketModal.Title")}</label>
+				<label>{t("TicketForm.Title")}</label>
 				<input
 					type="text"
 					value={state.ticket.title}
 					onChange={onChangeTitle}
 					placeholder={
 						state.errorFlag
-						? t("NewTicketModal.MissingTitle")
-						: t("NewTicketModal.InsertTitle")
+						? t("TicketForm.MissingTitle")
+						: t("TicketForm.InsertTitle")
 					}
 				/>
 			</div>
 			<div className="ticket-form-field">
-				<label>{t("NewTicketModal.Description")}</label>
+				<label>{t("TicketForm.Description")}</label>
 				<input
 					type="text"
 					onChange={onChangeDescription}
 					value={state.ticket.description}
 					placeholder={
 						state.errorFlag
-						? t("NewTicketModal.MissingDescription")
-						: t("NewTicketModal.InsertDescription")
+						? t("TicketForm.MissingDescription")
+						: t("TicketForm.InsertDescription")
 					}
 				/>
 			</div>
 
 			<div className="ticket-form-field">
-				<label>{t("NewTicketModal.ChooseTicketFlag")}</label>
+				<label>{t("TicketForm.ChooseTicketFlag")}</label>
 				<select
 					defaultValue={state.ticket.tag}
 					onChange={onChangeTicketFlag}
 				>
 					<option value=""></option>
-					<option value="green">green</option>
-					<option value="blue">blue</option>
-					<option value="orange">orange</option>
-					<option value="red">red</option>
+					<option value="green">{t("TicketForm.ColorGreen")}</option>
+					<option value="blue">{t("TicketForm.ColorBlue")}</option>
+					<option value="orange">{t("TicketForm.ColorOrange")}</option>
+					<option value="red">{t("TicketForm.ColorRed")}</option>
 				</select>
 			</div>
 
 			<div className="ticket-form-field">
-				<label>{t("NewTicketModal.MoveToOtherList")}</label>
+				<label>{t("TicketForm.MoveToOtherList")}</label>
 				{
 					<select
 						value={state.listId}
@@ -249,12 +249,12 @@ const TicketForm = (props) => {
 
 			<div className="ticket-form-btns">
 				<SubmitButton
-					label={t("NewTicketModal.BtnCancel")}
+					label={t("TicketForm.BtnCancel")}
 					onClick={onClickCancel}
 					className="ticket-form-btn"
 				/>
 				<SubmitButton
-					label={t("NewTicketModal.BtnCreate")}
+					label={t("TicketForm.BtnCreate")}
 					onClick={onClickSave}
 					className="ticket-form-btn"
 				/>

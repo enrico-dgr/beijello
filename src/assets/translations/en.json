@@ -90,7 +90,7 @@
 		"BtnCreate": "Create",
 		"BtnCancel": "Cancel"
 	},
-	"NewTicketModal": {
+	"TicketForm": {
 		"Title": "Title",
 		"Description": "Description",
 		"MissingTitle": "Title is missing",
@@ -98,6 +98,10 @@
 		"MissingDescription": "Description is missing",
 		"InsertDescription": "Insert description",
 		"ChooseTicketFlag": "Choose ticket flag",
+		"ColorGreen": "green",
+		"ColorBlue": "blue",
+		"ColorOrange": "orange",
+		"ColorRed": "red",
 		"MoveToOtherList": "Move to other list",
 		"BtnCreate": "Create",
 		"BtnCancel": "Cancel"
