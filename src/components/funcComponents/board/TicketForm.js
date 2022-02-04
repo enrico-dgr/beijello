@@ -8,6 +8,7 @@ import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import workspacesApi from "../../../services/workspacesApi";
 
 const mapStateToProps = (state) => ({
@@ -17,7 +18,7 @@ const mapStateToProps = (state) => ({
 
 const TicketForm = (props) => {
 	const params = useParams();
-
+	const { t } = useTranslation();
 	const [state, setState] = useState({
 		ticket: props.ticket,
 		lists: undefined,
@@ -187,34 +188,34 @@ const TicketForm = (props) => {
 	return (
 		<form className="ticket-form-container">
 			<div className="ticket-form-field">
-				<label>Title</label>
+				<label>{t("NewTicketModal.Title")}</label>
 				<input
 					type="text"
 					value={state.ticket.title}
 					onChange={onChangeTitle}
 					placeholder={
 						state.errorFlag
-							? "title is missing"
-							: "insert title"
+						? t("NewTicketModal.MissingTitle")
+						: t("NewTicketModal.InsertTitle")
 					}
 				/>
 			</div>
 			<div className="ticket-form-field">
-				<label>Description</label>
+				<label>{t("NewTicketModal.Description")}</label>
 				<input
 					type="text"
 					onChange={onChangeDescription}
 					value={state.ticket.description}
 					placeholder={
 						state.errorFlag
-							? "description is missing"
-							: "insert description"
+						? t("NewTicketModal.MissingDescription")
+						: t("NewTicketModal.InsertDescription")
 					}
 				/>
 			</div>
 
 			<div className="ticket-form-field">
-				<label>Choose ticket flag</label>
+				<label>{t("NewTicketModal.ChooseTicketFlag")}</label>
 				<select
 					defaultValue={state.ticket.tag}
 					onChange={onChangeTicketFlag}
@@ -228,7 +229,7 @@ const TicketForm = (props) => {
 			</div>
 
 			<div className="ticket-form-field">
-				<label>Move to other list </label>
+				<label>{t("NewTicketModal.MoveToOtherList")}</label>
 				{
 					<select
 						value={state.listId}
@@ -242,12 +243,12 @@ const TicketForm = (props) => {
 
 			<div className="ticket-form-btns">
 				<SubmitButton
-					label="Cancel"
+					label={t("NewTicketModal.BtnCancel")}
 					onClick={onClickCancel}
 					className="ticket-form-btn"
 				/>
 				<SubmitButton
-					label="Save"
+					label={t("NewTicketModal.BtnCreate")}
 					onClick={onClickSave}
 					className="ticket-form-btn"
 				/>
