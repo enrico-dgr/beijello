@@ -1,57 +1,58 @@
-.home-container{
-    position: relative;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.home-container {
+	position: relative;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.navbar{
-    top: 15px;
-    position: absolute;
-    padding: 15px;
-    display: flex;
-    color: #fff;
-    font-weight: 700;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(85, 104, 212, .8);
-    top: 0; left: 0; right: 0;
-    width: 100%;
-    z-index: 1005;
+.navbar {
+	top: 15px;
+	position: absolute;
+	padding: 15px;
+	display: flex;
+	color: #fff;
+	font-weight: 700;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba(85, 104, 212, 0.8);
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 1005;
 }
 .navbar p {
-    cursor: pointer;
+	cursor: pointer;
 }
-.navbar-logotype{
-    padding-left: 10px;
-    font-size: 22px;
+.navbar-logotype {
+	padding-left: 10px;
+	font-size: 22px;
 }
 .navbar .navbar-logotype:hover {
-    color:rgba(255, 255, 255, 0.603);
-    cursor: pointer;
+	color: rgba(255, 255, 255, 0.603);
+	cursor: pointer;
 }
 
-.navbar-left-item{
-    display: flex;
-    align-items: center;
+.navbar-left-item {
+	display: flex;
+	align-items: center;
 }
-.navbar-direct-workspaces{
-    margin-bottom: 1px;
-    padding-left: 10px;
-    font-size: 20px;
-
+.navbar-direct-workspaces {
+	margin-bottom: 1px;
+	padding-left: 10px;
+	font-size: 20px;
 }
-.navbar-direct-selected{
-    color: #fff;
-
-}
-.navbar-direct-unselected{
-    color:rgba(255, 255, 255, 0.603);
-}
-.navbar-direct-workspaces:hover{
-    color: #fff;
+.navbar-direct-selected {
+	color: #fff;
 }
 
+.navbar-direct-unselected {
+	color: rgba(255, 255, 255, 0.603);
+}
 
+.navbar-direct-workspaces:hover {
+	color: #fff;
+}
 
 .navbar__switch-language {
-    background-color: inherit;
+	background-color: inherit;
 }

@@ -1,0 +1,38 @@
+.ticket-form-container {
+	background-color: whitesmoke;
+
+	height: 400px;
+	width: 60vw;
+	position: relative;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.ticket-form-field {
+	align-items: center;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.ticket-form-field input {
+	width: 150px;
+	padding: 10px;
+	margin: 10px 0 10px 0;
+}
+
+.ticket-form-field select {
+	width: 150px;
+	padding: 10px;
+	margin: 10px 0 10px 0;
+}
+
+.ticket-form-btns {
+	position: absolute;
+	bottom: 5px;
+	gap: 5px;
+	display: flex;
+}
+
+.ticket-form-btn {
+	width: 100px;
+}

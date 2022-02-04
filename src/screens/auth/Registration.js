@@ -126,7 +126,7 @@ const Registration = () => {
 
 		if (!error.password && !checkPassword(user.password)) {
 			error.password = true;
-			console.log("pass err");
+
 			isThereAnyError = true;
 			errorI18n.password = "InvalidPassword";
 		}

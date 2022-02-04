@@ -1,5 +1,5 @@
 import Modal from "../Modal";
-import './NewTicketListModal.css'
+import "./NewTicketListModal.css";
 import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
@@ -31,14 +31,25 @@ const NewTicketListModal = (props) => {
 		};
 
 		let workspace = props.workspaces.find(
-			(w) => w.name === params.workspaceName
+			(w) => w.id === parseInt(params.workspaceId)
 		);
 
 		const indexBoard = workspace.boards.findIndex(
-			(b) => b.name === params.boardName
+			(b) => b.id === parseInt(params.boardId)
 		);
 
-		workspace.boards[indexBoard].ticketLists.push(newTicketList);
+		const newId =
+			workspace.boards[indexBoard].ticketLists.length === 0
+				? 1
+				: workspace.boards[indexBoard].ticketLists[
+						workspace.boards[indexBoard].ticketLists
+							.length - 1
+				  ].id + 1;
+
+		workspace.boards[indexBoard].ticketLists.push({
+			...newTicketList,
+			id: newId,
+		});
 
 		// save update
 		workspacesApi.update(workspace, props.userId, props.dispatch);
@@ -74,11 +85,12 @@ const mapStateToProps = (state) => ({
 	userId: state.userMeDuck.user?.id,
 });
 
+NewTicketListModal.defaultProps = {
+	onClickButton: () => undefined,
+};
+
 NewTicketListModal.propTypes = {
 	onClickButton: PropTypes.func,
 };
 
-NewTicketListModal.defaultProps = {
-	onClickButton: () => undefined,
-};
 export default connect(mapStateToProps)(NewTicketListModal);

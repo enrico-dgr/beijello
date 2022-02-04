@@ -9,7 +9,9 @@ const BoardPreview = (props) => {
 	const navigate = useNavigate();
 
 	const navigateToBoard = (e) => {
-		navigate(`/board/${props.workspaceName}/${props.boardName}`);
+		navigate(
+			`/board/${props.workspaceName}/${props.workspaceId}/${props.boardName}/${props.boardId}`
+		);
 	};
 
 	return (

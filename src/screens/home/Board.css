@@ -1,22 +1,70 @@
+/* smartphone  */
 .board-wrapper {
-    height: 100vh;
-    padding-top: 60px;
-    /* width: 100vw; */
-    overflow-x: scroll;
-    border: 2px solid green;
+	height: 100vh;
+	overflow: hidden;
+	padding-top: 60px;
+}
+.board-header {
+	font-size: 22px;
+	padding: 10px 10px;
+	text-align: left;
 }
 
-.board-container {
-    display: flex;
-    gap:10px;
+.board-header h3 {
+	background-color: rgba(78, 78, 78, 0.397);
+	color: white;
+	padding: 3px 8px;
+	margin: 0 0 10px 0;
+	width: fit-content;
 }
 
-.board-title {
-    padding: 10px 10px;
+.board-button-list {
+	padding-left: 0px;
 }
-
 .board-btn-add-list {
-   min-width: 120px;
-   height: 48px;
+	height: 48px;
+}
+.board-ticketLists {
+	overflow: auto;
+	flex: 1;
+	height: calc(100vh - 170px);
+	display: flex;
+}
 
+.board-ticketLists::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+.board-ticketLists::-webkit-scrollbar {
+	border-radius: 28px;
+	height: 16px;
+	width: 16px;
+}
+
+.board-ticketLists::-webkit-scrollbar-track {
+	background-clip: content-box;
+	background-color: rgba(45, 68, 199, 0.281);
+	border-radius: 28px;
+	border: 1px solid transparent;
+	padding: 4px;
+}
+
+.board-ticketLists::-webkit-scrollbar-thumb {
+	background-clip: content-box;
+	background-color: rgba(20, 149, 255, 0.705);
+	border-radius: 28px;
+	border: 5px solid transparent;
+	transition: background-color ease 0.7s;
+}
+
+.board-ticketLists::-webkit-scrollbar-thumb:active {
+	background-color: rgb(28, 172, 255);
+}
+
+/* tablet^  */
+@media only screen and (min-width: 600px) {
+	.board-button-list {
+		padding-left: 15px;
+		width: 150px;
+	}
 }

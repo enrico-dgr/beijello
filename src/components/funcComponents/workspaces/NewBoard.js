@@ -50,7 +50,7 @@ const NewBoard = (props) => {
 
 	const addNewBoard = () => {
 		let workspace = props.workspaces.find(
-			(w) => w.name === props.workspaceName
+			(w) => w.id === props.workspaceId
 		);
 
 		const newId =
@@ -137,7 +137,7 @@ const NewBoard = (props) => {
 };
 
 NewBoard.propTypes = {
-	workspaceName: PropTypes.string,
+	workspaceId: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(NewBoard);
