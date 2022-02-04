@@ -1,35 +1,55 @@
 .NewTicketListModal-container {
-    background-color: whitesmoke;
-    height: 200px;
-    width: 60vw;
-    position: relative;
-    border-radius: 10px;
-    padding: 10px;
+	background-color: whitesmoke;
+	border-radius: 10px;
+	height: fit-content;
+	padding: 10px;
+	min-width: fit-content;
+	width: 290px;
+}
+
+.layout-dark .NewTicketListModal-container {
+	background-color: rgb(54, 52, 52);
+	color: whitesmoke;
+}
+
+.newTicketListModal-title {
+	padding: 2px;
+	margin: 0 0 10px 0;
 }
 
 .newTicketListModal-title label {
-    display: block;
+	display: block;
+	font-size: 20px;
 }
 
-.newTicketListModal-title input{
-    width: 150px;
-    padding: 10px;
-    margin: 10px 0 10px 0;
+.newTicketListModal-title input {
+	font-size: 15px;
+	margin: 10px 0 10px 0;
+	padding: 10px;
+	width: 150px;
 }
 
-.newTicketListModal-buttons{
-    position: absolute;
-    bottom: 5px;
-    display: flex;
-    gap: 5px;
+.layout-dark .newTicketListModal-title input {
+	background-color: rgba(12, 12, 12, 0.76);
+	color: whitesmoke;
+}
+
+.layout-dark .newTicketListModal-title input::placeholder {
+	color: rgb(182, 182, 182);
+}
+
+.newTicketListModal-buttons {
+	bottom: 5px;
+	display: flex;
+	gap: 5px;
 }
 
 .newTicketListModal-buttons .newTicketListModal-btn {
-    width: 100px;
+	width: 100px;
 }
 
 @media (min-width: 600px) {
-    .NewTicketListModal-container{
-        width: 40vw;
-    }
+	.NewTicketListModal-container {
+		min-width: fit-content;
+	}
 }

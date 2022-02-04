@@ -1,12 +1,13 @@
-import Modal from "../Modal";
 import "./NewTicketListModal.css";
+
+import Modal from "../Modal";
 import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import workspacesApi from "../../../services/workspacesApi";
 import { useTranslation } from "react-i18next";
+import workspacesApi from "../../../services/workspacesApi";
 
 const NewTicketListModal = (props) => {
 	const params = useParams();
@@ -62,17 +63,23 @@ const NewTicketListModal = (props) => {
 			<div className="NewTicketListModal-container">
 				<div className="newTicketListModal-title">
 					<label>{t("NewTicketListModal.NewTitle")}</label>
-					<input type={"text"} onChange={takeinput} />
+					<input
+						placeholder={"title"}
+						type={"text"}
+						onChange={takeinput}
+					/>
 				</div>
 				<div className="newTicketListModal-buttons">
 					<SubmitButton
-					onClick={addTicketList}
-					className="newTicketListModal-btn"
-					label={t("NewTicketListModal.BtnCreate")} />
+						onClick={addTicketList}
+						className="newTicketListModal-btn"
+						label={t("NewTicketListModal.BtnCreate")}
+					/>
 					<SubmitButton
-					label={t("NewTicketListModal.BtnCancel")}
-					className="newTicketListModal-btn"
-					onClick={props.onClickButton} />
+						label={t("NewTicketListModal.BtnCancel")}
+						className="newTicketListModal-btn"
+						onClick={props.onClickButton}
+					/>
 				</div>
 			</div>
 		</Modal>

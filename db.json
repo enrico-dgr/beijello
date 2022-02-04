@@ -1,94 +1,176 @@
 {
-	"users": [
-		{
-			"name": "Enrico",
-			"surname": "Di Grazia",
-			"date": "1998-04-05",
-			"gender": "Male",
-			"phone": "3922958942",
-			"email": "enrico.digrazia98@gmail.com",
-			"password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
-			"maritalStatus": "single",
-			"id": 1
-		},
-		{
-			"name": "Armando",
-			"surname": "Trallallero Di Cognome",
-			"date": "1998-03-02",
-			"gender": "Male",
-			"phone": "3762959943",
-			"email": "armando.trallallerodicognome98@gmail.com",
-			"password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
-			"maritalStatus": "single",
-			"id": 2
-		},
-		{
-			"name": "grace",
-			"surname": "dev",
-			"date": "1990-07-27",
-			"gender": "Female",
-			"phone": "3878237",
-			"email": "grace@dev.it",
-			"password": "U2FsdGVkX19zgqVyrZCm//5h8FRrr2K7q4HWnBkTEp0=",
-			"maritalStatus": "single",
-			"id": 3
-		},
-		{
-			"name": "a",
-			"surname": "a",
-			"date": "0045-08-07",
-			"gender": "Female",
-			"phone": "0123456789",
-			"email": "a@a.com",
-			"password": "U2FsdGVkX1+pqjzUQAgqqKLItJ1H652lT07ykDTCvDM=",
-			"maritalStatus": "single",
-			"id": 4
-		}
-	],
-	"workspaceUsers": [
-		{
-			"userId": 1,
-			"workspaceId": 1,
-			"role": "admin",
-			"id": 1
-		},
-		{
-			"userId": 1,
-			"workspaceId": 2,
-			"role": "admin",
-			"id": 2
-		}
-	],
-	"workspaces": [
-		{
-			"name": "Beijello",
-			"boards": [
-				{
-					"name": "My board",
-					"layout": "normal",
-					"id": 2,
-					"ticketLists": []
-				},
-				{
-					"name": "New board styled",
-					"layout": "normal",
-					"id": 3,
-					"ticketLists": []
-				}
-			],
-			"id": 1
-		},
-		{
-			"name": "This project",
-			"boards": [
-				{
-					"name": "asdsad",
-					"layout": "normal",
-					"id": 2,
-					"ticketLists": []
-				}
-			],
-			"id": 2
-		}
-	]
+  "users": [
+    {
+      "name": "Enrico",
+      "surname": "Di Grazia",
+      "date": "1998-04-05",
+      "gender": "Male",
+      "phone": "3922958942",
+      "email": "enrico.digrazia98@gmail.com",
+      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+      "maritalStatus": "single",
+      "id": 1
+    },
+    {
+      "name": "Armando",
+      "surname": "Trallallero Di Cognome",
+      "date": "1998-03-02",
+      "gender": "Male",
+      "phone": "3762959943",
+      "email": "armando.trallallerodicognome98@gmail.com",
+      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+      "maritalStatus": "single",
+      "id": 2
+    },
+    {
+      "name": "grace",
+      "surname": "dev",
+      "date": "1990-07-27",
+      "gender": "Female",
+      "phone": "3878237",
+      "email": "grace@dev.it",
+      "password": "U2FsdGVkX19zgqVyrZCm//5h8FRrr2K7q4HWnBkTEp0=",
+      "maritalStatus": "single",
+      "id": 3
+    },
+    {
+      "name": "a",
+      "surname": "a",
+      "date": "0045-08-07",
+      "gender": "Female",
+      "phone": "0123456789",
+      "email": "a@a.com",
+      "password": "U2FsdGVkX1+pqjzUQAgqqKLItJ1H652lT07ykDTCvDM=",
+      "maritalStatus": "single",
+      "id": 4
+    }
+  ],
+  "workspaceUsers": [
+    {
+      "userId": 1,
+      "workspaceId": 1,
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "workspaceId": 2,
+      "role": "admin",
+      "id": 2
+    }
+  ],
+  "workspaces": [
+    {
+      "name": "Beijello",
+      "boards": [
+        {
+          "name": "My board",
+          "layout": "normal",
+          "id": 2,
+          "ticketLists": [
+            {
+              "name": "Something",
+              "tickets": [],
+              "id": 1
+            }
+          ]
+        },
+        {
+          "name": "New board styled",
+          "layout": "normal",
+          "id": 3,
+          "ticketLists": []
+        },
+        {
+          "name": "asdasd",
+          "layout": "dark",
+          "id": 4,
+          "ticketLists": [
+            {
+              "name": null,
+              "tickets": [],
+              "id": 1
+            },
+            {
+              "name": null,
+              "tickets": [],
+              "id": 2
+            },
+            {
+              "name": "Awesome list",
+              "tickets": [
+                {
+                  "title": "asdasd",
+                  "description": "",
+                  "tag": "",
+                  "id": 1
+                },
+                {
+                  "title": "sssss",
+                  "description": "",
+                  "tag": "",
+                  "id": 2
+                },
+                {
+                  "title": "aaaa",
+                  "description": "",
+                  "tag": "",
+                  "id": 3
+                },
+                {
+                  "title": "asdasd",
+                  "description": "",
+                  "tag": "",
+                  "id": 4
+                },
+                {
+                  "title": "sssss",
+                  "description": "",
+                  "tag": "",
+                  "id": 5
+                },
+                {
+                  "title": "dasdasdasd",
+                  "description": "",
+                  "tag": "",
+                  "id": 6
+                },
+                {
+                  "title": "asdasd",
+                  "description": "",
+                  "tag": "",
+                  "id": 7
+                },
+                {
+                  "title": "asdasd",
+                  "description": "",
+                  "tag": "",
+                  "id": 8
+                }
+              ],
+              "id": 3
+            },
+            {
+              "name": "second list",
+              "tickets": [],
+              "id": 4
+            }
+          ]
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "This project",
+      "boards": [
+        {
+          "name": "asdsad",
+          "layout": "normal",
+          "id": 2,
+          "ticketLists": []
+        }
+      ],
+      "id": 2
+    }
+  ]
 }

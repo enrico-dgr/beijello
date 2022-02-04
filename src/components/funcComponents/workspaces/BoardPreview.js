@@ -15,7 +15,7 @@ const BoardPreview = (props) => {
 	};
 
 	return (
-		<div className={"board-preview-container"}>
+		<div className={`board-preview-container layout-${props.layout}`}>
 			<div className={"board-preview"} onClick={navigateToBoard}>
 				<p>{props.boardName}</p>
 			</div>

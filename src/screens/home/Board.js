@@ -42,11 +42,12 @@ const Board = (props) => {
 	};
 
 	return (
-		<div className="board-wrapper">
+		<div className={`board-wrapper layout-${board?.layout}`}>
 			<header className="board-header">
 				<div className="board-header-top">
 					<h3>
-						<span>{t("Board.LabelBoard")}:</span> {!!board && board.name}
+						<span>{t("Board.LabelBoard")}:</span>{" "}
+						{!!board && board.name}
 					</h3>
 				</div>
 				<div className="board-header-bottom">

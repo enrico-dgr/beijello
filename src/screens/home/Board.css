@@ -2,17 +2,23 @@
 .board-wrapper {
 	height: 100vh;
 	overflow: hidden;
-	padding-top: 60px;
+	padding: 70px 0 0 10px;
 }
+
+.board-wrapper.layout-normal {
+	background-color: lightgray;
+}
+
+.board-wrapper.layout-dark {
+	background-color: rgba(0, 0, 0, 0.856);
+}
+
 .board-header {
 	align-items: left;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	padding: 10px 10px;
-}
-
-.board-header-top {
 }
 
 .board-header-top h3 {
@@ -34,7 +40,7 @@
 .board-ticketLists {
 	overflow: auto;
 	flex: 1;
-	height: calc(100vh - 170px);
+	height: calc(100vh - 190px);
 	display: flex;
 }
 
