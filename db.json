@@ -53,44 +53,10 @@
       "name": "Beijello",
       "boards": [
         {
-          "name": "This work",
+          "name": "asdasd",
           "layout": "",
           "id": 1,
-          "ticketLists": [
-            {
-              "name": "To do",
-              "tickets": [
-                {
-                  "title": "Changing data again with infinite title",
-                  "description": "asd",
-                  "ticketFlag": "",
-                  "errorFlag": false,
-                  "id": 3,
-                  "tag": "green"
-                }
-              ],
-              "id": 2
-            },
-            {
-              "name": "Done",
-              "tickets": [
-                {
-                  "title": "asdsaddsa",
-                  "description": "lofol",
-                  "ticketFlag": "",
-                  "errorFlag": false,
-                  "id": 2,
-                  "tag": "green"
-                }
-              ],
-              "id": 3
-            },
-            {
-              "name": "Bug",
-              "tickets": [],
-              "id": 4
-            }
-          ]
+          "ticketLists": []
         }
       ],
       "id": 1
@@ -99,9 +65,9 @@
       "name": "This project",
       "boards": [
         {
-          "name": "Duties",
+          "name": "asdsad",
           "layout": "",
-          "id": 1,
+          "id": 2,
           "ticketLists": []
         }
       ],

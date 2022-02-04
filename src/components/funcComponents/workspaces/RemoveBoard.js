@@ -58,7 +58,10 @@ const RemoveBoard = (props) => {
 
 	return (
 		<div className={props.classNameContainer}>
-			<span onClick={showModal}>
+			<span
+				onClick={showModal}
+				style={{ cursor: "pointer", width: "100%" }}
+			>
 				<FontAwesomeIcon icon={faTrash} />
 			</span>
 			{state.showModal && (

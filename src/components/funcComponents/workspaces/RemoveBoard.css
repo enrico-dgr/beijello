@@ -7,6 +7,7 @@
 	justify-content: center;
 	max-width: 300px;
 	padding: 20px 15px 5px 15px;
+	z-index: 10;
 }
 
 .board-confirm-delete-modal p {
