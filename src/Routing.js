@@ -13,6 +13,7 @@ import NotFound from "./screens/NotFound";
 import { Provider } from "react-redux";
 import Registration from "./screens/auth/Registration";
 import Workspaces from "./screens/home/Workspaces";
+import Workspaces3D from "./screens/home/Workspaces3D";
 import applicationStore from "./applicationStore";
 
 function Routing(props) {
@@ -22,6 +23,10 @@ function Routing(props) {
 				<Routes>
 					<Route path="" element={<Home />}>
 						<Route path="" element={<Workspaces />} />
+						<Route
+							path="/3D"
+							element={<Workspaces3D />}
+						/>
 
 						<Route
 							path="board/:workspaceName/:workspaceId/:boardName/:boardId"

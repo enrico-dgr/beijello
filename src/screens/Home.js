@@ -90,6 +90,9 @@ const Home = (props) => {
 						BEIJELLO
 					</p>
 				</div>
+				<div className="navbar-left-item">
+					<p onClick={handleNavigate("/3D")}>BEIJELLO 3D</p>
+				</div>
 				<div
 					style={{
 						justifySelf: "flex-end",
