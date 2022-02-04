@@ -87,5 +87,20 @@
 		"NewTitle": "Insert list title",
 		"BtnCreate": "Create",
 		"BtnCancel": "Cancel"
+	},
+	"NewTicketModal": {
+		"Title": "Title",
+		"Description": "Description",
+		"MissingTitle": "Title is missing",
+		"InsertTitle" : "Insert title",
+		"MissingDescription": "Description is missing",
+		"InsertDescription" : "Insert description",
+		"ChooseTicketFlag": "Choose ticket flag",
+		"MoveToOtherList": "Move to other list",
+		"BtnCreate": "Create",
+		"BtnCancel": "Cancel"
+	},
+	"TicketList":{
+		"AddTicket": "Add ticket"
 	}
 }

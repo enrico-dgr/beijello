@@ -2,6 +2,7 @@ import "./TicketList.css";
 
 import React, { useState } from "react";
 
+import { useTranslation } from "react-i18next";
 import NewTicketModal from "../funcComponents/board/NewTicketModal";
 import SubmitButton from "../funcComponents/SubmitButton";
 import Ticket from "./Ticket.js";
@@ -9,6 +10,7 @@ import Ticket from "./Ticket.js";
 const TicketList = (props) => {
 	const { ticketList } = props;
 	const [modalFlag, setModalFlag] = useState(false);
+	const { t } = useTranslation();
 
 	const renderTicket = (ticket, i) => {
 		return <Ticket ticket={ticket} key={ticket.title} />;
@@ -30,7 +32,7 @@ const TicketList = (props) => {
 				</div>
 				<div className="ticketList-tickets-container">
 					<SubmitButton
-						label="+ Aggiungi ticket"
+						label={`+ ${t("TicketList.AddTicket")}`}
 						onClick={openModal}
 					/>
 					{ticketList.tickets.map(renderTicket)}

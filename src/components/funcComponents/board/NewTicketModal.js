@@ -1,6 +1,7 @@
 import "./NewTicketModal.css";
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import Modal from "../Modal";
 import PropTypes from "prop-types";
@@ -11,7 +12,7 @@ import workspacesApi from "../../../services/workspacesApi";
 
 const NewTicketModal = (props) => {
 	const params = useParams();
-
+	const { t } = useTranslation();
 	const [state, setState] = useState({
 		title: "",
 		description: "",
@@ -77,32 +78,32 @@ const NewTicketModal = (props) => {
 		<Modal>
 			<div className="newTicketModal-container">
 				<div className="newTicketModal-title">
-					<label>Title</label>
+					<label>{t("NewTicketModal.Title")}</label>
 					<input
 						type="text"
 						onChange={getTitle}
 						placeholder={
 							state.errorFlag
-								? "title is missing"
-								: "insert title"
+								? t("NewTicketModal.MissingTitle")
+								: t("NewTicketModal.InsertTitle")
 						}
 					/>
 				</div>
 				<div className="newTicketModal-description">
-					<label>Description</label>
+					<label>{t("NewTicketModal.Description")}</label>
 					<input
 						type="text"
 						onChange={getDescription}
 						placeholder={
 							state.errorFlag
-								? "description is missing"
-								: "insert description"
+								? t("NewTicketModal.MissingDescription")
+								: t("NewTicketModal.InsertDescription")
 						}
 					/>
 				</div>
 
 				<div className="newTicketModal-ticketFlag">
-					<label>Choose ticket flag</label>
+					<label>{t("NewTicketModal.ChooseTicketFlag")}</label>
 						<select onChange={handleTicketFlag}>
 							<option value=""></option>
 							<option value="red">red</option>
@@ -114,7 +115,7 @@ const NewTicketModal = (props) => {
 				</div>
 
 				<div className="newTicketModal-moveToOtherList">
-					<label>Move to other list </label>
+					<label>{t("NewTicketModal.MoveToOtherList")}</label>
 						<select onChange={handleMoveToOtherList}>
 							<option value=""></option>
 
@@ -124,12 +125,12 @@ const NewTicketModal = (props) => {
 
 				<div className="newTicketModal-buttons">
 					<SubmitButton
-						label="Save"
+						label={t("NewTicketModal.BtnCreate")}
 						onClick={saveComment}
 						className="newTicketModal-btn"
 					/>
 					<SubmitButton
-						label="Cancel"
+						label={t("NewTicketModal.BtnCancel")}
 						onClick={props.onClickButton}
 						className="newTicketModal-btn"
 					/>
