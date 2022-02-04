@@ -5,11 +5,11 @@ import React, { useEffect, useState } from "react";
 /* func Components */
 import Button from "../../components/funcComponents/UI/button/Button";
 import NewTicketListModal from "../../components/funcComponents/board/NewTicketListModal";
-import PropTypes from "prop-types";
 import TicketList from "../../components/funcComponents/board/TicketList";
 /*  */
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+/* i18n */
 import { useTranslation } from "react-i18next";
 
 const Board = (props) => {
@@ -24,9 +24,11 @@ const Board = (props) => {
 			params.boardName !== undefined &&
 			params.workspaceName !== undefined
 		) {
+			/* find board to show */
 			const newBoard = props.workspaces
 				.find((w) => w.name === params.workspaceName)
 				.boards.find((b) => b.name === params.boardName);
+
 			setBoard(newBoard);
 		}
 	}, [params, props.workspaces]);
@@ -38,40 +40,42 @@ const Board = (props) => {
 	const closeModal = () => {
 		setModalFlag(false);
 	};
-	/*  */
 
-	const renderTicketList = (ticketList, i) => {
-		return (
-			!!ticketList.name && (
-				<TicketList
-					boardName={params.boardName}
-					key={ticketList.name + i}
-					ticketList={ticketList}
-					workspaceName={params.workspaceName}
-				/>
-			)
-		);
-	};
 	return (
 		<div className="board-wrapper">
 			<header className="board-header">
-				<h3>
-					<span>Board:</span> {!!board && board.name}
-				</h3>
-				<Button
-					label={`+ ${t("Board.NewList")}`}
-					onClick={openModal}
-					className={"board-btn-add-list"}
-				/>
+				<div className="board-header-top">
+					<h3>
+						<span>{t("Board.LabelBoard")}:</span> {!!board && board.name}
+					</h3>
+				</div>
+				<div className="board-header-bottom">
+					<Button
+						label={`+ ${t("Board.NewList")}`}
+						onClick={openModal}
+						className={"board-btn-add-list"}
+					/>
+				</div>
 			</header>
 			<div className="board-ticketLists">
-				{!!board && board.ticketLists.map(renderTicketList)}
+				{!!board && board.ticketLists.map(RenderTicketList)}
 			</div>
 
 			{modalFlag && (
 				<NewTicketListModal onClickButton={closeModal} />
 			)}
 		</div>
+	);
+};
+
+const RenderTicketList = (ticketList, i) => {
+	return (
+		!!ticketList.name && (
+			<TicketList
+				key={ticketList.name + i}
+				ticketList={ticketList}
+			/>
+		)
 	);
 };
 

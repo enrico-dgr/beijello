@@ -1,14 +1,16 @@
 import "./TicketList.css";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
+
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Modal from "../Modal";
+import PropTypes from "prop-types";
+import RemoveTicketList from "./RemoveTicketList";
 import SubmitButton from "../SubmitButton";
 import Ticket from "./Ticket.js";
-import RemoveTicketList from "./RemoveTicketList";
 import TicketForm from "./TicketForm";
-import Modal from "../Modal";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const TicketList = (props) => {
 	const { ticketList } = props;
@@ -42,6 +44,7 @@ const TicketList = (props) => {
 
 	return (
 		<div className="ticketList-container">
+			{/* Header */}
 			<header className="ticketList-header">
 				<div className="ticketList-header-left">
 					<p>{ticketList.name}</p>

@@ -1,5 +1,6 @@
 import "./NewBoard.css";
 
+import { BOARD_LAYOUTS } from "../../../utils/workspace";
 import Input from "../UI/input/Input";
 import Modal from "../Modal";
 import PropTypes from "prop-types";
@@ -21,7 +22,7 @@ const NewBoard = (props) => {
 	const [state, setState] = React.useState({
 		boardData: {
 			name: "",
-			layout: "",
+			layout: BOARD_LAYOUTS[0],
 		},
 		showModal: false,
 	});
@@ -101,21 +102,18 @@ const NewBoard = (props) => {
 						errorFlag={false}
 						errorText={""}
 					/>
-					<label>
-						{"Layout"}
+					<div className={"select-layout"}>
+						<label>Layout</label>
 						<select
-							value={"normal"}
+							value={state.boardData.layout}
 							onChange={setLayout}
 						>
-							<option value="normal">
-								{"Normal"}
-							</option>
-							<option value="dark">{"Dark"}</option>
-							<option value="fancy">
-								{"Fancy"}
-							</option>
+							{!!BOARD_LAYOUTS &&
+								BOARD_LAYOUTS.map(
+									MapLayoutsOptions
+								)}
 						</select>
-					</label>
+					</div>
 					<div
 						className={
 							"board-preview-modal__btns-container"
@@ -135,6 +133,12 @@ const NewBoard = (props) => {
 		</div>
 	);
 };
+
+const MapLayoutsOptions = (l, i) => (
+	<option key={"layouts" + l + i} value={l}>
+		{l}
+	</option>
+);
 
 NewBoard.propTypes = {
 	workspaceId: PropTypes.number.isRequired,

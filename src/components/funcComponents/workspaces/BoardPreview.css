@@ -12,25 +12,9 @@
 	width: 200px;
 }
 
-.board-preview::before {
-	border-radius: 15px;
-	background-color: rgba(255, 255, 255, 0);
-	content: "";
-	height: 100%;
-	left: 0;
-	pointer-events: none;
-	position: absolute;
-	top: 0;
-	transition: background-color ease 0.3s;
-	width: 100%;
-}
-
 .board-preview:hover {
+	background-color: rgb(141, 158, 250);
 	box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.411);
-}
-
-.board-preview:hover::before {
-	background-color: rgba(255, 255, 255, 0.487);
 }
 
 .board-preview p {
@@ -44,17 +28,16 @@
 	position: relative;
 }
 
-.board-preview-container:hover .delete-board {
-	display: inline-block;
-}
-
 .delete-board {
 	background-color: white;
 	border-radius: 15px;
-	display: none;
 	bottom: 5px;
-	padding: 5px 9px;
 	position: absolute;
 	right: 0px;
 	transition: all 1s linear 0s;
+	z-index: -1;
+}
+
+.board-preview-container:hover .delete-board {
+	z-index: 10;
 }

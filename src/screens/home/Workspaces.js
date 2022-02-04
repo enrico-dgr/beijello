@@ -8,7 +8,9 @@ import WorkSpaceModal from "../../components/funcComponents/workspaces/NewWorksp
 import Workspace from "../../components/funcComponents/workspaces/Workspace";
 /* redux */
 import { connect } from "react-redux";
+/* i18next */
 import { withTranslation } from "react-i18next";
+import { t } from "i18next";
 
 const mapStateToProps = (state) => {
 	return {
@@ -66,7 +68,11 @@ class Workspaces extends Component {
 	RenderWorkspaces = (w, i) =>
 		!!w && (
 			<div className="workspace-container" key={i + "workspace-ma"}>
-				<Workspace workspace={w} />
+				<Workspace
+					workspace={w}
+					labelWorkscace={t("Workspaces.LabelWorkspace")}
+
+				/>
 			</div>
 		);
 }

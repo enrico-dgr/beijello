@@ -1,3 +1,5 @@
+const BOARD_LAYOUTS = ["normal", "dark", "sunny", "mountain"];
+
 const getNewTicketId = (workspace, indexBoard, indexTicketList) =>
 	workspace.boards[indexBoard].ticketLists[indexTicketList].tickets
 		.length === 0
@@ -81,4 +83,4 @@ const moveTicketToListEnd = ({
 	return workspace;
 };
 
-export { moveTicketTo, moveTicketToListEnd, getNewTicketId };
+export { BOARD_LAYOUTS, moveTicketTo, moveTicketToListEnd, getNewTicketId };
