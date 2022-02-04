@@ -4,7 +4,7 @@
     width: 60vw;
     position: relative;
     border-radius: 10px;
-    padding: 10px;
+    padding: 40px 80px 40px 80px;
 }
 
 .newTicketListModal-title label {

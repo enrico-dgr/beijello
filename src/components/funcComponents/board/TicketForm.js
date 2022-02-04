@@ -17,12 +17,16 @@ const mapStateToProps = (state) => ({
 });
 
 const TicketForm = (props) => {
+
 	const params = useParams();
+
 	const { t } = useTranslation();
+
 	const [state, setState] = useState({
 		ticket: props.ticket,
 		lists: undefined,
 		listId: props.ticketListId,
+		errorFlag: false,
 	});
 
 	useEffect(() => {
@@ -127,6 +131,8 @@ const TicketForm = (props) => {
 
 		if (!areDataValid()) {
 			// TODO: show errors to user
+
+			setState({...state, errorFlag: true})
 			return;
 		}
 

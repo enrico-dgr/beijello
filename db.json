@@ -23,15 +23,15 @@
       "id": 2
     },
     {
-      "name": "grace",
+      "name": "grace2",
       "surname": "dev",
       "date": "1990-07-27",
       "gender": "Female",
-      "phone": "3878237",
-      "email": "grace@dev.it",
-      "password": "U2FsdGVkX19zgqVyrZCm//5h8FRrr2K7q4HWnBkTEp0=",
+      "phone": "892374982",
+      "email": "grace2@dev.it",
+      "password": "U2FsdGVkX19IY3/CN43dNOShBBvb3KobeNPTotA6oBg=",
       "maritalStatus": "single",
-      "id": 3
+      "id": 4
     }
   ],
   "workspaceUsers": [
@@ -46,6 +46,12 @@
       "workspaceId": 2,
       "role": "admin",
       "id": 2
+    },
+    {
+      "userId": 4,
+      "workspaceId": 3,
+      "role": "admin",
+      "id": 3
     }
   ],
   "workspaces": [
@@ -112,6 +118,58 @@
         }
       ],
       "id": 2
+    },
+    {
+      "name": "work 1",
+      "boards": [
+        {
+          "name": "new board",
+          "layout": "",
+          "id": 1,
+          "ticketLists": [
+            {
+              "name": "list 1",
+              "tickets": [
+                {
+                  "title": "",
+                  "description": "",
+                  "tag": "",
+                  "id": 1
+                },
+                {
+                  "title": "",
+                  "description": "",
+                  "tag": "",
+                  "id": 2
+                },
+                {
+                  "title": "",
+                  "description": "",
+                  "tag": "",
+                  "id": 3
+                }
+              ],
+              "id": 1
+            },
+            {
+              "name": null,
+              "tickets": [],
+              "id": 2
+            },
+            {
+              "name": null,
+              "tickets": [],
+              "id": 3
+            },
+            {
+              "name": null,
+              "tickets": [],
+              "id": 4
+            }
+          ]
+        }
+      ],
+      "id": 3
     }
   ]
 }
