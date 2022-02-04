@@ -97,7 +97,7 @@ const NewBoard = (props) => {
 					<Input
 						type="text"
 						label={t("Workspaces.NewBoardName")}
-						value={state.name}
+						value={state.boardData.name}
 						onChangeCallback={setName}
 						errorFlag={false}
 						errorText={""}

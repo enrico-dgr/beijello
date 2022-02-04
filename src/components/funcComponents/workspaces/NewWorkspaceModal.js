@@ -7,9 +7,9 @@ import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
 /* redux */
 import { connect } from "react-redux";
-import { setWorkspaces } from "../../../redux/ducks/workspacesDuck";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import workspacesAPI from "../../../services/workspacesApi";
 
 const mapStateToProps = (state) => {
@@ -23,6 +23,7 @@ const WorkSpaceModal = (props) => {
 	const [state, setState] = useState({
 		name: "",
 	});
+	const { t } = useTranslation();
 
 	const setName = (e) => {
 		let value = e.target.value;
@@ -63,20 +64,26 @@ const WorkSpaceModal = (props) => {
 		<Modal className={"new-workspace-modal"}>
 			<Input
 				type="text"
-				label="Workspace name"
+				label={t("Workspaces.LabelWorkspace")}
 				value={state.name}
 				onChangeCallback={setName}
 				errorFlag={false}
 				errorText={""}
 			/>
-			<SubmitButton
-				onClick={handlerHideModal}
-				label="annulla"
-			></SubmitButton>
-			<SubmitButton
-				onClick={addNewWorkspace}
-				label="crea "
-			></SubmitButton>
+			<div className={"new-workspace-modal__btns"}>
+				<SubmitButton
+					onClick={handlerHideModal}
+					label={t(
+						"Workspaces.NewWorkspaceModal.BtnCancel"
+					)}
+				></SubmitButton>
+				<SubmitButton
+					onClick={addNewWorkspace}
+					label={t(
+						"Workspaces.NewWorkspaceModal.BtnCreate"
+					)}
+				></SubmitButton>
+			</div>
 		</Modal>
 	);
 };

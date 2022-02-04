@@ -75,6 +75,10 @@
 	},
 	"Workspaces": {
 		"NewWorkspace": "New workspace",
+		"NewWorkspaceModal": {
+			"BtnCreate": "Create",
+			"BtnCancel": "Cancel"
+		},
 		"NewBoard": "Add new board",
 		"LabelWorkspace": "Workspace",
 		"NewBoardName": "Board name",

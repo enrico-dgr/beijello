@@ -89,14 +89,7 @@
           "ticketLists": [
             {
               "name": "To do",
-              "tickets": [
-                {
-                  "title": "Merging",
-                  "description": "",
-                  "tag": "",
-                  "id": 1
-                }
-              ],
+              "tickets": [],
               "id": 1
             },
             {
@@ -106,6 +99,12 @@
                   "title": "DB refactoring",
                   "description": "",
                   "tag": "red",
+                  "id": 1
+                },
+                {
+                  "title": "Merging",
+                  "description": "",
+                  "tag": "",
                   "id": 1
                 }
               ],

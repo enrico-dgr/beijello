@@ -72,6 +72,10 @@
 	},
 	"Workspaces": {
 		"NewWorkspace": "Nuovo spazio di lavoro",
+		"NewWorkspaceModal": {
+			"BtnCreate": "Crea",
+			"BtnCancel": "Annulla"
+		},
 		"LabelWorkspace": "Spazio di lavoro",
 		"NewBoard": "Nuova bacheca",
 		"NewBoardName": "Nome bacheca",

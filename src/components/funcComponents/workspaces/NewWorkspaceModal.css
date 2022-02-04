@@ -1,6 +1,15 @@
 .new-workspace-modal {
-	background-color: rgb(221, 207, 182);
+	background-color: whitesmoke;
 	border-radius: 20px;
 	padding: 20px;
 	box-shadow: 2px 2px 10px rgba(173, 162, 143, 0.459);
+}
+
+.new-workspace-modal__btns {
+	display: flex;
+	margin: 10px 0 0 0;
+}
+
+.new-workspace-modal__btns button {
+	margin: 0 4px;
 }

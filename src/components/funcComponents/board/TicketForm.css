@@ -64,6 +64,7 @@
 		padding: 40px 80px 40px 80px;
 	}
 	.ticket-form-field {
+		align-items: center;
 		flex-direction: row;
 	}
 }

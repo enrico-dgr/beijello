@@ -41,7 +41,11 @@ class Input extends Component {
 					onFocus={this.inputOnFocus}
 				/>
 				<span className="input-focus"></span>
-				<label className={this.props.value && "filled"}>
+				<label
+					className={`${
+						!!this.props.value ? "filled" : ""
+					}`}
+				>
 					{this.props.label}
 				</label>
 
@@ -79,6 +83,7 @@ Input.propTypes = {
 	onChangeCallback: PropTypes.func,
 	required: PropTypes.bool,
 	type: PropTypes.string,
+	value: PropTypes.string,
 };
 
 export default Input;
