@@ -76,12 +76,14 @@
 	"Workspaces": {
 		"NewWorkspace": "New workspace",
 		"NewBoard": "Add new board",
+		"LabelWorkspace": "Workspace",
 		"NewBoardName": "Board name",
 		"NewBoardCancel": "Cancel",
 		"NewBoardCreate": "Create"
 	},
 	"Board": {
-		"NewList": "New list"
+		"NewList": "New list",
+		"LabelBoard": "Board"
 	},
 	"NewTicketListModal": {
 		"NewTitle": "Insert list title",
@@ -92,15 +94,15 @@
 		"Title": "Title",
 		"Description": "Description",
 		"MissingTitle": "Title is missing",
-		"InsertTitle" : "Insert title",
+		"InsertTitle": "Insert title",
 		"MissingDescription": "Description is missing",
-		"InsertDescription" : "Insert description",
+		"InsertDescription": "Insert description",
 		"ChooseTicketFlag": "Choose ticket flag",
 		"MoveToOtherList": "Move to other list",
 		"BtnCreate": "Create",
 		"BtnCancel": "Cancel"
 	},
-	"TicketList":{
+	"TicketList": {
 		"AddTicket": "Add ticket"
 	}
 }

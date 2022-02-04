@@ -72,13 +72,15 @@
 	},
 	"Workspaces": {
 		"NewWorkspace": "Nuovo spazio di lavoro",
+		"LabelWorkspace": "Spazio di lavoro",
 		"NewBoard": "Nuova bacheca",
 		"NewBoardName": "Nome bacheca",
 		"NewBoardCancel": "Annulla",
 		"NewBoardCreate": "Crea"
 	},
 	"Board": {
-		"NewList": "Aggiungi lista"
+		"NewList": "Aggiungi lista",
+		"LabelBoard": "Bacheca"
 	},
 	"NewTicketListModal": {
 		"NewTitle": "Inserisci titolo lista",
@@ -89,15 +91,15 @@
 		"Title": "Titolo",
 		"Description": "Descrizione",
 		"MissingTitle": "Titolo mancante",
-		"InsertTitle" : "Inserisci titolo",
+		"InsertTitle": "Inserisci titolo",
 		"MissingDescription": "Descrizione mancante",
-		"InsertDescription" : "Inserisci descrizione",
+		"InsertDescription": "Inserisci descrizione",
 		"ChooseTicketFlag": "Scegli etichetta",
 		"MoveToOtherList": "Sposta in altra lista",
 		"BtnCreate": "Crea",
 		"BtnCancel": "Cancella"
 	},
-	"TicketList":{
+	"TicketList": {
 		"AddTicket": "Aggiungi ticket"
 	}
 }
