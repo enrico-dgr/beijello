@@ -58,11 +58,8 @@ const RemoveBoard = (props) => {
 
 	return (
 		<div className={props.classNameContainer}>
-			<span
-				onClick={showModal}
-				style={{ cursor: "pointer", width: "100%" }}
-			>
-				<FontAwesomeIcon icon={faTrash} />
+			<span onClick={showModal} style={{ cursor: "pointer" }}>
+				<FontAwesomeIcon icon={faTrash} size="lg" />
 			</span>
 			{state.showModal && (
 				<Modal className="board-confirm-delete-modal">

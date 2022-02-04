@@ -1,8 +1,12 @@
+.board-preview-container {
+	position: relative;
+}
+
 .board-preview {
 	align-items: flex-start;
-	background-color: rgba(85, 104, 212, 0.95);
 	border-radius: 15px;
 	box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.411);
+	color: white;
 	cursor: pointer;
 	display: flex;
 	justify-content: flex-start;
@@ -13,7 +17,7 @@
 }
 
 .board-preview:hover {
-	background-color: rgb(141, 158, 250);
+	filter: brightness(130%);
 	box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.411);
 }
 
@@ -24,17 +28,42 @@
 	font-weight: 600;
 }
 
-.board-preview-container {
-	position: relative;
+.layout-normal .board-preview {
+	background: linear-gradient(
+		0deg,
+		rgba(195, 195, 195, 1) 0%,
+		rgba(134, 134, 134, 1) 50%,
+		rgba(113, 113, 113, 1) 100%
+	);
+}
+
+.layout-dark .board-preview {
+	background-color: rgba(31, 31, 31, 0.897);
+}
+
+.layout-sunshine .board-preview {
+	background-image: url("../../../assets/images/sunshine.jpeg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	text-shadow: 0 0 3px black;
+}
+
+.layout-mountain .board-preview {
+	background-image: url("../../../assets/images/mountain.jpeg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	text-shadow: 0 0 3px black;
 }
 
 .delete-board {
 	background-color: white;
 	border-radius: 15px;
 	bottom: 5px;
+	padding: 3px 10px;
 	position: absolute;
-	right: 0px;
-	transition: all 1s linear 0s;
+	right: 5px;
 	z-index: -1;
 }
 

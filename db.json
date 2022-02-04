@@ -70,16 +70,17 @@
           "ticketLists": [
             {
               "name": "Something",
-              "tickets": [],
+              "tickets": [
+                {
+                  "title": "Wow",
+                  "description": "A normal shit",
+                  "tag": "green",
+                  "id": 1
+                }
+              ],
               "id": 1
             }
           ]
-        },
-        {
-          "name": "New board styled",
-          "layout": "normal",
-          "id": 3,
-          "ticketLists": []
         },
         {
           "name": "asdasd",
@@ -88,7 +89,14 @@
           "ticketLists": [
             {
               "name": "To do",
-              "tickets": [],
+              "tickets": [
+                {
+                  "title": "Merging",
+                  "description": "",
+                  "tag": "",
+                  "id": 1
+                }
+              ],
               "id": 1
             },
             {
@@ -107,6 +115,37 @@
               "name": "Bug",
               "tickets": [],
               "id": 3
+            }
+          ]
+        },
+        {
+          "name": "My awesome board",
+          "layout": "sunshine",
+          "id": 5,
+          "ticketLists": [
+            {
+              "name": "WOw",
+              "tickets": [],
+              "id": 1
+            }
+          ]
+        },
+        {
+          "name": "Mountain type",
+          "layout": "mountain",
+          "id": 6,
+          "ticketLists": [
+            {
+              "name": "Felici",
+              "tickets": [
+                {
+                  "title": "Awesome project",
+                  "description": "",
+                  "tag": "green",
+                  "id": 1
+                }
+              ],
+              "id": 1
             }
           ]
         }

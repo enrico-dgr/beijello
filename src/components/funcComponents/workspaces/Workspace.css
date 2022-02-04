@@ -3,16 +3,24 @@
 	flex-direction: column;
 }
 
-.workspace span {
-	align-self: flex-start;
-	margin: 4px 8px 0 8px;
+.workspace__header {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	margin: 4px 8px 18px 8px;
 }
 
-.title-workspace {
-	height: 90px;
+.workspace__header span {
+	font-size: 15px;
+	color: rgb(53, 53, 53);
+}
+
+.workspace__header h2 {
+	font-size: 30px;
+	font-weight: 700;
+	height: min-content;
 	max-width: 200px;
-	margin: 0 0 10px 0;
-	padding: 8px 4px;
 	text-align: left;
 }
 

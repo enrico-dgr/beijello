@@ -1,10 +1,11 @@
 .ticket-form-container {
 	background-color: whitesmoke;
-	height: 400px;
+	height: fit-content;
+	min-width: 300px;
 	width: 60vw;
-	position: relative;
+	max-width: 700px;
 	border-radius: 10px;
-	padding: 40px 80px 40px 80px;
+	padding: 10px 30px;
 }
 
 .layout-dark .ticket-form-container {
@@ -13,13 +14,15 @@
 }
 
 .ticket-form-field {
-	align-items: center;
+	align-items: left;
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 }
 
 .ticket-form-field input {
-	width: 150px;
+	min-width: 150px;
+	width: 190px;
 	padding: 10px;
 	margin: 10px 0 10px 0;
 }
@@ -30,7 +33,8 @@
 }
 
 .ticket-form-field select {
-	width: 150px;
+	min-width: 150px;
+	width: 190px;
 	padding: 10px;
 	margin: 10px 0 10px 0;
 }
@@ -50,4 +54,16 @@
 
 .ticket-form-btn {
 	width: 100px;
+}
+
+@media only screen and (min-width: 600px) {
+	.ticket-form-container {
+		height: 400px;
+		width: 60vw;
+		max-width: 700px;
+		padding: 40px 80px 40px 80px;
+	}
+	.ticket-form-field {
+		flex-direction: row;
+	}
 }

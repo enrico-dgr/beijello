@@ -1,4 +1,4 @@
-const BOARD_LAYOUTS = ["normal", "dark", "sunny", "mountain"];
+const BOARD_LAYOUTS = ["normal", "dark", "sunshine", "mountain"];
 
 const getNewTicketId = (workspace, indexBoard, indexTicketList) =>
 	workspace.boards[indexBoard].ticketLists[indexTicketList].tickets

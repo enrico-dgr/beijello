@@ -13,14 +13,12 @@ const mapStateToProps = (state) => ({
 });
 
 const Workspace = (props) => {
-
-
-
-
 	return (
 		<div className={"workspace"}>
-			<span>{props.labelWorkscace}</span>
-			<h2 className="title-workspace">{props.workspace.name}</h2>
+			<div className={"workspace__header"}>
+				<span>{props.labelWorkspace}</span>
+				<h2>{props.workspace.name}</h2>
+			</div>
 			<RemoveWorkspace workspaceId={props.workspace.id} />
 			<div className={"workspace__board-preview-list"}>
 				<NewBoard workspaceId={props.workspace.id} />
@@ -48,7 +46,7 @@ const MapPreview = (workspace) => (board, i) =>
 
 Workspace.propTypes = {
 	workspace: PropTypes.object,
-	labelWorkscace: PropTypes.string,
+	labelWorkspace: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(Workspace);

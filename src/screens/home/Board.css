@@ -6,11 +6,30 @@
 }
 
 .board-wrapper.layout-normal {
-	background-color: lightgray;
+	background: linear-gradient(
+		0deg,
+		rgba(195, 195, 195, 1) 0%,
+		rgba(134, 134, 134, 1) 50%,
+		rgba(113, 113, 113, 1) 100%
+	);
 }
 
 .board-wrapper.layout-dark {
 	background-color: rgba(0, 0, 0, 0.856);
+}
+
+.board-wrapper.layout-sunshine {
+	background-image: url("../../assets/images/sunshine.jpeg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.board-wrapper.layout-mountain {
+	background-image: url("../../assets/images/mountain.jpeg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 
 .board-header {
