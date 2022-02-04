@@ -57,6 +57,18 @@
       "workspaceId": 2,
       "role": "admin",
       "id": 2
+    },
+    {
+      "userId": 2,
+      "workspaceId": 1,
+      "role": "collaborator",
+      "id": 3
+    },
+    {
+      "userId": 4,
+      "workspaceId": 1,
+      "role": "collaborator",
+      "id": 4
     }
   ],
   "workspaces": [

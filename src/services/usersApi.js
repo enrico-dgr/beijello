@@ -36,6 +36,20 @@ const getUsersByEmail = (email) =>
 		})
 	);
 
+const getUsersByMatchingText = async (text) => {
+	const res = await users.get(`?q=${text}`);
+
+	if (res.status !== 200) {
+		throw new Error(res.statusText);
+	}
+
+	return res.data.map((u) => ({
+		id: u.id,
+		email: u.email,
+		fullName: `${u.name} ${u.surname}`,
+	}));
+};
+
 /**
  * verify token and set user data on success
  */
@@ -182,6 +196,7 @@ const login = async (user, remember, dispatch) => {
 
 const toExport = {
 	authToken,
+	getUsersByMatchingText,
 	getUsersByEmail,
 	login,
 	register,

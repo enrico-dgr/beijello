@@ -1,6 +1,7 @@
 import "./Workspace.css";
 
 import BoardPreview from "./BoardPreview";
+import HandleCollaborators from "./HandleCollaborators";
 import NewBoard from "./NewBoard";
 import PropTypes from "prop-types";
 import React from "react";
@@ -19,7 +20,13 @@ const Workspace = (props) => {
 				<span>{props.labelWorkspace}</span>
 				<h2>{props.workspace.name}</h2>
 			</div>
-			<RemoveWorkspace workspaceId={props.workspace.id} />
+			<div className={"workspace__btns"}>
+				<RemoveWorkspace workspaceId={props.workspace.id} />
+				<HandleCollaborators
+					workspaceName={props.workspace.name}
+					workspaceId={props.workspace.id}
+				/>
+			</div>
 			<div className={"workspace__board-preview-list"}>
 				<NewBoard workspaceId={props.workspace.id} />
 				{props.workspace?.boards.map(

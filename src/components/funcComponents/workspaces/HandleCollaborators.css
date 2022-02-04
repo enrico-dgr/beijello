@@ -1,0 +1,117 @@
+.workspace-collaborators svg {
+	height: 25px;
+	transition: all ease 0.3s;
+	width: 25px;
+}
+
+.workspace-collaborators svg path {
+	fill: rgb(26, 67, 204);
+}
+
+.workspace-collaborators svg:hover {
+	-webkit-filter: drop-shadow(1px 1px 8px rgba(26, 67, 204, 0.9));
+	filter: drop-shadow(1px 1px 8px rgba(26, 67, 204, 0.9));
+}
+
+.workspace-collaborators svg:active {
+	transform: translateY(3px);
+}
+
+.workspace-collaborators-modal {
+	align-items: center;
+	background-color: rgba(41, 51, 109, 0.863);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 500px;
+	padding: 20px 15px 5px 15px;
+}
+
+.workspace-collaborators-modal__collabs {
+	color: white;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.workspace-collaborators-modal__query {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.workspace-collaborators-modal__query p {
+	color: white;
+}
+
+.workspace-collaborators-modal__query input {
+	width: 120px;
+}
+
+.workspace-collaborators-modal__users-list {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 200px;
+	height: 200px;
+	max-height: 200px;
+	margin: 8px 0;
+	padding: 4px;
+	overflow-y: scroll;
+}
+
+.workspace-collaborators-modal__users-list::-webkit-scrollbar {
+	display: none;
+}
+
+.workspace-collaborators-modal__user {
+	align-items: center;
+	background-color: rgba(107, 107, 251, 0.39);
+	border-radius: 20px;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin: 2px 0;
+	padding: 6px 12px;
+}
+
+.workspace-collaborators-modal__user--admin {
+	background-color: rgba(251, 128, 107, 0.39);
+}
+
+.workspace-collaborators-modal__user-data {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.workspace-collaborators-modal__user__full-name {
+	font-size: 16px;
+	font-weight: 500;
+	margin: 3px 0;
+}
+
+.workspace-collaborators-modal__user__email {
+	font-size: 10px;
+	font-weight: 500;
+	margin: 3px 0;
+}
+
+.workspace-collaborators-modal > button {
+	background-color: rgba(223, 218, 236, 0.8);
+	border-radius: 35px;
+	box-shadow: 2px 4px 16px rgb(41, 50, 98);
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: 600;
+	padding: 10px;
+	margin: 8px 4px;
+	transition: all ease 0.3s;
+	width: 80px;
+}
+
+.workspace-collaborators-modal > button:hover {
+	background-color: rgb(85, 104, 212);
+	box-shadow: 2px 2px 15px rgba(255, 255, 255, 0.8);
+}

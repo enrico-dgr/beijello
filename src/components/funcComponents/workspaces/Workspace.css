@@ -24,6 +24,12 @@
 	text-align: left;
 }
 
+.workspace__btns {
+	align-items: center;
+	display: flex;
+	justify-content: space-evenly;
+}
+
 .workspace__board-preview-list {
 	display: flex;
 	flex-direction: column;

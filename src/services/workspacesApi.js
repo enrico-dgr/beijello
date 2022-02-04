@@ -39,9 +39,51 @@ const getByUserId = async (userId, dispatch) => {
 	dispatch(setSuccess(resByUserId.data.map((wU) => wU.workspace)));
 };
 
+const getRelations = async (workspaceId) => {
+	const resByWorkspaceId = await workspaces.get(
+		`/workspaceUsers?workspaceId=${workspaceId}&_expand=user`
+	);
+
+	if (resByWorkspaceId.status !== 200) {
+		throw new Error(resByWorkspaceId.statusText);
+	}
+
+	return resByWorkspaceId.data.map((r) => ({
+		...r,
+		user: {
+			id: r.user.id,
+			email: r.user.email,
+			fullName: `${r.user.name} ${r.user.surname}`,
+		},
+	}));
+};
+
 // -----------
 // **POST**
 // -----------
+
+/* adding collaborator */
+const addCollaborator = async (workspaceId, userId) => {
+	const resRelations = await workspaces.get(
+		`/workspaceUsers?workspaceId=${workspaceId}&userId=${userId}`
+	);
+
+	if (resRelations.status !== 200) {
+		throw new Error(resRelations.statusText);
+	} else if (resRelations.data.length > 0) {
+		throw new Error("User has already permissions");
+	}
+
+	const resCreateRelations = await workspaces.post(`/workspaceUsers`, {
+		userId,
+		workspaceId,
+		role: "collaborator",
+	});
+
+	if (resCreateRelations.status !== 201) {
+		throw new Error(resCreateRelations.statusText);
+	}
+};
 
 /* adding workSpaces */
 const create = async ({ name }, userId, dispatch) => {
@@ -142,10 +184,34 @@ const deleteById = async (workspaceId, dispatch) => {
 	dispatch(setSuccessDelete(workspaceId));
 };
 
+/* delete collaborator */
+const deleteCollaborator = async (workspaceId, userId) => {
+	const resRelations = await workspaces.get(
+		`/workspaceUsers?workspaceId=${workspaceId}&userId=${userId}`
+	);
+
+	if (resRelations.status !== 200) {
+		throw new Error(resRelations.statusText);
+	} else if (resRelations.data[0].role === "admin") {
+		throw new Error("Admin cannot be removed");
+	}
+
+	const resCreateRelations = await workspaces.delete(
+		`/workspaceUsers/${resRelations.data[0].id}`
+	);
+
+	if (resCreateRelations.status !== 200) {
+		throw new Error(resCreateRelations.statusText);
+	}
+};
+
 const toExport = {
+	addCollaborator,
 	create,
+	getRelations,
 	deleteById,
 	getByUserId,
+	deleteCollaborator,
 	update,
 };
 
