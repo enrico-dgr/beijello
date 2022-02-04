@@ -10,6 +10,7 @@ import SubmitButton from "../SubmitButton";
 import Ticket from "./Ticket.js";
 import TicketForm from "./TicketForm";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const TicketList = (props) => {
 	const { ticketList } = props;
@@ -17,7 +18,7 @@ const TicketList = (props) => {
 		showTicketForm: false,
 		ticketToEdit: {},
 	});
-
+	const { t } = useTranslation();
 	const closeModal = () => {
 		setState({
 			...state,
@@ -54,7 +55,7 @@ const TicketList = (props) => {
 								<FontAwesomeIcon
 									icon={faPlus}
 								/>{" "}
-								Aggiungi ticket
+								{t("TicketList.AddTicket")}
 							</>
 						}
 						onClick={onClickAdd}

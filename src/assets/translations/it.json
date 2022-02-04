@@ -79,5 +79,25 @@
 	},
 	"Board": {
 		"NewList": "Aggiungi lista"
+	},
+	"NewTicketListModal": {
+		"NewTitle": "Inserisci titolo lista",
+		"BtnCreate": "Crea",
+		"BtnCancel": "Cancella"
+	},
+	"NewTicketModal": {
+		"Title": "Titolo",
+		"Description": "Descrizione",
+		"MissingTitle": "Titolo mancante",
+		"InsertTitle" : "Inserisci titolo",
+		"MissingDescription": "Descrizione mancante",
+		"InsertDescription" : "Inserisci descrizione",
+		"ChooseTicketFlag": "Scegli etichetta",
+		"MoveToOtherList": "Sposta in altra lista",
+		"BtnCreate": "Crea",
+		"BtnCancel": "Cancella"
+	},
+	"TicketList":{
+		"AddTicket": "Aggiungi ticket"
 	}
 }
