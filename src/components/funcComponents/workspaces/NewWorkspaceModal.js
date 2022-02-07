@@ -1,16 +1,13 @@
 import "./NewWorkspaceModal.css";
 
 import Input from "../UI/input/Input";
-/* funcComponents */
 import Modal from "../Modal";
 import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
-/* redux */
 import { connect } from "react-redux";
-import { toast } from "react-toastify";
+import { createWorkspace } from "../../../services/workspaceApi";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import workspacesAPI from "../../../services/workspacesApi";
 
 const mapStateToProps = (state) => {
 	return {
@@ -34,30 +31,18 @@ const WorkSpaceModal = (props) => {
 	};
 
 	const handlerHideModal = () => {
-		if (props.callBackHideModal !== undefined) {
-			props.callBackHideModal();
-		}
+		props.onHideModal();
 	};
 
 	/*adding New Work workspace */
 	const addNewWorkspace = () => {
-		workspacesAPI
-			.create({ name: state.name }, props.user.id, props.dispatch)
-			.catch((err) =>
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				})
-			);
+		createWorkspace(
+			{ name: state.name },
+			props.user.id,
+			props.dispatch
+		);
 
-		if (props.callBackHideModal !== undefined) {
-			props.callBackHideModal();
-		}
+		props.onHideModal();
 	};
 
 	return (
@@ -88,10 +73,12 @@ const WorkSpaceModal = (props) => {
 	);
 };
 
-WorkSpaceModal.defaultProps = {};
+WorkSpaceModal.defaultProps = {
+	onHideModal: () => undefined,
+};
 
 WorkSpaceModal.propTypes = {
-	callBackHideModal: PropTypes.func,
+	onHideModal: PropTypes.func,
 };
 
 export default connect(mapStateToProps)(WorkSpaceModal);

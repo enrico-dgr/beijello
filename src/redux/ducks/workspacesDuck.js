@@ -1,26 +1,25 @@
 import { STATUS } from "../api";
 
+const ACTIONS = {
+	GET: "web/workspaces/get/",
+	CREATE: "web/workspaces/create/",
+	UPDATE: "web/workspaces/update/",
+	DELETE: "web/workspaces/delete/",
+};
+
 const IDLE = "web/workspaces/" + STATUS.IDLE;
 const LOADING = "web/workspaces/" + STATUS.LOADING;
 const FAILURE = "web/workspaces/" + STATUS.FAILURE;
 const SUCCESS = "web/workspaces/" + STATUS.SUCCESS;
-const UPDATE_SUCCESS = "web/workspaces/update/" + STATUS.SUCCESS;
-const DELETE_SUCCESS = "web/workspaces/delete/" + STATUS.SUCCESS;
 
 export const setIdle = () => ({
 	type: IDLE,
-	payload: {
-		error: "",
-		status: STATUS.IDLE,
-		workspaces: [],
-	},
+	payload: {},
 });
 
 export const setLoading = () => ({
 	type: LOADING,
-	payload: {
-		status: STATUS.LOADING,
-	},
+	payload: {},
 });
 
 /**
@@ -31,27 +30,42 @@ export const setFailure = (errorMessage) => ({
 	type: FAILURE,
 	payload: {
 		error: errorMessage,
-		status: STATUS.FAILURE,
 	},
 });
 
+/**
+ * @deprecated use `setSuccessGet`
+ */
 export const setSuccess = (workspaces) => ({
 	type: SUCCESS,
 	payload: {
-		status: STATUS.SUCCESS,
 		workspaces,
 	},
 });
 
+export const setSuccessGet = (workspaces) => ({
+	type: ACTIONS.GET + STATUS.SUCCESS,
+	payload: {
+		workspaces,
+	},
+});
+
+export const setSuccessCreate = (workspace) => ({
+	type: ACTIONS.CREATE + STATUS.SUCCESS,
+	payload: {
+		workspace,
+	},
+});
+
 export const setSuccessUpdate = (workspace) => ({
-	type: UPDATE_SUCCESS,
+	type: ACTIONS.UPDATE + STATUS.SUCCESS,
 	payload: {
 		workspace,
 	},
 });
 
 export const setSuccessDelete = (workspaceId) => ({
-	type: DELETE_SUCCESS,
+	type: ACTIONS.DELETE + STATUS.SUCCESS,
 	payload: {
 		workspaceId,
 	},
@@ -69,14 +83,42 @@ export default function workspaceDuck(state = INIT_STATE, action) {
 
 	switch (action.type) {
 		case IDLE:
-			return { ...state, ...action.payload };
+			return {
+				...state,
+				error: "",
+				status: STATUS.IDLE,
+				workspaces: [],
+			};
 		case LOADING:
-			return { ...state, ...action.payload };
+			return { ...state, status: STATUS.LOADING };
 		case FAILURE:
-			return { ...state, ...action.payload };
+			return {
+				...state,
+				error: action.payload.error,
+				status: STATUS.FAILURE,
+			};
 		case SUCCESS:
-			return { ...state, ...action.payload };
-		case UPDATE_SUCCESS:
+			return {
+				...state,
+				status: STATUS.SUCCESS,
+				workspaces: action.payload.workspaces,
+			};
+		case ACTIONS.GET + STATUS.SUCCESS:
+			return {
+				...state,
+				status: STATUS.SUCCESS,
+				workspaces: action.payload.workspaces,
+			};
+		case ACTIONS.CREATE + STATUS.SUCCESS:
+			return {
+				...state,
+				status: STATUS.SUCCESS,
+				workspaces: [
+					...state.workspaces,
+					action.payload.workspace,
+				],
+			};
+		case ACTIONS.UPDATE + STATUS.SUCCESS:
 			workspaceIndex = state.workspaces.findIndex(
 				(w) => w.id === action.payload.workspace.id
 			);
@@ -90,7 +132,7 @@ export default function workspaceDuck(state = INIT_STATE, action) {
 
 			return {
 				...state,
-				status: SUCCESS,
+				status: STATUS.SUCCESS,
 				workspaces: [
 					...state.workspaces.slice(0, workspaceIndex),
 					action.payload.workspace,
@@ -98,14 +140,15 @@ export default function workspaceDuck(state = INIT_STATE, action) {
 				],
 			};
 
-		case DELETE_SUCCESS:
+		case ACTIONS.DELETE + STATUS.SUCCESS:
 			return {
 				...state,
-				status: SUCCESS,
+				status: STATUS.SUCCESS,
 				workspaces: state.workspaces.filter(
 					(w) => w.id !== action.payload.workspaceId
 				),
 			};
+
 		default:
 			return state;
 	}

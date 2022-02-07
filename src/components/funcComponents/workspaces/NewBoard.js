@@ -7,9 +7,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
-import { toast } from "react-toastify";
+import { createBoard } from "../../../services/workspaceApi";
 import { useTranslation } from "react-i18next";
-import workspacesAPI from "../../../services/workspacesApi";
 
 const mapStateToProps = (state) => ({
 	email: state.userMeDuck.user?.email,
@@ -50,34 +49,11 @@ const NewBoard = (props) => {
 	};
 
 	const addNewBoard = () => {
-		let workspace = props.workspaces.find(
-			(w) => w.id === props.workspaceId
-		);
-
-		const newId =
-			workspace.boards.length === 0
-				? 1
-				: workspace.boards[workspace.boards.length - 1].id + 1;
-
-		workspace.boards.push({
-			...state.boardData,
-			id: newId,
-			ticketLists: [],
+		createBoard({
+			name: state.boardData.name,
+			layout: state.boardData.layout,
+			workspaceId: props.workspaceId,
 		});
-
-		workspacesAPI
-			.update(workspace, props.userId, props.dispatch)
-			.catch((err) => {
-				toast.error(err, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				});
-			});
 
 		hideModal();
 	};

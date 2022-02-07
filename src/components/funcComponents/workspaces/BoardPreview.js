@@ -2,7 +2,7 @@ import "./BoardPreview.css";
 
 import PropTypes from "prop-types";
 import React from "react";
-import RemoveBoard from "./RemoveBoard";
+// import RemoveBoard from "./RemoveBoard";
 import { useNavigate } from "react-router-dom";
 
 const BoardPreview = (props) => {
@@ -19,11 +19,11 @@ const BoardPreview = (props) => {
 			<div className={"board-preview"} onClick={navigateToBoard}>
 				<p>{props.boardName}</p>
 			</div>
-			<RemoveBoard
+			{/* <RemoveBoard
 				boardId={props.boardId}
 				classNameContainer="delete-board"
 				workspaceId={props.workspaceId}
-			/>
+			/> */}
 		</div>
 	);
 };

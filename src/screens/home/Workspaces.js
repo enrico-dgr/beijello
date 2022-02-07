@@ -2,14 +2,11 @@ import "./Workspaces.css";
 
 import React, { Component } from "react";
 
-/* funcComponents */
 import Button from "../../components/funcComponents/UI/button/Button";
-import WorkSpaceModal from "../../components/funcComponents/workspaces/NewWorkspaceModal";
+import NewWorkspaceModal from "../../components/funcComponents/workspaces/NewWorkspaceModal";
 import Workspace from "../../components/funcComponents/workspaces/Workspace";
-/* redux */
 import { connect } from "react-redux";
 import { t } from "i18next";
-/* i18next */
 import { withTranslation } from "react-i18next";
 
 const mapStateToProps = (state) => {
@@ -44,9 +41,7 @@ class Workspaces extends Component {
 		return (
 			<div className="workspaces-container">
 				{this.state.modalflag && (
-					<WorkSpaceModal
-						callBackHideModal={this.hideModal}
-					/>
+					<NewWorkspaceModal onHideModal={this.hideModal} />
 				)}
 				<div className="cover-workspaces">
 					<div className="workspace-button-create">
@@ -66,7 +61,7 @@ class Workspaces extends Component {
 	}
 
 	RenderWorkspaces = (w, i) =>
-		!!w && (
+		!!w.id && (
 			<div className="workspace-container" key={i + "workspace-ma"}>
 				<Workspace
 					workspace={w}
