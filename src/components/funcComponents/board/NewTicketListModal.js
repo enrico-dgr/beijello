@@ -4,16 +4,16 @@ import Modal from "../Modal";
 import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
+import { createTicketList } from "../../../services/workspaceApi";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import workspacesApi from "../../../services/workspacesApi";
 
 const NewTicketListModal = (props) => {
 	const params = useParams();
 	const { t } = useTranslation();
 	const [state, setState] = useState({
-		ticketListTitle: null,
+		ticketListName: null,
 	});
 
 	const takeinput = (e) => {
@@ -21,39 +21,20 @@ const NewTicketListModal = (props) => {
 
 		setState({
 			...state,
-			ticketListTitle: value,
+			ticketListName: value,
 		});
 	};
 
 	const addTicketList = () => {
-		let newTicketList = {
-			name: state.ticketListTitle,
-			tickets: [],
-		};
+		const board = props.workspaces
+			.find((w) => w.id === parseInt(params.workspaceId))
+			?.boards?.find((b) => b.id === parseInt(params.boardId));
 
-		let workspace = props.workspaces.find(
-			(w) => w.id === parseInt(params.workspaceId)
+		createTicketList(
+			{ name: state.ticketListName, board },
+			props.userId,
+			props.dispatch
 		);
-
-		const indexBoard = workspace.boards.findIndex(
-			(b) => b.id === parseInt(params.boardId)
-		);
-
-		const newId =
-			workspace.boards[indexBoard].ticketLists.length === 0
-				? 1
-				: workspace.boards[indexBoard].ticketLists[
-						workspace.boards[indexBoard].ticketLists
-							.length - 1
-				  ].id + 1;
-
-		workspace.boards[indexBoard].ticketLists.push({
-			...newTicketList,
-			id: newId,
-		});
-
-		// save update
-		workspacesApi.update(workspace, props.userId, props.dispatch);
 
 		props.onClickButton();
 	};

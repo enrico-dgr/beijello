@@ -11,9 +11,7 @@ import { createBoard } from "../../../services/workspaceApi";
 import { useTranslation } from "react-i18next";
 
 const mapStateToProps = (state) => ({
-	email: state.userMeDuck.user?.email,
 	userId: state.userMeDuck.user?.id,
-
 	workspaces: state.workspacesDuck.workspaces,
 });
 
@@ -49,11 +47,15 @@ const NewBoard = (props) => {
 	};
 
 	const addNewBoard = () => {
-		createBoard({
-			name: state.boardData.name,
-			layout: state.boardData.layout,
-			workspaceId: props.workspaceId,
-		});
+		createBoard(
+			{
+				name: state.boardData.name,
+				layout: state.boardData.layout,
+				workspaceId: props.workspaceId,
+			},
+			props.userId,
+			props.dispatch
+		);
 
 		hideModal();
 	};

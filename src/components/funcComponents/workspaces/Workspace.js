@@ -28,7 +28,7 @@ const Workspace = (props) => {
 			</div> */}
 			<div className={"workspace__board-preview-list"}>
 				<NewBoard workspaceId={props.workspace.id} />
-				{props.workspace?.boards.map(
+				{props.workspace?.boards?.map(
 					MapPreview(props.workspace)
 				)}
 			</div>
@@ -36,18 +36,16 @@ const Workspace = (props) => {
 	);
 };
 
-// assign keys to each BoardPreview
 const MapPreview = (workspace) => (board, i) =>
 	!!board.id && (
-		<div key={i + "board-preview-ke"}>
-			<BoardPreview
-				layout={board.layout}
-				boardId={board.id}
-				boardName={board.name}
-				workspaceId={workspace.id}
-				workspaceName={workspace.name}
-			/>
-		</div>
+		<BoardPreview
+			layout={board.layout}
+			boardId={board.id}
+			boardName={board.name}
+			key={i + "board-preview-ke" + board.name + board.id}
+			workspaceId={workspace.id}
+			workspaceName={workspace.name}
+		/>
 	);
 
 Workspace.propTypes = {

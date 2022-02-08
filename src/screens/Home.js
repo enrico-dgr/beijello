@@ -6,12 +6,11 @@ import { KEYS } from "../utils/localStorage";
 import React from "react";
 import SwitchLanguage from "../components/funcComponents/SwitchLanguage";
 import { connect } from "react-redux";
+import { getWorkspacesByUserId } from "../services/workspaceApi";
 import { setIdle } from "../redux/ducks/userMeDuck";
-import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import users from "../services/usersApi";
-import workspaces from "../services/workspacesApi";
 
 const mapStateToProps = (state) => ({
 	user: state.userMeDuck.user,
@@ -59,19 +58,7 @@ const Home = (props) => {
 			navigate("/auth/login");
 		} else if (!!props.user?.id) {
 			// (3)
-			workspaces
-				.getByUserId(props.user.id, props.dispatch)
-				.catch((err) => {
-					toast.error(err.message, {
-						position: "top-center",
-						autoClose: 5000,
-						hideProgressBar: false,
-						closeOnClick: true,
-						pauseOnHover: true,
-						draggable: true,
-						progress: undefined,
-					});
-				});
+			getWorkspacesByUserId(props.user.id, props.dispatch);
 		}
 	}, [props.user, props.dispatch, navigate]);
 

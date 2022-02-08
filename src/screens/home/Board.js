@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Board = (props) => {
-	const [board, setBoard] = useState(undefined);
+	const [board, setBoard] = useState({});
 	const [modalFlag, setModalFlag] = useState(false);
 	const params = useParams();
 	const { t } = useTranslation();
@@ -21,19 +21,20 @@ const Board = (props) => {
 	useEffect(() => {
 		if (
 			props.workspaces.length > 0 &&
-			params.boardName !== undefined &&
-			params.workspaceName !== undefined
+			params.boardId !== undefined &&
+			params.workspaceId !== undefined
 		) {
 			/* find board to show */
-			const newBoard = props.workspaces
-				.find((w) => w.name === params.workspaceName)
-				.boards.find((b) => b.name === params.boardName);
+			const boardToShow = props.workspaces
+				.find((w) => w.id === parseInt(params.workspaceId))
+				?.boards?.find(
+					(b) => b.id === parseInt(params.boardId)
+				);
 
-			setBoard(newBoard);
+			setBoard(boardToShow ?? {});
 		}
 	}, [params, props.workspaces]);
 
-	/* manage modal */
 	const openModal = () => {
 		setModalFlag(true);
 	};
@@ -47,7 +48,7 @@ const Board = (props) => {
 				<div className="board-header-top">
 					<h3>
 						<span>{t("Board.LabelBoard")}:</span>{" "}
-						{!!board && board.name}
+						{board.name}
 					</h3>
 				</div>
 				<div className="board-header-bottom">
@@ -59,7 +60,10 @@ const Board = (props) => {
 				</div>
 			</header>
 			<div className="board-ticketLists">
-				{!!board && board.ticketLists.map(RenderTicketList)}
+				{!!board.id &&
+					props.workspaces?.ticketLists
+						?.filter(filterLists(board.id))
+						.map(RenderTicketList)}
 			</div>
 
 			{modalFlag && (
@@ -69,16 +73,12 @@ const Board = (props) => {
 	);
 };
 
-const RenderTicketList = (ticketList, i) => {
-	return (
-		!!ticketList.id && (
-			<TicketList
-				key={ticketList.name + i}
-				ticketList={ticketList}
-			/>
-		)
-	);
-};
+const filterLists = (boardId) => (ticketList, i) =>
+	boardId === ticketList.boardId;
+
+const RenderTicketList = (ticketList, i) => (
+	<TicketList key={ticketList.name + i} ticketList={ticketList} />
+);
 
 const mapStateToProps = (state) => ({
 	workspaces: state.workspacesDuck.workspaces,

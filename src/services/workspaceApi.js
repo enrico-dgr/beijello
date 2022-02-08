@@ -47,11 +47,19 @@ const comments = axios.create({
 });
 
 /** */
-const getWorkspaceById = (workspaceId) => workspaces.get(`/${workspaceId}`);
+const getFullWorkspaceById = (workspaceId) => {
+	const embed = concatQueries("_embed", [
+		"boards",
+		"ticketLists",
+		"tickets",
+	]);
+
+	return workspaces.get(`/${workspaceId}?${embed}`);
+};
 
 /** */
 const reloadByIdAfterUpdate = async (workspaceId, dispatch) => {
-	const res = await getWorkspaceById(workspaceId);
+	const res = await getFullWorkspaceById(workspaceId);
 
 	if (res.status !== 200) {
 		errorToast("Couldn't load updated data, try to reload page.");

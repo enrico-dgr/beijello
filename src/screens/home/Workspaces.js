@@ -23,7 +23,6 @@ class Workspaces extends Component {
 		};
 	}
 
-	/* modal view METHODS */
 	hideModal = () => {
 		this.setState({
 			modalflag: false,
