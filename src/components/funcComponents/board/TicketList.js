@@ -9,6 +9,7 @@ import RemoveTicketList from "./RemoveTicketList";
 import SubmitButton from "../SubmitButton";
 import Ticket from "./Ticket.js";
 import TicketForm from "./TicketForm";
+import { connect } from "react-redux";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
@@ -67,16 +68,23 @@ const TicketList = (props) => {
 			</header>
 			{/* Tickes */}
 			<div className="ticketList-tickets-container">
-				{ticketList.tickets.map(
-					RenderTicket(onClickEdit, props.ticketList.id)
-				)}
+				{props.workspaces
+					.find(
+						(w) => w.id === props.ticketList.workspaceId
+					)
+					?.tickets.map(
+						RenderTicket(
+							onClickEdit,
+							props.ticketList.id
+						)
+					)}
 			</div>
 			{/* Modals */}
 			{state.showTicketForm && (
 				<Modal>
 					<TicketForm
 						ticket={state.ticketToEdit}
-						ticketListId={ticketList.id}
+						ticketList={ticketList}
 						onClickCancel={closeModal}
 						onSave={closeModal}
 					/>
@@ -88,12 +96,12 @@ const TicketList = (props) => {
 
 const RenderTicket = (onClickEdit, ticketListId) => (ticket, i) => {
 	return (
-		!!ticket.title && (
+		!!ticket.title &&
+		ticketListId === ticket.ticketListId && (
 			<Ticket
 				key={ticket.title + i}
 				onClickEdit={onClickEdit}
 				ticket={ticket}
-				ticketListId={ticketListId}
 			/>
 		)
 	);
@@ -103,4 +111,8 @@ TicketList.propTypes = {
 	ticketList: PropTypes.object.isRequired,
 };
 
-export default TicketList;
+const mapStateToProps = (state) => ({
+	workspaces: state.workspacesDuck.workspaces,
+});
+
+export default connect(mapStateToProps)(TicketList);

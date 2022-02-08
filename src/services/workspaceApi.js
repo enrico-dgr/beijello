@@ -217,7 +217,6 @@ const createBoard = async ({ name, layout, workspaceId }, userId, dispatch) => {
 		throw new Error(permissionError);
 	}
 
-	// CREATE board
 	const res = await boards.post(`/`, {
 		name,
 		layout,
@@ -246,7 +245,6 @@ const createTicketList = async ({ name, board }, userId, dispatch) => {
 		throw new Error(permissionError);
 	}
 
-	// CREATE board
 	const res = await ticketLists.post(`/`, {
 		name,
 		workspaceId: board.workspaceId,
@@ -279,7 +277,6 @@ const createTicket = async (
 		throw new Error(permissionError);
 	}
 
-	// CREATE board
 	const res = await tickets.post(`/`, {
 		title,
 		description,
@@ -311,7 +308,6 @@ const createComment = async ({ text, ticket, userId }, dispatch) => {
 		throw new Error(permissionError);
 	}
 
-	// CREATE board
 	const res = await comments.post(`/`, {
 		text,
 		workspaceId: ticket.workspaceId,
@@ -328,6 +324,41 @@ const createComment = async ({ text, ticket, userId }, dispatch) => {
 	}
 
 	reloadByIdAfterUpdate(ticket.workspaceId, dispatch);
+};
+
+const updateTicket = async (
+	{ id, title, description, tag, workspaceId, boardId, ticketListId },
+	userId,
+	dispatch
+) => {
+	dispatch(setLoading());
+
+	const permissionError = await checkPermissionToUpdateWorkspace(
+		workspaceId,
+		userId
+	);
+
+	if (permissionError !== "") {
+		dispatch(setFailure(permissionError));
+		throw new Error(permissionError);
+	}
+
+	const res = await tickets.put(`/${id}`, {
+		title,
+		description,
+		tag,
+		workspaceId,
+		boardId,
+		ticketListId,
+	});
+
+	if (res.status !== 200) {
+		errorToast("Couldn't update ticket, retry later.");
+		dispatch(setFailure(res.statusText));
+		throw new Error(res.statusText);
+	}
+
+	reloadByIdAfterUpdate(workspaceId, dispatch);
 };
 
 const checkAdminRole = async (workspaceId, userId) => {
@@ -347,7 +378,7 @@ const checkAdminRole = async (workspaceId, userId) => {
 	return error;
 };
 
-const deleteById = async (workspaceId, userId, dispatch) => {
+const deleteWorkspaceById = async (workspaceId, userId, dispatch) => {
 	const permissionError = await checkAdminRole(workspaceId, userId);
 
 	if (permissionError !== "") {
@@ -364,7 +395,87 @@ const deleteById = async (workspaceId, userId, dispatch) => {
 	dispatch(setSuccessDelete(workspaceId));
 };
 
-/* delete collaborator */
+const deleteBoardById = async (board, userId, dispatch) => {
+	const permissionError = await checkAdminRole(board.workspaceId, userId);
+
+	if (permissionError !== "") {
+		dispatch(setFailure(permissionError));
+		throw new Error(permissionError);
+	}
+
+	const res = await boards.delete(`/${board.id}`);
+
+	if (res.status !== 200) {
+		throw new Error("Error while deleting board");
+	}
+
+	reloadByIdAfterUpdate(board.workspaceId, dispatch);
+};
+
+const deleteTicketListById = async (ticketList, userId, dispatch) => {
+	const permissionError = await checkAdminRole(
+		ticketList.workspaceId,
+		userId
+	);
+
+	if (permissionError !== "") {
+		dispatch(setFailure(permissionError));
+		throw new Error(permissionError);
+	}
+
+	const res = await ticketLists.delete(`/${ticketList.id}`);
+
+	if (res.status !== 200) {
+		throw new Error("Error while deleting ticket list");
+	}
+
+	reloadByIdAfterUpdate(ticketList.workspaceId, dispatch);
+};
+
+const deleteTicketById = async (ticket, userId, dispatch) => {
+	const permissionError = await checkAdminRole(ticket.workspaceId, userId);
+
+	if (permissionError !== "") {
+		dispatch(setFailure(permissionError));
+		throw new Error(permissionError);
+	}
+
+	const res = await tickets.delete(`/${ticket.id}`);
+
+	if (res.status !== 200) {
+		throw new Error("Error while deleting ticket");
+	}
+
+	reloadByIdAfterUpdate(ticket.workspaceId, dispatch);
+};
+
+const deleteCommentById = async (comment, userId, dispatch) => {
+	const permissionError = await checkAdminRole(comment.workspaceId, userId);
+
+	if (permissionError !== "") {
+		dispatch(setFailure(permissionError));
+		throw new Error(permissionError);
+	}
+
+	const resCommentOwner = await comments.get(`/${comment.id}`);
+
+	if (resCommentOwner.status !== 200) {
+		dispatch(setFailure("Error while checking ownerships"));
+		throw new Error(resCommentOwner.statusText);
+	} else if (resCommentOwner.data.userId !== userId) {
+		dispatch(setFailure("You're not the owner of the comment"));
+		throw new Error("Not the owener");
+	}
+
+	const res = await comments.delete(`/${comment.id}`);
+
+	if (res.status !== 200) {
+		throw new Error("Error while deleting comment");
+	}
+
+	reloadByIdAfterUpdate(comment.workspaceId, dispatch);
+};
+
 const deleteCollaborator = async (workspaceId, userId, userIdToDelete) => {
 	const permissionError = await checkAdminRole(workspaceId, userId);
 
@@ -399,6 +510,11 @@ export {
 	createTicketList,
 	createTicket,
 	createComment,
-	deleteById,
+	updateTicket,
+	deleteWorkspaceById,
+	deleteBoardById,
+	deleteTicketListById,
+	deleteTicketById,
+	deleteCommentById,
 	deleteCollaborator,
 };

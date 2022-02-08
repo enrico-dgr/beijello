@@ -5,9 +5,8 @@ import Modal from "../Modal";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
+import { deleteTicketById } from "../../../services/workspaceApi";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-toastify";
-import workspacesApi from "../../../services/workspacesApi";
 import { useParams } from "react-router-dom";
 
 const mapStateToProps = (state) => ({
@@ -34,38 +33,13 @@ const RemoveTicket = (props) => {
 	const deleteTicket = (e) => {
 		e.stopPropagation();
 
-		let workspace = props.workspaces.find(
-			(w) => w.id === parseInt(params.workspaceId)
+		const ticket = props.workspaces
+			.find((w) => w.id === parseInt(params.workspaceId))
+			.tickets.find((t) => t.id === props.ticketId);
+
+		deleteTicketById(ticket, props.userId, props.dispatch).then(() =>
+			hideModal()
 		);
-
-		const indexBoard = workspace.boards.findIndex(
-			(b) => b.id === parseInt(params.boardId)
-		);
-
-		const ticketListIndex = workspace.boards[
-			indexBoard
-		].ticketLists.findIndex((t) => t.id === props.ticketListId);
-
-		workspace.boards[indexBoard].ticketLists[ticketListIndex].tickets =
-			workspace.boards[indexBoard].ticketLists[
-				ticketListIndex
-			].tickets.filter((t) => t.id !== props.ticketId);
-
-		workspacesApi
-			.update(workspace, props.userId, props.dispatch)
-			.catch((err) =>
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				})
-			);
-
-		hideModal();
 	};
 
 	return (
@@ -96,7 +70,6 @@ RemoveTicket.defaultProps = {
 RemoveTicket.propTypes = {
 	classNameContainer: PropTypes.string,
 	ticketId: PropTypes.number.isRequired,
-	ticketListId: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(RemoveTicket);

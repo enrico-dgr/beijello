@@ -1,12 +1,11 @@
 import "./Ticket.css";
-import PropTypes from "prop-types";
-import React from "react";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "../UI/button/Button";
-/* fontawesome */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
+import React from "react";
 import RemoveTicket from "./RemoveTicket";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 const Ticket = (props) => {
 	const { ticket } = props;
@@ -27,10 +26,7 @@ const Ticket = (props) => {
 				</p>
 			</div>
 			<div className={"ticket-btns"}>
-				<RemoveTicket
-					ticketId={props.ticket.id}
-					ticketListId={props.ticketListId}
-				/>
+				<RemoveTicket ticketId={props.ticket.id} />
 				<Button className={"ticketBtn"} onClick={onClickEdit}>
 					<FontAwesomeIcon icon={faEdit} />
 				</Button>
@@ -42,7 +38,6 @@ const Ticket = (props) => {
 Ticket.propTypes = {
 	onClickEdit: PropTypes.func.isRequired,
 	ticket: PropTypes.object.isRequired,
-	ticketListId: PropTypes.number.isRequired,
 };
 
 export default Ticket;

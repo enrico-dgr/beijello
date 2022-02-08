@@ -1,20 +1,13 @@
 import "./TicketForm.css";
 
 import React, { useEffect, useState } from "react";
-import { getNewTicketId, moveTicketToListEnd } from "../../../utils/workspace";
+import { createTicket, updateTicket } from "../../../services/workspaceApi";
 
 import PropTypes from "prop-types";
 import SubmitButton from "../SubmitButton";
 import { connect } from "react-redux";
-import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import workspacesApi from "../../../services/workspacesApi";
-
-const mapStateToProps = (state) => ({
-	workspaces: state.workspacesDuck.workspaces,
-	userId: state.userMeDuck.user.id,
-});
 
 const TicketForm = (props) => {
 	const params = useParams();
@@ -24,7 +17,6 @@ const TicketForm = (props) => {
 	const [state, setState] = useState({
 		ticket: props.ticket,
 		lists: undefined,
-		listId: props.ticketListId,
 		errorFlag: false,
 	});
 
@@ -33,11 +25,11 @@ const TicketForm = (props) => {
 			...pS,
 			lists: props.workspaces
 				// find workspace
-				.find((w) => w.id === parseInt(params.workspaceId))
-				// find board
-				?.boards.find((b) => b.id === parseInt(params.boardId))
+				?.find((w) => w.id === parseInt(params.workspaceId))
+				?.ticketLists // belonging to the board
+				.filter((t) => t.boardId === parseInt(params.boardId))
 				// map info
-				?.ticketLists.map((t) => ({
+				.map((t) => ({
 					name: t.name,
 					id: t.id,
 				})),
@@ -74,47 +66,23 @@ const TicketForm = (props) => {
 			(w) => w.id === parseInt(params.workspaceId)
 		);
 
-		const indexBoard = workspace.boards.findIndex(
-			(b) => b.id === parseInt(params.boardId)
+		let ticket = workspace.tickets.find(
+			(t) => t.id === state.ticket.id
 		);
 
-		const indexTicketList = workspace.boards[
-			indexBoard
-		].ticketLists.findIndex((t) => t.id === state.listId);
+		ticket.ticketListId = toListId;
 
-		const ticketPosition = workspace.boards[indexBoard].ticketLists[
-			indexTicketList
-		].tickets.findIndex((t) => t.id === state.ticket.id);
-
-		workspace = moveTicketToListEnd({
-			workspace,
-			indexBoard,
-			fromListId: state.listId,
-			fromTicketPosition: ticketPosition,
-			toListId,
-		});
-
-		workspacesApi
-			.update(workspace, props.userId, props.dispatch)
-			.then(() => {
+		updateTicket(ticket, props.userId, props.dispatch)
+			.then(() =>
 				setState({
 					...state,
-					listId: toListId,
-				});
-			})
-			.catch((err) => {
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				});
-
-				props.onClickCancel();
-			});
+					ticket: {
+						...state.ticket,
+						ticketListId: toListId,
+					},
+				})
+			)
+			.catch(() => props.onClickCancel());
 	};
 
 	/** props callbacks handlers */
@@ -140,54 +108,35 @@ const TicketForm = (props) => {
 			(w) => w.id === parseInt(params.workspaceId)
 		);
 
-		const indexBoard = workspace.boards.findIndex(
-			(b) => b.id === parseInt(params.boardId)
-		);
-
-		const indexTicketList = workspace.boards[
-			indexBoard
-		].ticketLists.findIndex((t) => t.id === state.listId);
-
 		if (!state.ticket.id) {
 			// new ticket
-			workspace.boards[indexBoard].ticketLists[
-				indexTicketList
-			].tickets.push({
-				...state.ticket,
-				id: getNewTicketId(
-					workspace,
-					indexBoard,
-					indexTicketList
-				),
-			});
+			workspace.tickets.push(state.ticket);
+			createTicket(
+				{
+					title: state.ticket.title,
+					description: state.ticket.title,
+					tag: state.ticket.tag,
+					ticketList: props.ticketList,
+				},
+				props.userId,
+				props.dispatch
+			).then(() => props.onSave());
 		} else {
-			// edit existing ticket
-			workspace.boards[indexBoard].ticketLists[
-				indexTicketList
-			].tickets = workspace.boards[indexBoard].ticketLists[
-				indexTicketList
-			].tickets.map((t) => {
-				if (t.id === state.ticket.id) {
-					return state.ticket;
-				}
-				return t;
-			});
-		}
-
-		workspacesApi
-			.update(workspace, props.userId, props.dispatch)
-			.then(() => props.onSave())
-			.catch((err) =>
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				})
+			let workspace = props.workspaces.find(
+				(w) => w.id === parseInt(params.workspaceId)
 			);
+
+			let ticket = {
+				...workspace.tickets.find(
+					(t) => t.id === state.ticket.id
+				),
+				...state.ticket,
+			};
+
+			updateTicket(ticket, props.userId, props.dispatch).then(() =>
+				props.onSave()
+			);
+		}
 	};
 
 	return (
@@ -247,7 +196,7 @@ const TicketForm = (props) => {
 				<label>{t("TicketForm.MoveToOtherList")}</label>
 				{
 					<select
-						value={state.listId}
+						value={state.ticket.ticketListId}
 						onChange={onChangeTicketList}
 					>
 						{!!state.lists &&
@@ -282,12 +231,17 @@ TicketForm.propTypes = {
 	onClickCancel: PropTypes.func,
 	onSave: PropTypes.func,
 	ticket: PropTypes.object.isRequired,
-	ticketListId: PropTypes.number.isRequired,
+	ticketList: PropTypes.object.isRequired,
 };
 
 TicketForm.defaultProps = {
 	onClickCancel: () => undefined,
 	onSave: () => undefined,
 };
+
+const mapStateToProps = (state) => ({
+	workspaces: state.workspacesDuck.workspaces,
+	userId: state.userMeDuck.user.id,
+});
 
 export default connect(mapStateToProps)(TicketForm);

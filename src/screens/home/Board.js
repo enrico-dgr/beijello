@@ -61,8 +61,13 @@ const Board = (props) => {
 			</header>
 			<div className="board-ticketLists">
 				{!!board.id &&
-					props.workspaces?.ticketLists
-						?.filter(filterLists(board.id))
+					props.workspaces
+						.find(
+							(w) =>
+								w.id ===
+								parseInt(params.workspaceId)
+						)
+						?.ticketLists?.filter(filterLists(board.id))
 						.map(RenderTicketList)}
 			</div>
 
@@ -73,11 +78,13 @@ const Board = (props) => {
 	);
 };
 
-const filterLists = (boardId) => (ticketList, i) =>
-	boardId === ticketList.boardId;
+const filterLists = (boardId) => (ticketList) => boardId === ticketList.boardId;
 
 const RenderTicketList = (ticketList, i) => (
-	<TicketList key={ticketList.name + i} ticketList={ticketList} />
+	<TicketList
+		key={ticketList.name + i + ticketList.id}
+		ticketList={ticketList}
+	/>
 );
 
 const mapStateToProps = (state) => ({

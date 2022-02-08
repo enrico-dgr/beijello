@@ -1,85 +1,199 @@
 {
-	"users": [
-		{
-			"name": "Enrico",
-			"surname": "Di Grazia",
-			"date": "1998-04-05",
-			"gender": "Male",
-			"phone": "3922958942",
-			"email": "enrico.digrazia98@gmail.com",
-			"password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
-			"maritalStatus": "single",
-			"id": 1
-		},
-		{
-			"name": "Armando",
-			"surname": "Trallallero Di Cognome",
-			"date": "1998-03-02",
-			"gender": "Male",
-			"phone": "3762959943",
-			"email": "armando.trallallerodicognome98@gmail.com",
-			"password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
-			"maritalStatus": "single",
-			"id": 2
-		},
-		{
-			"name": "grace2",
-			"surname": "dev",
-			"date": "1990-07-27",
-			"gender": "Female",
-			"phone": "892374982",
-			"email": "grace2@dev.it",
-			"password": "U2FsdGVkX19IY3/CN43dNOShBBvb3KobeNPTotA6oBg=",
-			"maritalStatus": "single",
-			"id": 4
-		},
-		{
-			"name": "a",
-			"surname": "a",
-			"date": "0045-08-07",
-			"gender": "Female",
-			"phone": "0123456789",
-			"email": "a@a.com",
-			"password": "U2FsdGVkX1+pqjzUQAgqqKLItJ1H652lT07ykDTCvDM=",
-			"maritalStatus": "single",
-			"id": 4
-		}
-	],
-	"workspaceUsers": [
-		{
-			"userId": 2,
-			"workspaceId": 1,
-			"role": "admin",
-			"id": 1
-		}
-	],
-	"workspaces": [
-		{
-			"name": "3Dello",
-			"id": 1
-		}
-	],
-	"boards": [
-		{
-			"name": "FE",
-			"layout": "mountain",
-			"workspaceId": 1,
-			"id": 1
-		},
-		{
-			"name": "BE",
-			"layout": "mountain",
-			"workspaceId": 1,
-			"id": 2
-		},
-		{
-			"name": "BO",
-			"layout": "sunshine",
-			"workspaceId": 1,
-			"id": 3
-		}
-	],
-	"ticketLists": [],
-	"tickets": [],
-	"comments": []
+  "users": [
+    {
+      "name": "Enrico",
+      "surname": "Di Grazia",
+      "date": "1998-04-05",
+      "gender": "Male",
+      "phone": "3922958942",
+      "email": "enrico.digrazia98@gmail.com",
+      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+      "maritalStatus": "single",
+      "id": 1
+    },
+    {
+      "name": "Armando",
+      "surname": "Trallallero Di Cognome",
+      "date": "1998-03-02",
+      "gender": "Male",
+      "phone": "3762959943",
+      "email": "armando.trallallerodicognome98@gmail.com",
+      "password": "U2FsdGVkX1/fAIaaFbiseBYvJzkvYCdbNMZvN7tW3lg=",
+      "maritalStatus": "single",
+      "id": 2
+    },
+    {
+      "name": "grace2",
+      "surname": "dev",
+      "date": "1990-07-27",
+      "gender": "Female",
+      "phone": "892374982",
+      "email": "grace2@dev.it",
+      "password": "U2FsdGVkX19IY3/CN43dNOShBBvb3KobeNPTotA6oBg=",
+      "maritalStatus": "single",
+      "id": 4
+    },
+    {
+      "name": "a",
+      "surname": "a",
+      "date": "0045-08-07",
+      "gender": "Female",
+      "phone": "0123456789",
+      "email": "a@a.com",
+      "password": "U2FsdGVkX1+pqjzUQAgqqKLItJ1H652lT07ykDTCvDM=",
+      "maritalStatus": "single",
+      "id": 4
+    }
+  ],
+  "workspaceUsers": [
+    {
+      "userId": 2,
+      "workspaceId": 1,
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "workspaceId": 2,
+      "role": "admin",
+      "id": 2
+    }
+  ],
+  "workspaces": [
+    {
+      "name": "3Dello",
+      "id": 1,
+      "boards": [
+        {
+          "name": "FE",
+          "layout": "mountain",
+          "workspaceId": 1,
+          "id": 1
+        },
+        {
+          "name": "BE",
+          "layout": "mountain",
+          "workspaceId": 1,
+          "id": 2
+        },
+        {
+          "name": "BO",
+          "layout": "sunshine",
+          "workspaceId": 1,
+          "id": 3
+        }
+      ],
+      "ticketLists": [
+        {
+          "name": "Lofol",
+          "workspaceId": 1,
+          "boardId": 1,
+          "id": 1
+        },
+        {
+          "name": "polol",
+          "workspaceId": 1,
+          "boardId": 1,
+          "id": 2
+        }
+      ],
+      "tickets": [
+        {
+          "title": "asdasd",
+          "description": "asdasd",
+          "tag": "",
+          "workspaceId": 1,
+          "boardId": 1,
+          "ticketListId": 1,
+          "id": 1
+        },
+        {
+          "title": "looofol",
+          "description": "looofol",
+          "tag": "",
+          "workspaceId": 1,
+          "boardId": 1,
+          "ticketListId": 2,
+          "id": 2
+        },
+        {
+          "title": "loool",
+          "description": "loool",
+          "tag": "",
+          "workspaceId": 1,
+          "boardId": 1,
+          "ticketListId": 2,
+          "id": 3
+        },
+        {
+          "title": "asd",
+          "description": "asd",
+          "tag": "",
+          "workspaceId": 1,
+          "boardId": 1,
+          "ticketListId": 2,
+          "id": 4
+        }
+      ]
+    },
+    {
+      "name": "asd",
+      "id": 2
+    }
+  ],
+  "boards": [
+    {
+      "name": "FE",
+      "layout": "mountain",
+      "workspaceId": 1,
+      "id": 1
+    },
+    {
+      "name": "BE",
+      "layout": "mountain",
+      "workspaceId": 1,
+      "id": 2
+    },
+    {
+      "name": "BO",
+      "layout": "sunshine",
+      "workspaceId": 1,
+      "id": 3
+    }
+  ],
+  "ticketLists": [
+    {
+      "name": "Lofol",
+      "workspaceId": 1,
+      "boardId": 1,
+      "id": 1
+    },
+    {
+      "name": "polol",
+      "workspaceId": 1,
+      "boardId": 1,
+      "id": 2
+    }
+  ],
+  "tickets": [
+    {
+      "title": "sssssss",
+      "description": "sssssss",
+      "tag": "",
+      "workspaceId": 1,
+      "boardId": 1,
+      "ticketListId": 1,
+      "id": 8
+    },
+    {
+      "title": "bbbbbbb",
+      "description": "bbbbbbb",
+      "tag": "",
+      "workspaceId": 1,
+      "boardId": 1,
+      "ticketListId": 2,
+      "id": 10
+    }
+  ],
+  "comments": []
 }
