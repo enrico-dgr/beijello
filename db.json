@@ -179,6 +179,12 @@
       "workspaceId": 1,
       "boardId": 1,
       "id": 2
+    },
+    {
+      "name": "Example list",
+      "workspaceId": 2,
+      "boardId": 3,
+      "id": 3
     }
   ],
   "tickets": [
@@ -199,6 +205,15 @@
       "boardId": 1,
       "ticketListId": 2,
       "id": 10
+    },
+    {
+      "title": "Uau ticket",
+      "description": "Uau ticket",
+      "tag": "",
+      "workspaceId": 2,
+      "boardId": 3,
+      "ticketListId": 3,
+      "id": 11
     }
   ],
   "comments": []
