@@ -5,9 +5,8 @@ import Modal from "../Modal";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
+import { deleteBoardById } from "../../../services/workspaceApi";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-toastify";
-import workspacesApi from "../../../services/workspacesApi";
 
 const mapStateToProps = (state) => ({
 	workspaces: state.workspacesDuck.workspaces,
@@ -31,29 +30,14 @@ const RemoveBoard = (props) => {
 
 	const deleteBoard = (e) => {
 		e.stopPropagation();
-		let workspace = props.workspaces.find(
-			(w) => w.id === props.workspaceId
+
+		const board = props.workspaces
+			.find((w) => w.id === props.workspaceId)
+			.boards.find((b) => b.id === props.boardId);
+
+		deleteBoardById(board, props.userId, props.dispatch).then(() =>
+			hideModal()
 		);
-
-		workspace.boards = workspace.boards.filter(
-			(b) => b.id !== props.boardId
-		);
-
-		workspacesApi
-			.update(workspace, props.userId, props.dispatch)
-			.catch((err) =>
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				})
-			);
-
-		hideModal();
 	};
 
 	return (

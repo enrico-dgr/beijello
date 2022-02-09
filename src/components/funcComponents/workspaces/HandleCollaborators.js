@@ -1,6 +1,11 @@
 import "./HandleCollaborators.css";
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
+import {
+	createCollaborator,
+	deleteCollaborator,
+	getRelationsByWorkspaceId,
+} from "../../../services/workspaceApi";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "../Modal";
@@ -9,7 +14,6 @@ import { connect } from "react-redux";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import usersApi from "../../../services/usersApi";
-import workspacesApi from "../../../services/workspacesApi";
 
 const HandleCollaborators = (props) => {
 	const [state, setState] = React.useState({
@@ -21,21 +25,10 @@ const HandleCollaborators = (props) => {
 	});
 
 	useEffect(() => {
-		workspacesApi
-			.getRelations(props.workspaceId)
-			.then((relations) => setState((pS) => ({ ...pS, relations })))
-			.catch((err) =>
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				})
-			);
-	}, [state.showModal, state.refresh]);
+		getRelationsByWorkspaceId(props.workspaceId).then((relations) =>
+			setState((pS) => ({ ...pS, relations }))
+		);
+	}, [state.showModal, state.refresh, props.workspaceId]);
 
 	useEffect(() => {
 		usersApi
@@ -54,6 +47,12 @@ const HandleCollaborators = (props) => {
 			);
 	}, [state.query]);
 
+	const filterUsers = useCallback(
+		(user) =>
+			state.relations.findIndex((r) => r.user.id === user.id) < 0,
+		[state.relations]
+	);
+
 	const hideModal = () => {
 		setState({ ...state, showModal: false });
 	};
@@ -66,42 +65,24 @@ const HandleCollaborators = (props) => {
 		setState({ ...state, query: e.target.value });
 	};
 
-	const onClickAddUser = (userId) => () => {
-		workspacesApi
-			.addCollaborator(props.workspaceId, userId)
-			.then(() =>
-				setState((pS) => ({ ...pS, refresh: pS.refresh + 1 }))
-			)
-			.catch((err) =>
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				})
-			);
+	const onClickAddUser = (userIdToAdd) => () => {
+		createCollaborator(
+			props.workspaceId,
+			props.userId,
+			userIdToAdd
+		).then(() =>
+			setState((pS) => ({ ...pS, refresh: pS.refresh + 1 }))
+		);
 	};
 
-	const onClickRemove = (userId) => () => {
-		workspacesApi
-			.deleteCollaborator(props.workspaceId, userId)
-			.then(() =>
-				setState((pS) => ({ ...pS, refresh: pS.refresh + 1 }))
-			)
-			.catch((err) =>
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				})
-			);
+	const onClickRemove = (userIdToDelete) => () => {
+		deleteCollaborator(
+			props.workspaceId,
+			props.userId,
+			userIdToDelete
+		).then(() =>
+			setState((pS) => ({ ...pS, refresh: pS.refresh + 1 }))
+		);
 	};
 
 	return (
@@ -129,7 +110,9 @@ const HandleCollaborators = (props) => {
 						/>
 					</div>
 					<div className="workspace-collaborators-modal__users-list">
-						{state.users.map(MapUsers(onClickAddUser))}
+						{state.users
+							.filter(filterUsers)
+							.map(MapUsers(onClickAddUser))}
 					</div>
 					<button onClick={hideModal}>Close</button>
 				</Modal>
@@ -183,4 +166,8 @@ HandleCollaborators.propTypes = {
 	workspaceName: PropTypes.string.isRequired,
 };
 
-export default connect()(HandleCollaborators);
+const mapStateToProps = (state) => ({
+	userId: state.userMeDuck.user.id,
+});
+
+export default connect(mapStateToProps)(HandleCollaborators);

@@ -31,7 +31,7 @@
       "email": "grace2@dev.it",
       "password": "U2FsdGVkX19IY3/CN43dNOShBBvb3KobeNPTotA6oBg=",
       "maritalStatus": "single",
-      "id": 4
+      "id": 3
     },
     {
       "name": "a",
@@ -53,10 +53,16 @@
       "id": 1
     },
     {
-      "userId": 2,
+      "userId": 1,
       "workspaceId": 2,
       "role": "admin",
       "id": 2
+    },
+    {
+      "userId": 2,
+      "workspaceId": 2,
+      "role": "collaborator",
+      "id": 3
     }
   ],
   "workspaces": [
@@ -137,7 +143,7 @@
       ]
     },
     {
-      "name": "asd",
+      "name": "LoooooL",
       "id": 2
     }
   ],
@@ -155,9 +161,9 @@
       "id": 2
     },
     {
-      "name": "BO",
-      "layout": "sunshine",
-      "workspaceId": 1,
+      "name": "Awesome",
+      "layout": "dark",
+      "workspaceId": 2,
       "id": 3
     }
   ],

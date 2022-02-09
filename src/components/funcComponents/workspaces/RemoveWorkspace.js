@@ -5,9 +5,8 @@ import Modal from "../Modal";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
+import { deleteWorkspaceById } from "../../../services/workspaceApi";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-toastify";
-import workspacesApi from "../../../services/workspacesApi";
 
 const RemoveWorkspace = (props) => {
 	const [state, setState] = React.useState({
@@ -23,21 +22,11 @@ const RemoveWorkspace = (props) => {
 	};
 
 	const deleteWorkspace = () => {
-		workspacesApi
-			.deleteById(props.workspaceId, props.dispatch)
-			.catch((err) =>
-				toast.error(err.message, {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				})
-			);
-
-		hideModal();
+		deleteWorkspaceById(
+			props.workspaceId,
+			props.userId,
+			props.dispatch
+		);
 	};
 
 	return (
@@ -68,4 +57,8 @@ RemoveWorkspace.propTypes = {
 	workspaceId: PropTypes.number.isRequired,
 };
 
-export default connect()(RemoveWorkspace);
+const mapStateToProps = (state) => ({
+	userId: state.userMeDuck.user?.id,
+});
+
+export default connect(mapStateToProps)(RemoveWorkspace);

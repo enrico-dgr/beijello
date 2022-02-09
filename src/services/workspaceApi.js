@@ -127,27 +127,34 @@ const getRelationsByWorkspaceId = async (workspaceId) => {
 };
 
 /** */
-const createCollaborator = async (workspaceId, userId) => {
+const createCollaborator = async (workspaceId, userId, userIdToAdd) => {
+	const permissionError = await checkAdminRole(workspaceId, userId);
+
+	if (permissionError !== "") {
+		errorToast(permissionError);
+		throw new Error(permissionError);
+	}
+
 	const res = await workspaceUsers.get(
-		`?workspaceId=${workspaceId}&userId=${userId}`
+		`?workspaceId=${workspaceId}&userId=${userIdToAdd}`
 	);
 
 	if (res.status !== 200) {
-		errorToast("Error while checking permission.");
+		errorToast("Error while checking role");
 		throw new Error(res.statusText);
 	} else if (res.data.length > 0) {
-		errorToast("You have no permission for this.");
+		errorToast("User has already permissions");
 		throw new Error("User has already permissions");
 	}
 
 	const resCreateRelations = await workspaceUsers.post(`/`, {
-		userId,
+		userId: userIdToAdd,
 		workspaceId,
 		role: "collaborator",
 	});
 
 	if (resCreateRelations.status !== 201) {
-		errorToast("Error while adding collaborator.");
+		errorToast("Uknown error, retry later");
 		throw new Error(resCreateRelations.statusText);
 	}
 };
@@ -370,7 +377,7 @@ const checkAdminRole = async (workspaceId, userId) => {
 	if (resPermission.status !== 200) {
 		error = "Server error, retry later";
 	} else if (resPermission.data.length < 1) {
-		error = "No authorization to delete this workspace";
+		error = "No authorization to operate in this workspace";
 	} else if (resPermission.data[0].role !== "admin") {
 		error = "Authorization is not enough to edit this workspace";
 	}
@@ -480,6 +487,7 @@ const deleteCollaborator = async (workspaceId, userId, userIdToDelete) => {
 	const permissionError = await checkAdminRole(workspaceId, userId);
 
 	if (permissionError !== "") {
+		errorToast(permissionError);
 		throw new Error(permissionError);
 	}
 
@@ -488,14 +496,17 @@ const deleteCollaborator = async (workspaceId, userId, userIdToDelete) => {
 	);
 
 	if (resIsNotAdmin.status !== 200) {
+		errorToast("Error while checking role");
 		throw new Error(resIsNotAdmin.statusText);
 	} else if (resIsNotAdmin.data[0].role === "admin") {
+		errorToast("Admin cannot be removed");
 		throw new Error("Admin cannot be removed");
 	}
 
 	const res = await workspaceUsers.delete(`/${resIsNotAdmin.data[0].id}`);
 
 	if (res.status !== 200) {
+		errorToast("Unknown error, retry later");
 		throw new Error(res.statusText);
 	}
 };
