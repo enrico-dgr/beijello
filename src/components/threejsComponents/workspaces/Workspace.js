@@ -63,7 +63,7 @@ const Workspace = (props) => {
 		<mesh
 			{...props}
 			ref={ref}
-			rotation={[0.3, -0.2, 0]}
+			rotation={[1.2, 0, 0]}
 			onPointerDown={onPointerDown}
 		>
 			<boxGeometry args={style.container.boxGeometryArgs} />
@@ -100,12 +100,12 @@ const Workspace = (props) => {
 
 const style = {
 	container: {
-		boxGeometryArgs: [4, 0.15, 3],
+		boxGeometryArgs: [4, 0.15, 2.4],
 		color: "black",
 		opacity: 0.4,
 	},
 	header: {
-		boxGeometryArgs: [3, 0.1, 2],
+		boxGeometryArgs: [3, 0.1, 1.7],
 		opacity: 0.5,
 		text: {
 			position: [0, 0, 0],
