@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { useFrame } from "@react-three/fiber";
 
-const GyroscopeXY = ({ children, ...props }) => {
+const GyroscopeXY = (props) => {
 	const ref = useRef();
 
 	const [down, setDown] = useState(false);
@@ -23,8 +23,8 @@ const GyroscopeXY = ({ children, ...props }) => {
 	useFrame(() => {
 		if (down) {
 			setLastCoords(coords);
-			ref.current.rotation.x += coords.y - lastCoords.y;
-			ref.current.rotation.y += coords.x - lastCoords.x;
+			ref.current.rotation.x += (coords.y - lastCoords.y) * 0.008;
+			ref.current.rotation.y += (coords.x - lastCoords.x) * 0.008;
 		}
 	});
 
@@ -34,22 +34,17 @@ const GyroscopeXY = ({ children, ...props }) => {
 	};
 
 	const onPointerUp = (e) => {
-		setCoords({ x: e.clientX * 0.01, y: e.clientY * 0.01 });
+		setCoords({ x: e.clientX, y: e.clientY });
 		setDown(false);
 	};
 
 	const onPointerMove = (e) => {
-		setCoords({ x: e.clientX * 0.01, y: e.clientY * 0.01 });
+		setCoords({ x: e.clientX, y: e.clientY });
 	};
 
 	return (
-		<mesh
-			{...props}
-			ref={ref}
-			rotation={[1.2, 0, 0]}
-			onPointerDown={onPointerDown}
-		>
-			{children}
+		<mesh ref={ref} onPointerDown={onPointerDown}>
+			{props.children}
 		</mesh>
 	);
 };
